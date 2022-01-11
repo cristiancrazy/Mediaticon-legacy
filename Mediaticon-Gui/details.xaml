@@ -1,0 +1,226 @@
+﻿<Window x:Name="mainWindow" x:Class="Mediaticon.details"
+
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mediaticon" 
+       
+        xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
+        mc:Ignorable="d"
+        Title="Mediaticon" Height="624" Width="850" MinWidth="850" MinHeight="500" SizeChanged="mainWindow_SizeChanged">
+    <Window.Resources>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" BorderBrush="#FFBCBCBE">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF1F1F23"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Background" Value="#FF191919"/>
+            <Setter Property="BorderBrush" Value="#FF191919"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Window.Background>
+        <ImageBrush x:Name="bkgImg" AlignmentY="Top" Stretch="UniformToFill" ImageSource="C:\Users\Visual Laser 10 New\Pictures\228300438_1627136104148396_5062049468704582859_n.jpg">
+            <ImageBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                    <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                    <TranslateTransform Y="0"/>
+                </TransformGroup>
+            </ImageBrush.RelativeTransform>
+        </ImageBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#19343434" Offset="0.003"/>
+                <GradientStop Color="#0e0e10" Offset="0.6" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="42" Margin="64,10,0,0" VerticalAlignment="Top" Width="115"/>
+
+        <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right">
+            <ComboBoxItem>La mia lista</ComboBoxItem>
+            <ComboBoxItem>Informazioni</ComboBoxItem>
+            <ComboBoxItem>Esci</ComboBoxItem>
+        </ComboBox>
+        <Border x:Name="accountBord" BorderThickness="1" HorizontalAlignment="Right" Width="148" Height="65" VerticalAlignment="Top" Margin="0,-1,-1,0" CornerRadius="0,0,0,10" MouseLeftButtonDown="accountBord_MouseLeftButtonDown">
+            <Grid x:Name="accountGrid" d:LayoutOverrides="Height">
+                <Label x:Name="accountLbl" Content="Account" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Center" Width="73" FontWeight="Bold"/>
+                <Image x:Name="accountImg" HorizontalAlignment="Left" Height="50" Margin="10,4,0,0" VerticalAlignment="Top" Width="50"/>
+            </Grid>
+        </Border>
+        <ScrollViewer x:Name="scrollView" VerticalScrollBarVisibility="Hidden" Margin="10,69,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top">
+            <Grid Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=scrollView}" Height="1512">
+                <Border x:Name="titleBord"  BorderThickness="1" Height="175" CornerRadius="10,10,10,10" Margin="10,10,17,0" VerticalAlignment="Top" Background="#F21F1F23">
+                    <Grid>
+                        <Image x:Name="coverImg" HorizontalAlignment="Left" Height="144" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+                        <Label x:Name="titleLbl" Content="BELLI CIAO" Height="76" Margin="133,10,20,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <StackPanel Margin="0,0,20,20" Height="40" Width="665" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" FlowDirection="RightToLeft">
+                            <ComboBox x:Name="seeBtn" Style ="{StaticResource NormalCombo}" Height="40" Width="120" FlowDirection="LeftToRight" SelectedIndex="0" Foreground="White">
+                                <ComboBoxItem Content="Visto"/>
+                                <ComboBoxItem Content="Da vedere"/>
+                                <ComboBoxItem Content="Sospeso"/>
+                                <ComboBoxItem Content="Non visto"/>
+                            </ComboBox>
+                            <Button x:Name="trailerBtn" Style ="{StaticResource NormalBtn}" Content="Trailer" Height="40" Width="84" Margin="20,0,0,0" FlowDirection="LeftToRight"/>
+                            <Button x:Name="watchBtn" Style ="{StaticResource NormalBtn}" Content="Guarda" Height="40" Width="84" Margin="20,0,0,0" FlowDirection="LeftToRight"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border x:Name="descriptionBord" BorderThickness="1" CornerRadius="10,10,10,10" MinHeight="150" Height="335" Padding="0,0,0,0" Margin="10,197,17,0" VerticalAlignment="Top" Background="#F21F1F23">
+                    <RichTextBox x:Name="descRichTxt" Background="Transparent" Focusable="False" MinHeight="150" BorderBrush="Transparent" Margin="20,10,20,21" IsReadOnly="True" BorderThickness="0,0,0,0">
+                        <FlowDocument>
+                            <Paragraph FontSize="20" Foreground="#FFBCBCBE" FontWeight="Bold" Margin="0,0,0,7">
+                                <Run Text="Descrizione"/>
+                            </Paragraph>
+
+                            <Paragraph x:Name="descrizione" Foreground="White" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,0">
+                                <Run x:Name="descBox" Text="Pio e Amedeo raccontano la loro storia in una comunità di recupero per meridionali che hanno vissuto a Milano. Amici fin dall'infanzia, sembravano inseparabili. Invece, dopo l'esame di maturità, le loro strade si dividono. Pio parte per Milano, si laurea con lode e diventa un manager di successo. Amedeo invece resta in Puglia e, dopo che è sfumata l'ambizione di diventare medico, gestisce un negozio di articoli sanitari e collabora, come assessore, con il sindaco del suo paese per fermare la fuga dei giovani dal Sud. Dopo essersi persi di vista a lungo i due, ormai ex-amici, si rivedono dopo 20 anni quando Pio torna a casa insieme alla sua nuova compagna, un'imprenditrice digitale che ha tre milioni di followers. Il paese pugliese ha infatti bisogno di un finanziamento e la banca di Pio è l'unica disposta a concederlo.Dopo aver lanciato Checco Zalone firmando la regia dei suoi primi quattro film e aver diretto Fabio Rovazzi in Il vegetale, Gennaro Nunziante ripete la formula con i comici foggiani Pio e Amedeo, che mancavano al cinema da sette anni dopo essere stati protagonisti di Amici come noi e aver fatto parte del cinepanettone 2014 Ma tu di che segno 6?.Belli ciao riprende alcuni temi della commedia all'italiana: classi sociali differenti, contrasto Nord-Sud, la vita ordinaria che subisce all'improvviso un brusco cambiamento. Nunziante inoltre ripropone il tema narrativo dei primi due film girati con Zalone (Cado dalle nubi, Che bella giornata) dove la comicità scattava proprio nel rapporto tra il protagonista pugliese e Milano. Il suo merito è quello di non lasciare Pio e Amedeo (anche co-sceneggiatori insieme al regista) a briglia sciolta ma di costruirgli attorno una storia compatta, raccontata in un flashback lungo quasi come tutto il film."/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Border>
+                <Border x:Name="tagBord" BorderThickness="1" CornerRadius="10,10,10,10" MinHeight="150" Height="257" Padding="0,0,0,0" Margin="11,543,17,0" VerticalAlignment="Top" Background="#F21F1F23">
+                    <StackPanel Orientation="Vertical">
+                        <RichTextBox x:Name="tagRichTxt" Background="Transparent" MinHeight="10" BorderBrush="Transparent" Margin="20,10,20,15" IsReadOnly="True" BorderThickness="0,0,0,0" Height="85" Focusable="False" VerticalContentAlignment="Top">
+                            <FlowDocument>
+                                <Paragraph FontSize="20" Foreground="#FFBCBCBE" FontWeight="Bold" Margin="0,0,0,7">
+                                    <Run Text="Informazioni"/>
+                                </Paragraph>
+
+                                <Paragraph Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,0">
+                                    <Run x:Name="attoriBox" Text="Attori:  Pio, Amedeo"/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                        <StackPanel Orientation="Horizontal" Height="119" Margin="20,0,17,0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                            <Border BorderThickness="0,0,1,0" BorderBrush="#FFBCBCBE" Background="Transparent">
+                                <RichTextBox Width="186" Background="Transparent" IsReadOnly="True" BorderThickness="0,0,0,0" Focusable="False" Margin="0,0,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                                    <FlowDocument>
+                                        <Paragraph FontSize="40" FontWeight="Bold" Foreground="#FFBCBCBE" Margin="0,0,0,7" TextAlignment="Center">
+                                            <Run Text="Durata"/>
+                                        </Paragraph>
+                                        <Paragraph FontSize="30" FontWeight="Bold" Foreground="White" Margin="0,0,0,0" TextAlignment="Center">
+                                            <Run x:Name="durataBox" Text="87 minuti"/>
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </Border>
+                            <Border BorderThickness="0,0,1,0" BorderBrush="#FFBCBCBE" Background="Transparent">
+                                <RichTextBox Width="186" Background="Transparent" IsReadOnly="True" BorderThickness="0,0,0,0" Focusable="False" Margin="0,0,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                                    <FlowDocument>
+                                        <Paragraph FontSize="40" FontWeight="Bold" Foreground="#FFBCBCBE" Margin="0,0,0,7" TextAlignment="Center">
+                                            <Run Text="Anno"/>
+                                        </Paragraph>
+                                        <Paragraph FontSize="30" FontWeight="Bold" Foreground="White" Margin="0,0,0,0" TextAlignment="Center">
+                                            <Run x:Name="annoBox" Text="2022"/>
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </Border>
+                            <Border BorderThickness="0,0,1,0" BorderBrush="#FFBCBCBE" Background="Transparent">
+                                <RichTextBox Width="186" Background="Transparent" IsReadOnly="True" BorderThickness="0,0,0,0" Focusable="False" Margin="0,0,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                                    <FlowDocument>
+                                        <Paragraph FontSize="40" FontWeight="Bold" Foreground="#FFBCBCBE" Margin="0,0,0,7" TextAlignment="Center">
+                                            <Run Text="Genere"/>
+                                        </Paragraph>
+                                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,0" TextAlignment="Center">
+                                            <Run x:Name="genereBox" Text="Commedia"/>
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </Border>
+                            <Border BorderThickness="0,0,0,0" BorderBrush="#FFBCBCBE" Background="Transparent">
+                                <RichTextBox Width="186" Background="Transparent" IsReadOnly="True" BorderThickness="0,0,0,0" Focusable="False" Margin="0,0,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                                    <FlowDocument>
+                                        <Paragraph FontSize="40" FontWeight="Bold" Foreground="#FFBCBCBE" Margin="0,0,0,7" TextAlignment="Center">
+                                            <Run Text="Tipo"/>
+                                        </Paragraph>
+                                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,0" TextAlignment="Center">
+                                            <Run x:Name="tipoBox" Text="Film"/>
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <WrapPanel x:Name="wrap" Margin="0,805,0,0" HorizontalAlignment="Center" MinWidth="600">
+                    <Border x:Name="tvBord" BorderThickness="1" CornerRadius="10,10,10,10" MinHeight="150" Height="320" MaxWidth ="600" Padding="0,0,0,0" Margin="10,20,10,-10" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="600" Background="#F21F1F23">
+                        <StackPanel Orientation="Vertical">
+                            <RichTextBox x:Name="tvRichTxt" Background="Transparent" MinHeight="10" BorderBrush="Transparent" Margin="20,10,20,0" IsReadOnly="True" BorderThickness="0,0,0,0" Height="34" Focusable="False" VerticalContentAlignment="Top">
+                                <FlowDocument>
+                                    <Paragraph FontSize="20" Foreground="#FFBCBCBE" FontWeight="Bold" Margin="0,0,0,0">
+                                        <Run Text="Programmazione TV"/>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                            <ListBox x:Name="listaTV" ItemsSource="{Binding}"  Margin="10,0,20,10" Background="#000E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="242" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Height="100" Width="600" Background="Transparent">
+                                            <Image Width="100" Height="90" Margin="10"/>
+                                            <RichTextBox x:Name="dataTxt" Background="Transparent" VerticalAlignment="Center" MinHeight="10" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="20" Foreground="#FFBCBCBE" Width="150" Focusable="False" IsReadOnly="True">
+                                                <FlowDocument>
+                                                    <Paragraph Margin="0">
+                                                        <Run Text="Giorno:"/>
+                                                    </Paragraph>
+                                                    <Paragraph Margin="0,10" Foreground="White">
+                                                        <Run Text="{Binding Path=giorno}"/>
+                                                    </Paragraph>
+                                                </FlowDocument>
+                                            </RichTextBox>
+                                            <RichTextBox x:Name="orarioTxt" Background="Transparent" VerticalAlignment="Center" MinHeight="10" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="20" Foreground="#FFBCBCBE" Width="150" Focusable="False" IsReadOnly="True">
+                                                <FlowDocument>
+                                                    <Paragraph Margin="0">
+                                                        <Run Text="Ora inizio:"/>
+                                                    </Paragraph>
+                                                    <Paragraph Margin="0,10" Foreground="White">
+                                                        <Run Text="{Binding Path=oraInizio}"/>
+                                                    </Paragraph>
+                                                </FlowDocument>
+                                            </RichTextBox>
+                                            <RichTextBox x:Name="orariofTxt" Background="Transparent" VerticalAlignment="Center" MinHeight="10" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="20" Foreground="#FFBCBCBE" Width="150" Focusable="False" IsReadOnly="True">
+                                                <FlowDocument>
+                                                    <Paragraph Margin="0">
+                                                        <Run Text="Ora fine:"/>
+                                                    </Paragraph>
+                                                    <Paragraph Margin="0,10" Foreground="White">
+                                                        <Run Text="{Binding Path=oraFine}"/>
+                                                    </Paragraph>
+                                                </FlowDocument>
+                                            </RichTextBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </Border>
+                    <Border x:Name="cinemaBord" BorderThickness="1" CornerRadius="10,10,10,10" MinHeight="150" Height="320" Padding="0,0,0,0" Margin="10,20,0,0" VerticalAlignment="Top" Width="600" HorizontalAlignment="Center" MinWidth="600" Background="#F21F1F23">
+                        <Label FontSize="70" FontWeight="Bold" Content="COMING SOON" Margin="39,108,39,107"/>
+                    </Border>
+                </WrapPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</Window>
