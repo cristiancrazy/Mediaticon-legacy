@@ -2,24 +2,8 @@ import requests, re, bs4
 from dataclasses import dataclass
 from datetime import date
 
-#import js2py
-
 def to_list(*args):
     return list(args)
-
-@dataclass(frozen=True)
-class Film:
-    image: str
-    name: str
-    trama: str
-    anno: int
-    generi: list[str]
-    tipo: str #anime, film, serie tv, programma
-    durata : str
-    cast: list[str]
-
-    def __str__(self):
-        return f'{self.tipo} -> {self.durata}\n{self.name} {self.anno} -> {self.image}\n\n{self.trama}\n\n{self.generi}'
 
 def mymovies():
     #YEARS RANGE
@@ -75,7 +59,6 @@ def mymovies():
 
                         if _big_image:
                             big_image = _big_image['src']
-                            print(big_image)
                     
                     elif 'mm-white' in element.attrs['class'] and 'mm-padding-8' in element.attrs['class']:
                         page_is_valid = 1
@@ -127,12 +110,9 @@ def mymovies():
                                 actors_list.append(actor.text.encode('ascii', 'ignore').decode())
                         
                         trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
-
-                        print(big_image, '\n',  image, '\n', name)
-                        print()
                         #############################################################################################################
-                        with open('data.csv', 'a') as f:
-                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, tipo, actors_list))[1:])
+                        with open('data2.csv', 'a') as f:
+                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, tipo, actors_list)))
                             f.write('\n')
                         image = ''
                         big_image = ''
