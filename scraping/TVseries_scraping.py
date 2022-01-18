@@ -1,5 +1,4 @@
 import requests, re, bs4
-from dataclasses import dataclass
 from datetime import date
 
 def to_list(*args):
