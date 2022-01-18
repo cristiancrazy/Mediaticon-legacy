@@ -13,7 +13,6 @@ def mymovies():
     #GLOBAL VARIABLES
     page = 1
     tipo = 'Film'
-    _films : list[Film] = []
 
     #CURRENT YEAR
     today_date = date.today()
