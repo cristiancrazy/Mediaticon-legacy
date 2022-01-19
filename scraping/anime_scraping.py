@@ -2,9 +2,7 @@ import requests, re, bs4
 from dataclasses import dataclass, field
 
 '''
-
 scraping\Scripts\activate
-
 big_image => X
 image
 name
@@ -14,7 +12,6 @@ anno
 tags
 tipo
 actors_list
-
 '''
 
 @dataclass
@@ -29,7 +26,7 @@ class Anime:
     actors_list : list[str] = field(default_factory=list)
 
     def __str__(self):
-        return f'{self.tipo}\n{self.name} | {self.anno}\n* {self.image}\n\n{self.trama}\n\n{self.tags}\n{self.actors_list}'
+        return f'{self.tipo}\n{self.name} | {self.anno} -> {self.episodes}\n* {self.image}\n\n{self.trama}\n\n{self.tags}\n{self.actors_list}'
 
 def myanilist():
     letters = [ '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -52,11 +49,11 @@ def myanilist():
 
         for anime_list in animes:
             anime : Anime = Anime()
-            # if(image := anime_list.find('div', {'class', 'picSurround'})):
+            # if(image := anime_list.find('div', {'class' : 'picSurround'})):
             #     if(image := image.find('img')):
             #         anime.image = image['data-src']
             
-            if(header := anime_list.find('div', {'class', 'title'})):
+            if(header := anime_list.find('div', {'class' : 'title'})):
                 if(title := header.find('strong')):
                     #TITLE
                     anime.name = title.text
@@ -70,18 +67,36 @@ def myanilist():
                     #PREPARE FOR PARSING
                     soup = bs4.BeautifulSoup(response2.text, 'html.parser')
 
-                    lateral_bar = soup.find('td', {'class', 'borderClass'})
+                    lateral_bar = soup.find('td', {'class' : 'borderClass'})
                     
                     #IMAGE
                     anime.image = lateral_bar.find('img')['data-src']
 
-                    menu_info = soup.find_all('div', {'class', 'spaceit_pad'})
+                    menu_info = soup.find_all('div', {'class' : 'spaceit_pad'})
                     for info in menu_info:
+                        #NUMBER OF APISODES
                         if 'Episodes' in info.text:
                             anime.episodes = info.text.split(':')[1].strip()
-                        if 'Genres' in info.text or 'Genre' in info.text:
+                        #YEAR
+                        elif 'Aired' in info.text:
+                            if 'to' in info.text:
+                                anime.anno = info.text.split(', ')[1].split(' to')[0].strip()
+                            else:
+                                try:
+                                    anime.anno = info.text.split(', ')[1].strip()
+                                except:
+                                    anime.anno = info.text.split(':')[1].strip()
+                        #TAGS
+                        elif 'Genres' in info.text or 'Genre' in info.text:
                             for genre in info.find_all('a'):
                                 anime.tags.append(genre.text)
+                    
+                    #TRAMA
+                    anime.trama = soup.find('p', {'itemprop' : 'description'}).text.strip()
+
+                    #ACTORS
+                    
+
                     print(anime)
             
             #print(anime)
