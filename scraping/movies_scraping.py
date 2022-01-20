@@ -109,7 +109,7 @@ def mymovies():
                         
                         trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
-                        with open('data2.csv', 'a') as f:
+                        with open('../output/data2.csv', 'a') as f:
                             f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, tipo, actors_list)))
                             f.write('\n')
                         image = ''
