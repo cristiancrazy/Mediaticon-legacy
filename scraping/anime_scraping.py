@@ -29,7 +29,7 @@ class Anime:
     def __str__(self):
         return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.tipo};{self.actors_list}'
 
-def myanilist():
+def myanilist(session):
     #letters = [ '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     _from_year = 1970
     _to_year = 0
@@ -43,10 +43,8 @@ def myanilist():
 
     while True:
         #GET HTML
-        #https://myanimelist.net/anime.php?cat=anime&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy=1970&em=0&ed=0&ey=2022&c%5B0%5D=d&show=50
-        #response = requests.get(f'https://myanimelist.net/anime.php?letter={letter}&show={page}')
         try:
-            response = requests.get(f'https://myanimelist.net/anime.php?cat=0&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy={_from_year}&em=0&ed=0&ey={_to_year}&c%5B0%5D=d&o=2&w=2&show={page}')
+            response = session.get(f'https://myanimelist.net/anime.php?cat=0&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy={_from_year}&em=0&ed=0&ey={_to_year}&c%5B0%5D=d&o=2&w=2&show={page}')
             response.raise_for_status() # give an error if the page returns an error code
         except:
             break
@@ -76,7 +74,7 @@ def myanilist():
                 #enter anime page
                 if(link := header.find('a')['href']):
                     #GET HTML 2° LINK
-                    response2 = requests.get(link)
+                    response2 = session.get(link)
                     response2.raise_for_status()
 
                     #PREPARE FOR PARSING
@@ -101,7 +99,10 @@ def myanilist():
                                 try:
                                     anime.anno = info.text.split(', ')[1].strip()
                                 except:
-                                    anime.anno = info.text.split(':')[1].strip()
+                                    try:
+                                        anime.anno = info.text.split(':')[1].strip()
+                                    except:
+                                        anime.anno = [s for s in info.text.split('to ')[1] if s.isdigit()][0]
                         #TAGS
                         elif 'Genres' in info.text or 'Genre' in info.text:
                             for genre in info.find_all('a'):
@@ -125,7 +126,8 @@ def myanilist():
         page += 50
 
         if page % 250 == 0:
-            time.sleep(20)
+            time.sleep(40)
 
 if __name__ == "__main__":
-    myanilist()
+    s = requests.Session()
+    myanilist(s)
