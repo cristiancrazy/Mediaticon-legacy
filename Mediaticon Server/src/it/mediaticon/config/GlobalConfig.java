@@ -45,9 +45,19 @@ public class GlobalConfig {
 	public static long telnetTimeout = 15000; //This value is in ms
 
 	//FTP Service
+	public static boolean ftpAvailable = false;
 	public static InetAddress ftpAddress = null;
 	public static int ftpPort = 21; //Default port for FTP service
 	public static String ftpUsername = null, ftpPassword = null;
+
+	//SMTP (MAIL) Service
+	public static boolean smtpAvailable = false;
+	public static InetAddress smtpAddress = null;
+	public static int smtpPort = 587; //Default port for default configuration
+	public static String smtpUsername = null, smtpPassword = null;
+
+	public static String fromEmailAddress = null;
+	public static String toEmailAddress = null;
 
 	/* CLI and Security configuration */
 

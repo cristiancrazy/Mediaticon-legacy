@@ -25,7 +25,7 @@ public class PrivilegedCLI extends GuestCLI{
 		//Guest commands
 		super.commandSet(in);
 		//Privileged commands
-		super.command.put("privileged", () -> System.out.println("Privileged mode"));
+		super.command.put("privileged", () -> System.out.println("Privileged mode")); //Shows privileged level
 		super.command.put("reload", () -> CommandCLI.reload(in));
 		super.command.put("save", () -> CommandCLI.save(in));
 	}

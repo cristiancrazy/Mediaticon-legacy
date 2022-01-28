@@ -35,10 +35,19 @@ public class ConfigManager {
 			"Output Directory = ",
 			"Log Directory = ",
 			//FTP
+			"FTP = ",
 			"FTP Forwarding Address = ",
 			"FTP Forwarding Port = ",
 			"FTP Forwarding Username = ",
-			"FTP Forwarding Password = "
+			"FTP Forwarding Password = ",
+			//SMTP - EMAIL
+			"SMTP = ",
+			"SMTP Server Address = ",
+			"SMTP Server Port = ",
+			"SMTP Username = ",
+			"SMTP Password = ",
+			"EMAIL Sender = ",
+			"EMAIL Receiver ="
 	);
 
 	private static List<Field> localFields;
@@ -56,10 +65,19 @@ public class ConfigManager {
 					GlobalConfig.class.getField("outputDir"),
 					GlobalConfig.class.getField("logDir"),
 					//FTP
+					GlobalConfig.class.getField("ftpAvailable"),
 					GlobalConfig.class.getField("ftpAddress"),
 					GlobalConfig.class.getField("ftpPort"),
 					GlobalConfig.class.getField("ftpUsername"),
-					GlobalConfig.class.getField("ftpPassword")
+					GlobalConfig.class.getField("ftpPassword"),
+					//SMTP - EMAIL
+					GlobalConfig.class.getField("smtpAvailable"),
+					GlobalConfig.class.getField("smtpAddress"),
+					GlobalConfig.class.getField("smtpPort"),
+					GlobalConfig.class.getField("smtpUsername"),
+					GlobalConfig.class.getField("smtpPassword"),
+					GlobalConfig.class.getField("fromEmailAddress"),
+					GlobalConfig.class.getField("toEmailAddress")
 			);
 		} catch (NoSuchFieldException ignored) { }
 	}
@@ -68,7 +86,6 @@ public class ConfigManager {
 	/** Copy server Startup config to Running config **/
 	public static boolean load(){
 		boolean status = true; //Method status
-		boolean netStatus; //Verify network
 
 		String line;
 		boolean startFlag = false;
@@ -130,16 +147,12 @@ public class ConfigManager {
 				}
 			}
 
-		}catch(FileNotFoundException ignored){
-			status = false;
 		}catch(IOException ignored){
 			status = false;
 		}
 
 		//Check if data is valid
-		netStatus = netCheck(); // -> Network Config
-
-		return status&&netStatus;
+		return status&&netCheck()&&emailCheck()&&emailCheck();
 	}
 
 	/** Copy server Running Config to Startup Config **/
@@ -152,12 +165,16 @@ public class ConfigManager {
 			out.write("begin Config");
 			out.newLine();
 			for(String field : fileFields){
-
-				if(localFields.get(fileFields.indexOf(field)).getType().equals(InetAddress.class)){
-					InetAddress obj = (InetAddress) (localFields.get(fileFields.indexOf(field)).get(null));
-					out.write(field + obj.getHostAddress());
-				}else{
-					out.write(field + localFields.get(fileFields.indexOf(field)).get(null).toString());
+				//It can throw NullPointerException if a field's value is 'null'
+				try{
+					if(localFields.get(fileFields.indexOf(field)).getType().equals(InetAddress.class)){
+						InetAddress obj = (InetAddress) (localFields.get(fileFields.indexOf(field)).get(null));
+						out.write(field + obj.getHostAddress());
+					}else{
+						out.write(field + localFields.get(fileFields.indexOf(field)).get(null).toString());
+					}
+				}catch(NullPointerException exc){
+					out.write(field);
 				}
 
 				out.newLine();
@@ -197,4 +214,25 @@ public class ConfigManager {
 
 		return status;
 	}
+
+	/** Check if the email config read are valid. **/
+	private static boolean emailCheck(){
+		boolean status = true; //Method status
+
+		//Check address
+		if(GlobalConfig.smtpAddress == null){
+			status = false;
+		}
+
+		//Check port
+		if((GlobalConfig.smtpPort < 0)||(GlobalConfig.smtpPort > 65565)){
+			status = false;
+		}
+
+		//Enable or Disable SMTP/EMAIL service
+		GlobalConfig.smtpAvailable = status;
+
+		return status;
+	}
+
 }

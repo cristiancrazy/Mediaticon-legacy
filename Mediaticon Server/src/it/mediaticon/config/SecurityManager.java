@@ -14,15 +14,25 @@ package it.mediaticon.config;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class SecurityManager {
 
     private enum userType{
         PRIVILEGED, ADMINISTRATOR
+    }
+
+    /** Password encoder - this method convert plain text to encoded text**/
+    public static String encodePassword(String toBeEncoded){
+        try{
+            //Encoding password
+            MessageDigest msgd = MessageDigest.getInstance("SHA-256");
+            msgd.update(toBeEncoded.getBytes(StandardCharsets.UTF_8));
+            return new String(msgd.digest()); //Return encoded string
+        }catch(NoSuchAlgorithmException ignored){ }
+        return null; //On error
     }
 
     /** Load security information from config external file **/
@@ -112,7 +122,7 @@ public class SecurityManager {
         //Append on a file
         try(BufferedWriter out = new BufferedWriter(new FileWriter(GlobalConfig.securityConf.toFile(), true))){
             out.write("$AUTH = " +
-                    Base64.getEncoder().encodeToString(password.getBytes(StandardCharsets.UTF_8)) +
+                    encodePassword(password) +
                     " $TYPE = " + ((type.equals(userType.PRIVILEGED))? "PRV" : "ADM")
             );
             out.newLine();

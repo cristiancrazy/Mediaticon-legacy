@@ -23,9 +23,15 @@ public class GuestCLI {
     protected Map<String, Runnable> command = new HashMap<>();
 
     protected void commandSet(Scanner in) {
-        command.put("help", CommandCLI::help);
-        command.put("enable", () -> CommandCLI.enable(in, this.getClass()));
+        command.put("help", this::helpCommand); //help -> show possible commands
+        command.put("enable", () -> CommandCLI.enable(in, this.getClass())); //enable -> enter to privileged mode
+    }
 
+    protected void helpCommand(){
+        List<String> result = command.keySet().stream().toList();
+        System.out.println("\u001B[32mCommands available:\u001B[0m");
+        result.forEach(System.out::println);
+        System.out.println();
     }
 
     protected void suggestCommand(String cmd){

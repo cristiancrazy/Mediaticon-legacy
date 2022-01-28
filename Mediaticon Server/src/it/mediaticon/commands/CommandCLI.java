@@ -18,30 +18,9 @@ import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.SecurityManager;
 
-import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.Scanner;
 
 public class CommandCLI {
-
-	/* Help commands */
-
-	/** It Provides a list of CLI commands **/
-	public static void help(){
-		Method[] commands = CommandCLI.class.getMethods();
-
-		System.out.println("Commands available: ");
-		Arrays.stream(commands).filter(cmd -> {
-			Method[] obj = Object.class.getMethods();
-			for(Method i : obj){
-				if(cmd.equals(i)) return false;
-			}
-			return true;
-		}).forEach(i -> System.out.println(i.getName()));
-
-	}
 
 	/* Server Configuration Commands */
 
@@ -106,7 +85,7 @@ public class CommandCLI {
 				String psw = new String(System.console().readPassword("Password: "));
 
 				//Encode
-				psw = Base64.getEncoder().encodeToString(psw.getBytes(StandardCharsets.UTF_8));
+				psw = SecurityManager.encodePassword(psw);
 				//Verify password
 				if(actClass.equals(GuestCLI.class)){ //For Guest
 					//2nd type password
