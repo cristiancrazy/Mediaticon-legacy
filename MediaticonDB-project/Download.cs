@@ -18,16 +18,16 @@ namespace MediaticonDB
 		//check date of the last film in db
 		//download all csv from that year to today, put them in ./csv/film/film_2020.csv
 
-		private static string fromUrl = @"https://mediaticon.000webhostapp.com/";
-		private static string toPath = @".\csv\";
-		private static string fileExt = ".csv";
+		private static string fromUrl = EnviromentVar.CsvfromUrl;
+		private static string toPath = EnviromentVar.CsvPath;
+		private static string fileExt = EnviromentVar.CsvfileExt;
 
-		public static bool downloadAll()
+		public static bool DownloadAll()
 		{
 			if (!IsOnline())
 				return false;
 
-			string[] tables = { "Film", "Serie", "Anime", "Show" };
+			string[] tables = EnviromentVar.Tables;
 
 			foreach (string table in tables)
 			{
@@ -43,7 +43,7 @@ namespace MediaticonDB
 				if (today.Year >= lastContent.Year)
 				{
 					//download
-					for (int i = today.Year; i <= lastContent.Year; i++)
+					for (int i = lastContent.Year; i <= today.Year; i++)
 					{
 						//for each year download file
 						if (!downloadFile(table, i))
@@ -78,7 +78,7 @@ namespace MediaticonDB
 				string resp;
 				try
 				{
-					var tcp = new TcpClient("time.nist.gov", 13);
+					var tcp = new TcpClient(EnviromentVar.NTPServer, 13);
 					using (var rdr = new StreamReader(tcp.GetStream()))
 					{
 						resp = rdr.ReadToEnd();
@@ -92,7 +92,7 @@ namespace MediaticonDB
 
 				string utc = resp.Substring(7, 8);
 				CultureInfo info = CultureInfo.InvariantCulture;
-				date = DateTime.ParseExact(utc, "yy-MM-dd", info);
+				date = DateTime.ParseExact(utc, EnviromentVar.DateFormat, info);
 				return true;
 			}
 
@@ -134,7 +134,7 @@ namespace MediaticonDB
 		{
 			string contents = null;
 			string file = type + "_" + year + fileExt;
-			string urlDownload = fromUrl + "csv/" + type + "/" + file;
+			string urlDownload = fromUrl + type + "/" + file;
 
             try
 			{

@@ -18,7 +18,9 @@ namespace MediaticonDB
         public List<string> Genres;
         public List<string> Actors;
 
-        public Bitmap cover;
+
+        public Bitmap cover; //nullable
+
 
         public Film()
         {

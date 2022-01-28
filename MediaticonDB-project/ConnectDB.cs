@@ -9,16 +9,10 @@ namespace MediaticonDB
 {
     internal class ConnectDB : IDisposable
     {
-#if DEBUG
-        static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\";
-#else
-        static string cwd = System.Environment.CurrentDirectory;
-#endif
-        string c = @$"Data Source=(localdb)\MSSQLLocalDb;Integrated Security=true;AttachDbFileName={cwd}Database1.mdf";//C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\Database1.mdf;";
 
         public ConnectDB()
         {
-            Connect(c);
+            Connect(EnviromentVar.DBConnStr);
         }
 
         void Connect(string conn)
