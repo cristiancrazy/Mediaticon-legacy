@@ -81,7 +81,7 @@ public class SecurityManager {
                 String answer = in.nextLine();
 
                 if(answer.matches("PRV|prv")){
-                    if(addUser(psw1, userType.PRIVILEGED)){
+                    if(updateUser(psw1, userType.PRIVILEGED)){
                         if(loadSecurity()) //Reloading
                             System.out.println("Password set correctly.");
                         else
@@ -90,7 +90,7 @@ public class SecurityManager {
 
 
                 }else if(answer.matches("ADM|adm")){
-                    if(addUser(psw1, userType.ADMINISTRATOR)){
+                    if(updateUser(psw1, userType.ADMINISTRATOR)){
                         if(loadSecurity()) //Reloading
                             System.out.println("Password set correctly.");
                         else
@@ -116,8 +116,8 @@ public class SecurityManager {
         }
     }
 
-    /** Add user - File handling **/
-    private static boolean addUser(String password, userType type){
+    /** Add user on the security configuration file **/
+    private static boolean updateUser(String password, userType type){
         boolean status;
         //Append on a file
         try(BufferedWriter out = new BufferedWriter(new FileWriter(GlobalConfig.securityConf.toFile(), true))){

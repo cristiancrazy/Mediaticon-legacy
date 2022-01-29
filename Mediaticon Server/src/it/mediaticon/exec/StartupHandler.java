@@ -13,6 +13,7 @@ package it.mediaticon.exec;
 
 import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
+import it.mediaticon.config.ScraperManager;
 import it.mediaticon.config.SecurityManager;
 
 public class StartupHandler {
@@ -21,6 +22,7 @@ public class StartupHandler {
 		welcome();
 		loadConfig();
 		loadSecurity();
+		loadScrapers();
 		loadCLI();
 	}
 
@@ -55,6 +57,21 @@ public class StartupHandler {
 			System.out.println("\u001B[33mPlease check file at: " + GlobalConfig.securityConf + "\u001B[0m");
 		}
 	}
+
+	private static void loadScrapers(){
+		boolean status = ScraperManager.loadScrapers();
+		System.out.println("Loading Scraper's Directory..." + (status? "" +
+				"[\u001B[32mOK\u001B[0m]" :
+				"[\u001B[31mError\u001B[0m]" )
+		);
+
+		if(!status){
+			System.out.println("\u001B[33mPlease check directory at: " + GlobalConfig.scraperDir + "\u001B[0m");
+			System.out.println("\u001B[33mPlease check allowed scrapers files" + "\u001B[0m");
+		}
+	}
+
+
 
 	//Print status before loading CLI
 	private static void loadCLI(){
