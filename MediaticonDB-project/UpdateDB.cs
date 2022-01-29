@@ -24,7 +24,13 @@ namespace MediaticonDB
                 if (!copyCSVtoTable(table, lastFilm))
                     return false;
             }
-            DeleteAll();
+
+            bool deleted = false;
+            do
+            {
+                deleted = DeleteAll();
+            } while (!deleted);
+            return true;
         }
 
         private static bool copyCSVtoTable(string Table, string SeekFilm)
@@ -106,10 +112,34 @@ namespace MediaticonDB
             }
         }
 
-        private static void DeleteAll()
+        private static bool DeleteAll()
         {
             //run gc collector
+            try
+            {
+                GC.Collect();
+            }
+            catch
+            {
+                return false;
+            }
+
             //delete all csv files
+            try
+            {
+                foreach (var Table in EnviromentVar.Tables)
+                {
+                    foreach (var file in Directory.GetFiles(EnviromentVar.CsvPath + "\\" + Table + "\\"))
+                    {
+                        File.Delete(file);
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

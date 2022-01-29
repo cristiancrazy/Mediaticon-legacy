@@ -15,8 +15,5 @@ namespace MediaticonDB
             Download.DownloadAll();
             UpdateDB.UpdateAll();
         }
-
-       
-
     }
 }

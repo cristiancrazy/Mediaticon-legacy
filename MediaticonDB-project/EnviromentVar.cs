@@ -23,7 +23,7 @@ namespace MediaticonDB
     {
         public static string SiteUrl = @"https://mediaticon.000webhostapp.com/";
 
-        public static string CsvfromUrl = SiteUrl + "csv/";
+        public static string CsvfromUrl = SiteUrl + "public_html/csv/";
         public static string CsvPath = @".\csv\";
         public static string CsvfileExt = ".csv";
 
@@ -32,7 +32,7 @@ namespace MediaticonDB
 #else
         static string cwd = System.Environment.CurrentDirectory;
 #endif
-        public static string DBConnStr = @$"Data Source=(localdb)\MSSQLLocalDb;Integrated Security=true;AttachDbFileName={cwd}Database1.mdf";//C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\Database1.mdf;";
+        public static string DBConnStr = @$"Data Source=(localdb)\MSSQLLocalDb;Integrated Security=true;AttachDbFileName={cwd}Database1.mdf";
 
 
         public static string[] Tables = { "Film", "Serie", "Anime", "Show" };
@@ -43,6 +43,16 @@ namespace MediaticonDB
 
         public static Func<string,string,string> CsvPathCombine = (type, year) =>
         CsvPath + type + "_" + year + CsvfileExt;
+
+    }
+
+    internal class MediaticonException
+    {
+        public class WritingDBException : System.Exception { }
+
+        public class ReadingDBException : System.Exception { }
+
+        public class ConnectingDBException : System.Exception { }
 
     }
 }
