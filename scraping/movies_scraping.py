@@ -11,7 +11,6 @@ def mymovies():
 
     #GLOBAL VARIABLES
     page = 1
-    tipo = 'Film'
 
     #CURRENT YEAR
     today_date = date.today()
@@ -110,7 +109,7 @@ def mymovies():
                         trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
                         with open('../output/data2.csv', 'a') as f:
-                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, tipo, actors_list)))
+                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
                             f.write('\n')
                         image = ''
                         big_image = ''
