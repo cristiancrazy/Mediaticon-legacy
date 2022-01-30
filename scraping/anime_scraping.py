@@ -23,11 +23,10 @@ class Anime:
     episodes : str = ''
     anno : str = ''
     tags : list[str] = field(default_factory=list)
-    tipo : str = 'Anime'
     actors_list : list[str] = field(default_factory=list)
 
     def __str__(self):
-        return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.tipo};{self.actors_list}'
+        return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.actors_list}'
 
 def myanilist(session):
     #letters = [ '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
