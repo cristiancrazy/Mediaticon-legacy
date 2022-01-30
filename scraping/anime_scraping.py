@@ -1,4 +1,4 @@
-import requests, re, bs4, time
+import requests, re, bs4, time, sys
 from datetime import date
 from dataclasses import dataclass, field
 
@@ -28,10 +28,10 @@ class Anime:
     def __str__(self):
         return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.actors_list}'
 
-def myanilist(session):
+def myanilist(session, _from_year, _to_year, path):
     #letters = [ '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    _from_year = 1970
-    _to_year = 0
+    #_from_year = 1970
+    #_to_year = 0
 
     #CURRENT YEAR
     today_date = date.today()
@@ -50,11 +50,6 @@ def myanilist(session):
 
         #PREPARE FOR PARSING
         soup = bs4.BeautifulSoup(response.text, 'html.parser')
-
-        #CHECK IF END PAGE
-        # check = soup.find('div', {'id' : 'content'})
-        # if('No titles that matched your query were found.' in check.text):
-        #     break
 
         #GET NEEDED HTML
         animes = soup.find_all('tr')
@@ -88,11 +83,11 @@ def myanilist(session):
                     menu_info = soup.find_all('div', {'class' : 'spaceit_pad'})
                     for info in menu_info:
                         #NUMBER OF APISODES
-                        if 'Episodes' in info.text:
+                        if('Episodes' in info.text):
                             anime.episodes = info.text.split(':')[1].strip()
                         #YEAR
-                        elif 'Aired' in info.text:
-                            if 'to' in info.text:
+                        elif('Aired' in info.text):
+                            if('to' in info.text):
                                 anime.anno = info.text.split(', ')[1].split(' to')[0].strip()
                             else:
                                 try:
@@ -103,7 +98,7 @@ def myanilist(session):
                                     except:
                                         anime.anno = [s for s in info.text.split('to ')[1] if s.isdigit()][0]
                         #TAGS
-                        elif 'Genres' in info.text or 'Genre' in info.text:
+                        elif('Genres' in info.text or 'Genre' in info.text):
                             for genre in info.find_all('a'):
                                 anime.tags.append(genre.text)
                     
@@ -117,16 +112,37 @@ def myanilist(session):
                         for actor in actors_list:
                             anime.actors_list.append(actor.text.strip())
 
-                    with open('output/data.csv', 'a', encoding="utf-8") as f:
+                    with open(path, 'a', encoding="utf-8") as f:
                         f.write(str(anime))
                         f.write('\n')
             
             #print(anime)
         page += 50
 
-        if page % 250 == 0:
+        if(page % 250 == 0):
             time.sleep(40)
 
 if __name__ == "__main__":
+    _start_year : int = 0
+    _end_year : int = 0
+    path : str = ''
+
+    if(len(sys.argv) > 3 or len(sys.argv) < 3):
+        print('too many arguments, example: scr.py -y 2021-2022 -p scrapers/data.csv')
+        sys.exit(1)
+    else:
+        for arg in sys.argv:
+            try:
+                if('-y' in arg):
+                    years = arg[2:].split('-')
+                    _start_year = int(years[0])
+                    _end_year = int(years[1])
+                elif('-p' in arg):
+                    path = arg[2:]
+            except:
+                print('error in one of the arguments')
+                sys.exit(1)
+
     s = requests.Session()
-    myanilist(s)
+    myanilist(s, _start_year, _end_year, path)
+    sys.exit(0)
