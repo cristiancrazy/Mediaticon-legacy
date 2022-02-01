@@ -29,7 +29,7 @@ namespace MediaticonDB
                 param[2],
                 param[3].Replace("§",";"),
                 Convert.ToInt32(param[4]),
-                new DateTime(Convert.ToInt32(param[5]), 0 , 0),
+                new DateTime(Convert.ToInt32(param[5]), 1 , 1),
                 genres,
                 actors);
 

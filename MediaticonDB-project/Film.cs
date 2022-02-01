@@ -30,7 +30,7 @@ namespace MediaticonDB
             this.Title = Title;
             this.Description = Description;
             this.Duration = Duration;
-            this.Year = new DateTime(Year.Year, 0, 0);
+            this.Year = new DateTime(Year.Year, 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
         }
@@ -44,7 +44,7 @@ namespace MediaticonDB
             this.Title = Title;
             this.Description = Description;
             this.Duration = Duration;
-            this.Year = new DateTime(Int32.Parse(Year), 0, 0);
+            this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
         }
@@ -58,7 +58,7 @@ namespace MediaticonDB
             this.Title = Title;
             this.Description = Description.Replace("§", ";");
             this.Duration = Duration;
-            this.Year = new DateTime(Int32.Parse(Year), 0, 0);
+            this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
             this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
         }
