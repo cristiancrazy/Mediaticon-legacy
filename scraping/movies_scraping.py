@@ -123,25 +123,23 @@ def mymovies(_from_year, _to_year, path):
         _from_year += 1
 
 if __name__ == "__main__":
-    _start_year : int = 0
-    _end_year : int = 0
+    year : int= 0
     path : str = ''
 
-    if(len(sys.argv) > 3 or len(sys.argv) < 3):
-        print('too many arguments, example: scr.py -y 2021-2022 -p scrapers/data.csv')
+    if(len(sys.argv) > 5 or len(sys.argv) < 5):
+        ch = 'many' if len(sys.argv) > 5 else 'few'
+        print(f'too {ch} arguments, example: scr.py -y 2021 -p scrapers/data.csv')
         sys.exit(1)
     else:
-        for arg in sys.argv:
+        for index, arg in enumerate(sys.argv):
             try:
                 if('-y' in arg):
-                    years = arg[2:].split('-')
-                    _start_year = int(years[0])
-                    _end_year = int(years[1])
+                    year = int(argv[index+1])
                 elif('-p' in arg):
-                    path = arg[2:]
+                    path = argv[index+1]
             except:
                 print('error in one of the arguments')
                 sys.exit(1)
 
-    mymovies(_start_year, _end_year, path)
+    mymovies(year, year, path)
     sys.exit(0)
