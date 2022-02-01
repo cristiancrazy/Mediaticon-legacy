@@ -86,7 +86,7 @@ namespace MediaticonDB
 				}
 				catch
 				{
-					date = new DateTime(0,0,0);
+					date = new DateTime(1,1,1);
 					return false;
 				}
 
@@ -98,7 +98,7 @@ namespace MediaticonDB
 
 			public static bool lastContent(string table, out DateTime date)
 			{
-				date = new DateTime(0, 0, 0);
+				date = new DateTime(1, 1, 1);
 				try
 				{
 					using (ConnectDB dB = new ConnectDB())
@@ -114,7 +114,7 @@ namespace MediaticonDB
 							if (last == null)
 							{
 								//if there wasn't a film in a list
-								date = new DateTime(0, 0, 0);
+								date = new DateTime(1, 1, 1);
 								return true;
 							}
 						}

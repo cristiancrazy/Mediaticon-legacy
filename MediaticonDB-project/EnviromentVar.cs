@@ -30,7 +30,7 @@ namespace MediaticonDB
 #if DEBUG
         static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\";
 #else
-        static string cwd = System.Environment.CurrentDirectory;
+        static string cwd = System.Environment.CurrentDirectory + "\\";
 #endif
         public static string DBConnStr = @$"Data Source=(localdb)\MSSQLLocalDb;Integrated Security=true;AttachDbFileName={cwd}Database1.mdf";
 
