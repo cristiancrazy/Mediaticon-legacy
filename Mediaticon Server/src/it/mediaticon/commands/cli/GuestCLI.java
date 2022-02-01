@@ -25,6 +25,7 @@ public class GuestCLI {
     protected void commandSet(Scanner in) {
         command.put("help", this::helpCommand); //help -> show possible commands
         command.put("enable", () -> CommandCLI.enable(in, this.getClass())); //enable -> enter to privileged mode
+        command.put("clear", () -> CommandCLI.clear()); //Clear screen
     }
 
     protected void helpCommand(){

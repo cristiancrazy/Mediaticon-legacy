@@ -16,6 +16,10 @@ import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.ScraperManager;
 import it.mediaticon.config.SecurityManager;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class StartupHandler {
 	/** This method initialize the server **/
 	public static void startup(){
@@ -26,8 +30,21 @@ public class StartupHandler {
 		loadCLI();
 	}
 
-	//Print welcome message
+	//Print welcome message and logo
 	private static void welcome(){
+		//Display logo if available
+		try(BufferedReader in = new BufferedReader(new FileReader(GlobalConfig.serverConf.getName(0).resolve("logo.txt").toFile()))){
+			String line;
+			while((line = in.readLine()) != null)
+				System.out.println(line);
+
+			//Wait 2 sec
+			try{
+				Thread.sleep(2000);
+			}catch(InterruptedException ignored){ }
+
+		}catch (IOException ignored){ }
+
 		System.out.println("\u001B[35mWelcome to MEDIATICON SERVER\u001B[0m");
 	}
 

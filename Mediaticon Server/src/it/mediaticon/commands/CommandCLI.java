@@ -17,10 +17,26 @@ import it.mediaticon.commands.cli.PrivilegedCLI;
 import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.SecurityManager;
+import it.mediaticon.config.setup.UserWizard;
 
 import java.util.Scanner;
 
 public class CommandCLI {
+
+	/* Graphic function -> Clear screen */
+	/** Clean CLIs **/
+	public static void clear(){
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+	}
+
+	/* Server Setup */
+
+	/** Setting up base network setup and TELNET from Privileged CLI **/
+	public static void netSetup(Scanner in){
+		UserWizard.networkSetup(in);
+		save(in);
+	}
 
 	/* Server Configuration Commands */
 
@@ -74,6 +90,7 @@ public class CommandCLI {
 	}
 
 	/* The following methods will be used to switch from one CLI to another */
+
 	/** Switch to 'more' privileged CLI **/
 	public static void enable(Scanner in, Class<? extends GuestCLI> actClass){
 		final int MAX_ATTEMP = 3;
@@ -128,9 +145,27 @@ public class CommandCLI {
 		}
 	}
 
+	/* The following methods will be used to regulate CLI's access credentials */
+
 	/** Adding new password - CLI command **/
 	public static void addUser(Scanner in){
 		SecurityManager.addUser(in);
 	}
 
+	/** Show actual number of password loaded and password (encoded) - ADMIN only **/
+	public static void printUser(){
+		System.out.println("--------------------------------------"); //Separator
+		System.out.println("Total password loaded: " + (GlobalConfig.adminPassword.size()+GlobalConfig.privilegedPassword.size()));
+		System.out.println("Admin password: " + GlobalConfig.adminPassword.size());
+		System.out.println("Privileged password: " + GlobalConfig.privilegedPassword.size());
+		System.out.println("--------------------------------------"); //Separator
+		//Show privileged (hashed) passwords
+		System.out.println("[PRIVILEGED]");
+		GlobalConfig.privilegedPassword.forEach(System.out::println);
+		System.out.println("--------------------------------------"); //Separator
+		//Show admin (hashed) passwords
+		System.out.println("[ADMINISTRATOR]");
+		GlobalConfig.adminPassword.forEach(System.out::println);
+		System.out.println("--------------------------------------"); //Separator
+	}
 }

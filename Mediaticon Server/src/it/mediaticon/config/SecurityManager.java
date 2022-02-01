@@ -16,6 +16,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SecurityManager {
@@ -118,20 +120,39 @@ public class SecurityManager {
 
     /** Add user on the security configuration file **/
     private static boolean updateUser(String password, userType type){
-        boolean status;
+        boolean status = true;
         //Append on a file
         try(BufferedWriter out = new BufferedWriter(new FileWriter(GlobalConfig.securityConf.toFile(), true))){
             out.write("$AUTH = " +
                     encodePassword(password) +
                     " $TYPE = " + ((type.equals(userType.PRIVILEGED))? "PRV" : "ADM")
             );
+
             out.newLine();
-            status = true;
+
         }catch(IOException exception){
             status = false;
         }
 
-
         return status;
+    }
+
+    //TODO: Finish implementing this function
+    //Check if a "security entry" is already defined in the security file
+    private static boolean alreadyDefined(){
+        List<String> duplicated = new ArrayList<>();
+
+        boolean match = GlobalConfig.adminPassword.stream().anyMatch(i ->{
+            for(String j : GlobalConfig.privilegedPassword){
+                if(j.equals(i)){
+                    duplicated.add(i);
+                    return true;
+                }
+            }
+            return false;
+        });
+
+
+        return match;
     }
 }

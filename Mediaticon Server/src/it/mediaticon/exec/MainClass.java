@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.mediaticon.commands.cli.GuestCLI;
-import it.mediaticon.config.ScraperManager;
 
 public class MainClass {
 

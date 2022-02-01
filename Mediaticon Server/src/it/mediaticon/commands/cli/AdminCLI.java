@@ -27,7 +27,8 @@ public class AdminCLI extends PrivilegedCLI{
 		super.command.remove("enable");
 		//Administrator commands
 		super.command.replace("privileged", () -> System.out.println("Admin mode")); //Shows privileged level
-		super.command.put("adduser", () -> CommandCLI.addUser(in)); //Add a user password
+		super.command.put("addUser", () -> CommandCLI.addUser(in)); //Add a user password
+		super.command.put("infoUser", CommandCLI::printUser); //Show user informations
 		super.command.put("shutdown", () -> System.exit(0)); //Shutdown -> Server exit
 	}
 
