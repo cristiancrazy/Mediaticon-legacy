@@ -16,7 +16,7 @@ def myTVseries(_from_year, _to_year, path):
     today_date = date.today()
     current_year = int(today_date.year)
 
-    while _from_year != _to_year:
+    while _from_year <= _to_year:
         while True:
             #RESET VARIABLES
             page_is_valid = 0
