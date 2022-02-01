@@ -1,4 +1,4 @@
-import requests, re, bs4
+import requests, re, bs4, sys
 from datetime import date
 
 def to_list(*args):
