@@ -178,7 +178,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Height="100" Width="600" Background="Transparent">
-                                            <Image Width="100" Height="90" Margin="10"/>
+                                            <Image x:Name="imgTxt" Width="100" Height="90" Margin="10"/>
                                             <RichTextBox x:Name="dataTxt" Background="Transparent" VerticalAlignment="Center" MinHeight="10" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="20" Foreground="#FFBCBCBE" Width="150" Focusable="False" IsReadOnly="True">
                                                 <FlowDocument>
                                                     <Paragraph Margin="0">
