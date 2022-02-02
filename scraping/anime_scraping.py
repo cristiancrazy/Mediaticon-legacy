@@ -2,19 +2,6 @@ import requests, re, bs4, time, sys
 from datetime import date
 from dataclasses import dataclass, field
 
-'''
-scraping\Scripts\activate
-big_image => X
-image
-name
-trama
-durata => x
-anno
-tags
-tipo
-actors_list
-'''
-
 @dataclass
 class Anime:
     image : str = ''
@@ -38,7 +25,6 @@ def myanilist(session, _from_year, _to_year, path):
     current_year = int(today_date.year)
 
     page = 0
-    tipo = 'Anime'
 
     while True:
         #GET HTML
