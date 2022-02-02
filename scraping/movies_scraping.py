@@ -134,9 +134,9 @@ if __name__ == "__main__":
         for index, arg in enumerate(sys.argv):
             try:
                 if('-y' in arg):
-                    year = int(argv[index+1])
+                    year = int(sys.argv[index+1])
                 elif('-p' in arg):
-                    path = argv[index+1]
+                    path = sys.argv[index+1]
             except:
                 print('error in one of the arguments')
                 sys.exit(1)
