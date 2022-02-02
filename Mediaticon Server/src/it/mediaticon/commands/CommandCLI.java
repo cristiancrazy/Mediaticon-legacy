@@ -38,6 +38,18 @@ public class CommandCLI {
 		save(in);
 	}
 
+	/** Setting up ftp service from Privileged CLI **/
+	public static void ftpSetup(Scanner in){
+		UserWizard.ftpSetup(in);
+		save(in);
+	}
+
+	/** Setting up smtp service from Privileged CLI **/
+	public static void smtpSetup(Scanner in){
+		UserWizard.smtpSetup(in);
+		save(in);
+	}
+
 	/* Server Configuration Commands */
 
 	/** Save running config to startup config **/
