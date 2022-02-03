@@ -17,7 +17,6 @@ import java.util.*;
 
 public class GuestCLI {
     //CLI variables
-    protected static String hostname = GlobalConfig.hostname;
 
     //CLI commands
     protected Map<String, Runnable> command = new HashMap<>();
@@ -62,7 +61,7 @@ public class GuestCLI {
         String line;
 
         while(true){
-            System.out.print("\u001B[35m" + hostname + "> \u001B[0m");
+            System.out.print("\u001B[35m" + GlobalConfig.hostname + "> \u001B[0m");
             line = in.nextLine();
             //Search command
             try{

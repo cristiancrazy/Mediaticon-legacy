@@ -25,6 +25,8 @@ public class ConfigManager {
 	//Instance variables
 
 	private static final List<String> fileFields = List.of(
+			//HOSTNAME
+			"Server Hostname = ",
 			//SERVER AND TELNET
 			"Server Address = ",
 			"Server Port = ",
@@ -47,7 +49,7 @@ public class ConfigManager {
 			"SMTP Username = ",
 			"SMTP Password = ",
 			"EMAIL Sender = ",
-			"EMAIL Receiver ="
+			"EMAIL Receiver = "
 	);
 
 	private static List<Field> localFields;
@@ -55,6 +57,8 @@ public class ConfigManager {
 	static {
 		try {
 			localFields = List.of(
+					//HOSTNAME
+					GlobalConfig.class.getField("hostname"),
 					//SERVER AND TELNET
 					GlobalConfig.class.getField("serverAddress"),
 					GlobalConfig.class.getField("serverPort"),

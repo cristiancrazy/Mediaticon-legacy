@@ -11,6 +11,7 @@
 package it.mediaticon.commands.cli;
 
 import it.mediaticon.commands.CommandCLI;
+import it.mediaticon.config.GlobalConfig;
 
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class AdminCLI extends PrivilegedCLI{
 		//Administrator commands
 		super.command.replace("privileged", () -> System.out.println("Admin mode")); //Shows privileged level
 		super.command.put("addUser", () -> CommandCLI.addUser(in)); //Add a user password
-		super.command.put("infoUser", CommandCLI::printUser); //Show user informations
+		super.command.put("infoUser", CommandCLI::printUser); //Show user information
 		super.command.put("shutdown", () -> System.exit(0)); //Shutdown -> Server exit
 	}
 
@@ -44,7 +45,7 @@ public class AdminCLI extends PrivilegedCLI{
 		String line;
 
 		while(true){
-			System.out.print("\u001B[31mADM \u001B[35m" + hostname + "># \u001B[0m");
+			System.out.print("\u001B[31mADM \u001B[35m" + GlobalConfig.hostname + "># \u001B[0m");
 			line = in.nextLine();
 			//Search command
 			try{

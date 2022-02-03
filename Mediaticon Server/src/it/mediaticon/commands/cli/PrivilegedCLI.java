@@ -31,6 +31,7 @@ public class PrivilegedCLI extends GuestCLI{
 		super.command.put("network-setup", () -> CommandCLI.netSetup(in));
 		super.command.put("ftp-forward-setup", () -> CommandCLI.ftpSetup(in));
 		super.command.put("smtp-email-setup", () -> CommandCLI.smtpSetup(in));
+		super.command.put("set-hostname", () -> CommandCLI.setHostname(in));
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class PrivilegedCLI extends GuestCLI{
 		String line;
 
 		while(true){
-			System.out.print("\u001B[35m" + hostname + "># \u001B[0m");
+			System.out.print("\u001B[35m" + GlobalConfig.hostname + "># \u001B[0m");
 			line = in.nextLine();
 			//Search command
 			try{
