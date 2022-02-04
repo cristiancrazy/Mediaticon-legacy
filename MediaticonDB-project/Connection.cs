@@ -90,6 +90,28 @@ namespace MediaticonDB
 			return true;
 		}
 
-		public static Bitmap 
+		
+
+		public static bool DownloadImage(string url, out Bitmap bitmap)
+        {
+			bitmap = null;
+			using(var wc = new WebClient())
+            {
+				try
+				{
+					byte[] imgdata = wc.DownloadData(url);
+
+					ImageConverter conv = new ImageConverter();
+					Image image = (Image)conv.ConvertFrom(imgdata);
+					bitmap = new Bitmap(image);
+					return true;
+				}
+                catch
+                {
+					return false;
+                }
+            }
+			return true;
+        }
 	}
 }
