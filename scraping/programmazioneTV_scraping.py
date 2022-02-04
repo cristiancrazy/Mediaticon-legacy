@@ -1,4 +1,5 @@
 import requests, re, bs4, time, sys, threading
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from dataclasses import dataclass, field
 
@@ -17,12 +18,12 @@ class Channel:
     def __str__(self):
         return f'{self.link}\n{self.name}\n{self.image}\n\n'
 
-class Threads(threading.Thread):
-    def __init__(self, channel : Channel):
-        super(Threads, self).__init__()
-        self.channel = channel
-    def run(self):
-        record_scr(self.channel)
+# class Threads(threading.Thread):
+#     def __init__(self, channel : Channel):
+#         super(Threads, self).__init__()
+#         self.channel = channel
+#     def run(self):
+#         record_scr(self.channel)
 
 #SCRAPES TROUGH THE TV PROGRAMMATION
 def record_scr(channel):
@@ -58,17 +59,8 @@ def prgTV(session, film_name):
 
         channels.append(Channel(link, channel.attrs['data-channelnamefancy'], image))
     
-    #start all the threads
-    threads : list(Threads) = []
-    for channel in channels:
-        thread = Threads(channel)
-        thread.run()
-        threads.append(thread)
-    
-    #wait for all the threads to finish
-    for t in threads:
-        t.join()
-
+    with ThreadPoolExecutor() as executor:
+        executor.map(record_scr, channels)
 
 if __name__ == "__main__":
     name : str = ''
