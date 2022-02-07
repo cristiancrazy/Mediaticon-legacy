@@ -13,6 +13,7 @@ namespace MediaticonDB
 {
 	/// <summary>
 	/// class level 0
+	/// connect to internet and to file
 	/// </summary>
 	
 	
