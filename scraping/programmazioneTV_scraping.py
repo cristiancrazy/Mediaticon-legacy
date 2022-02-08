@@ -1,6 +1,7 @@
 import requests, re, bs4, time, sys, threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
+from itertools import repeat
 from dataclasses import dataclass, field
 
 @dataclass
@@ -26,10 +27,24 @@ class Channel:
 #         record_scr(self.channel)
 
 #SCRAPES TROUGH THE TV PROGRAMMATION
-def record_scr(channel):
+def record_scr(channel, session, film_name):
+    today_date = str(date.today())
+
     with open(f'./csv/{channel.name}.csv', 'a') as f:
-        f.write(channel.link)
+        f.write(f'{channel.name};{channel.image}')
         f.write('\n')
+
+        response = session.get(f'{channel.link}{today_date}')
+        soup = bs4.BeautifulSoup(response.text, 'html.parser')
+
+        all_today_prg = soup.find_all('div', {'id' : 'table-content'})
+        print(all_today_prg)
+
+        for today_prg in all_today_prg:
+            f.write(today_date.find('span', {'class' : 'program_title'}).text.lower())
+            if(today_date.find('span', {'class' : 'program_title'}).text.lower() == film_name):
+                f.write('\nciao')
+
 
 #SEARCH ALL THE CHANNELS
 def prgTV(session, film_name):
@@ -49,10 +64,9 @@ def prgTV(session, film_name):
 
     for channel in raw_channels:
         image : str = ''
-        today_date = str(date.today())
         ch_name = channel.attrs['data-channelname']
 
-        link : str = f'https://simpleguidatv.suppaman.it/?canale={ch_name}&data={today_date}'
+        link : str = f'https://simpleguidatv.suppaman.it/?canale={ch_name}&data='
 
         if(_image := channel.find('img')['src']):
             image = 'https://simpleguidatv.suppaman.it/' + _image
@@ -60,7 +74,8 @@ def prgTV(session, film_name):
         channels.append(Channel(link, channel.attrs['data-channelnamefancy'], image))
     
     with ThreadPoolExecutor() as executor:
-        executor.map(record_scr, channels)
+        for result in executor.map(record_scr, channels, repeat(session), repeat(film_name)):
+            print(result)
 
 if __name__ == "__main__":
     name : str = ''
