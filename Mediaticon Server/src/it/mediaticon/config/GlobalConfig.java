@@ -20,7 +20,6 @@ import java.util.Set;
 
 public class GlobalConfig {
 
-
 	/* File and Directory Path */
 
 	//Config file PATH

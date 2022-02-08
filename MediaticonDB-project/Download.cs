@@ -24,7 +24,7 @@ namespace MediaticonDB
 
 		public static bool DownloadAll()
 		{
-			if (!IsOnline())
+			if (!Connection.IsOnline())
 				return false;
 
 			string[] tables = EnviromentVar.Tables;
@@ -46,29 +46,12 @@ namespace MediaticonDB
 					for (int i = lastContent.Year; i <= today.Year; i++)
 					{
 						//for each year download file
-						if (!downloadFile(table, i))
+						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath))
 							return false;
 					}
 				}
 			}
 			return true;
-		}
-
-		private static bool IsOnline()
-		{
-			string host = @"8.8.8.8";
-			Ping p = new Ping();
-			try
-			{
-				PingReply reply = p.Send(host, 3000);
-				if (reply.Status == IPStatus.Success)
-					return true;
-			}
-			catch 
-			{
-				return false;
-			}
-			return false;
 		}
 
 		private class Dater
@@ -130,35 +113,7 @@ namespace MediaticonDB
 			}
 		}
 
-		private static bool downloadFile(string type, int year)
-		{
-			string contents = null;
-			string file = type + "_" + year + fileExt;
-			string urlDownload = fromUrl + type + "/" + file;
-
-            try
-			{
-				using (var wc = new WebClient())
-				{
-					contents = wc.DownloadString(urlDownload);
-				}
-			}
-			catch
-            {
-				return false;
-            }
-
-			try
-			{
-				File.WriteAllText(Path.Combine(toPath + "\\" + type + "\\", file), contents);
-			}
-			catch
-            {
-				return false;
-            }
-
-			return true;
-		}
+		
 
 	}
 }

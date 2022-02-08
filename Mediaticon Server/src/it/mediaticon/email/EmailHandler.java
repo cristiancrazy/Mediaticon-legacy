@@ -31,6 +31,7 @@ public class EmailHandler {
 		// Setting up email server settings
 		email.setHostName(GlobalConfig.smtpAddress.getHostName());
 		email.setSmtpPort(GlobalConfig.smtpPort);
+
 		email.setStartTLSEnabled(true); //Enable Start-TLS
 
 		//Authentication

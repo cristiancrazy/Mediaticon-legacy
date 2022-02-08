@@ -41,6 +41,8 @@ namespace MediaticonDB
 
         public static string DateFormat = "yy-MM-dd";
 
+        public static string TimeFormat = "HH-mm";
+
         public static Func<string,string,string> CsvPathCombine = (type, year) =>
         CsvPath + type + "_" + year + CsvfileExt;
 

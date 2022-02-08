@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
+    /// <summary>
+    /// class level 0
+    /// </summary>
     internal class Film
     {
         public string BigImage;

@@ -18,12 +18,14 @@ import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.SecurityManager;
 import it.mediaticon.config.setup.UserWizard;
+import it.mediaticon.email.EmailHandler;
 
 import java.util.Scanner;
 
 public class CommandCLI {
 
 	/* Graphic function -> Clear screen */
+
 	/** Clean CLIs **/
 	public static void clear(){
 		System.out.println("\033[H\033[2J");
@@ -32,9 +34,35 @@ public class CommandCLI {
 
 	/* Server Setup */
 
+	/** Set hostname **/
+	public static void setHostname(Scanner in){
+		String old = GlobalConfig.hostname, act;
+		System.out.print("Hostname: ");
+		GlobalConfig.hostname = ((act = in.nextLine()).isEmpty()? old : act);
+	}
+
 	/** Setting up base network setup and TELNET from Privileged CLI **/
 	public static void netSetup(Scanner in){
 		UserWizard.networkSetup(in);
+		save(in);
+	}
+
+	/** Setting up ftp service from Privileged CLI **/
+	public static void ftpSetup(Scanner in){
+		UserWizard.ftpSetup(in);
+		save(in);
+	}
+
+	/** Setting up smtp service from Privileged CLI **/
+	public static void smtpSetup(Scanner in){
+		UserWizard.smtpSetup(in);
+		//Sending a test email
+		if(GlobalConfig.smtpAvailable){
+			System.out.print("Sending a test email to: " + GlobalConfig.toEmailAddress + "...");
+			System.out.println(EmailHandler.sendMail("MD SERVER - TEST", "This is a test email from the server! Bye")?
+					"[\u001B[32mOK\u001B[0m]" :
+					"[\u001B[31mFailed\u001B[0m]");
+		}
 		save(in);
 	}
 

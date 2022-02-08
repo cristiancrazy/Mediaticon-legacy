@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.mediaticon.commands.cli.GuestCLI;
+import it.mediaticon.email.EmailHandler;
 
 public class MainClass {
 
@@ -14,6 +15,7 @@ public class MainClass {
 
 	//Main methods
 	public static void main(String[] args){
+
 		//Init server
 		StartupHandler.startup();
 

@@ -27,13 +27,22 @@ namespace MediaticonDB
                 param[0],
                 param[1],
                 param[2],
-                param[3].Replace("§",";"),
+                param[3].Replace("§", ";"),
                 Convert.ToInt32(param[4]),
-                new DateTime(Convert.ToInt32(param[5]), 1 , 1),
+                new DateTime(Convert.ToInt32(param[5]), 1, 1),
                 genres,
                 actors);
 
             return tmp;
+        }
+
+        public static Replica ReadLineGuidatv(string line)
+        {
+            //data;orainizio;orafine
+            List<string> info = line.Split(";").ToList();
+            Replica dati = new Replica(info[1], info[2], info[3]);
+
+            return dati;
         }
     }
 }

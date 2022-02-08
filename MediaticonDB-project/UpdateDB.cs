@@ -114,25 +114,12 @@ namespace MediaticonDB
 
         private static bool DeleteAll()
         {
-            //run gc collector
-            try
-            {
-                GC.Collect();
-            }
-            catch
-            {
-                return false;
-            }
-
             //delete all csv files
             try
             {
                 foreach (var Table in EnviromentVar.Tables)
                 {
-                    foreach (var file in Directory.GetFiles(EnviromentVar.CsvPath + "\\" + Table + "\\"))
-                    {
-                        File.Delete(file);
-                    }
+                    Connection.DeleteAll(EnviromentVar.CsvPath + "\\" + Table + "\\");
                 }
             }
             catch
@@ -141,5 +128,7 @@ namespace MediaticonDB
             }
             return true;
         }
+
+
     }
 }
