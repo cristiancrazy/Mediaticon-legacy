@@ -48,20 +48,27 @@ namespace MediaticonDB
                         foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + "\\" + Table + "\\"))
                         {//foreach file per table
                             string buffer = "";
-                            using (StringReader strRead = new StringReader(File))
+                            try
                             {
-                                while ((buffer = strRead.ReadLine()) != null)
-                                {//foreach line
-                                    Film tmp = CsvReader.ReadLine(buffer);
-                                    if (copy == false && tmp.Title == SeekFilm)
-                                        copy = true;
+                                using (StringReader strRead = new StringReader(File))
+                                {
+                                    while ((buffer = strRead.ReadLine()) != null)
+                                    {//foreach line
+                                        Film tmp = CsvReader.ReadLine(buffer);
+                                        if (copy == false && tmp.Title == SeekFilm)
+                                            copy = true;
 
-                                    if (copy == true)
-                                    {
-                                        //start to copy the film from csv to database, when seekfilm will found
-                                        db.Append(tmp, Table);
+                                        if (copy == true)
+                                        {
+                                            //start to copy the film from csv to database, when seekfilm will found
+                                            db.Append(tmp, Table);
+                                        }
                                     }
                                 }
+                            }
+                            catch
+                            {
+                                return false;
                             }
                         }
                     }

@@ -27,6 +27,9 @@ namespace MediaticonDB
         public static string CsvPath = @".\csv\";
         public static string CsvfileExt = ".csv";
 
+        public static string ScraperPath = @".\scraper\";
+        public static string PythonExt = ".py";
+
 #if DEBUG
         static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\";
 #else
@@ -36,6 +39,7 @@ namespace MediaticonDB
 
 
         public static string[] Tables = { "Film", "Serie", "Anime", "Show" };
+        public static string GuidaTvCsv = "GuidaTV";
 
         public static string NTPServer = "time.nist.gov";
 
@@ -55,6 +59,5 @@ namespace MediaticonDB
         public class ReadingDBException : System.Exception { }
 
         public class ConnectingDBException : System.Exception { }
-
     }
 }

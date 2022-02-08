@@ -32,10 +32,13 @@ namespace MediaticonDB
         public Bitmap image;
         public List<Replica> programmi;
 
-        public Channel(string link, Bitmap image, List<Replica> programmi)
+        public Channel(string link, List<Replica> programmi)
         {
             this.link = link;
-            this.image = image;
+
+            if(!Connection.DownloadImage(link, out this.image))//download the image
+                throw new MediaticonException.ConnectingDBException();
+
             this.programmi = programmi;
         }
     }
