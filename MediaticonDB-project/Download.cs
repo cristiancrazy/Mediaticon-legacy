@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
+	/// <summary>
+	/// download all film from last in DB to latest movie released
+	/// </summary>
 	internal class Download
 	{
 		//check connection

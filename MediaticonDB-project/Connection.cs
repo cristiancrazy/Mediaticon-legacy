@@ -90,9 +90,7 @@ namespace MediaticonDB
             }
 			return true;
 		}
-
 		
-
 		public static bool DownloadImage(string url, out Bitmap bitmap)
         {
 			bitmap = null;
