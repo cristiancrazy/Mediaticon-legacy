@@ -13,8 +13,8 @@ package it.mediaticon.exec;
 
 import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
-import it.mediaticon.config.ScraperManager;
 import it.mediaticon.config.SecurityManager;
+import it.mediaticon.scraper.Loader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -76,11 +76,13 @@ public class StartupHandler {
 	}
 
 	private static void loadScrapers(){
-		boolean status = ScraperManager.loadScrapers();
+		boolean status = Loader.loadScrapers();
 		System.out.println("Loading Scraper's Directory..." + (status? "" +
 				"[\u001B[32mOK\u001B[0m]" :
 				"[\u001B[31mError\u001B[0m]" )
 		);
+
+		System.out.println("Scraper available...[\u001B[32m" + Loader.getScraperAvailable().size() + "\u001B[0m]");
 
 		if(!status){
 			System.out.println("\u001B[33mPlease check directory at: " + GlobalConfig.scraperDir + "\u001B[0m");
@@ -92,7 +94,7 @@ public class StartupHandler {
 
 	//Print status before loading CLI
 	private static void loadCLI(){
-		System.out.println("\u001B[34mNETWORK - MANAGEMENT CONFIG:\u001B[0m\r\n" +
+		System.out.println("\u001B[34mNETWORK - MANAGEMENT CONFIG:\u001B[0m" + System.lineSeparator() +
 				"Server Address: " + GlobalConfig.serverAddress.getHostAddress() + System.lineSeparator() +
 				"Server Port: " + ((GlobalConfig.serverPort == 0) ? "Not set" : GlobalConfig.serverPort)  + System.lineSeparator() +
 				"Telnet: " + (GlobalConfig.telnetAvailable? "Yes" : "No")

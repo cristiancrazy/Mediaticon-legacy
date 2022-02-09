@@ -18,7 +18,6 @@ import java.util.Scanner;
 public class PrivilegedCLI extends GuestCLI{
 	//CLI variables
 
-
 	//CLI commands
 	@Override
 	protected void commandSet(Scanner in) {
@@ -31,7 +30,9 @@ public class PrivilegedCLI extends GuestCLI{
 		super.command.put("network-setup", () -> CommandCLI.netSetup(in));
 		super.command.put("ftp-forward-setup", () -> CommandCLI.ftpSetup(in));
 		super.command.put("smtp-email-setup", () -> CommandCLI.smtpSetup(in));
-		super.command.put("set-hostname", () -> CommandCLI.setHostname(in));
+		super.command.put("start-scraper", () -> CommandCLI.startScraper(in));
+		//End command
+		super.command.put("end", () -> {});
 	}
 
 	@Override

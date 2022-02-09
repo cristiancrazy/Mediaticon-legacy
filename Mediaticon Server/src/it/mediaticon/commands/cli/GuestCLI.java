@@ -23,8 +23,12 @@ public class GuestCLI {
 
     protected void commandSet(Scanner in) {
         command.put("help", this::helpCommand); //help -> show possible commands
+        command.put("show-scraper", CommandCLI::printScraperAvailable);
         command.put("enable", () -> CommandCLI.enable(in, this.getClass())); //enable -> enter to privileged mode
-        command.put("clear", () -> CommandCLI.clear()); //Clear screen
+        command.put("clear", CommandCLI::clear); //Clear screen
+        command.put("show-config", () -> CommandCLI.showConfig(in)); //Show actual configuration
+        command.put("privacy-mode", () -> CommandCLI.privacy_cli(in)); //Enable\Disable password encryption
+        command.put("set-hostname", () -> CommandCLI.setHostname(in)); //Set server hostname
     }
 
     protected void helpCommand(){

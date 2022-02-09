@@ -24,8 +24,8 @@ import java.util.List;
 public class ConfigManager {
 	//Instance variables
 
-	private static final List<String> fileFields = List.of(
-			//HOSTNAME
+	private static final List<String> fileFields = List.of( //Fields name (on config)
+			//SERVER HOSTNAME
 			"Server Hostname = ",
 			//SERVER AND TELNET
 			"Server Address = ",
@@ -56,8 +56,8 @@ public class ConfigManager {
 
 	static {
 		try {
-			localFields = List.of(
-					//HOSTNAME
+			localFields = List.of( //Associated field (GlobalConfig.class)
+					//SERVER HOSTNAME
 					GlobalConfig.class.getField("hostname"),
 					//SERVER AND TELNET
 					GlobalConfig.class.getField("serverAddress"),
@@ -156,7 +156,7 @@ public class ConfigManager {
 		}
 
 		//Check if data is valid
-		return status&&netCheck()&&emailCheck()&&emailCheck();
+		return status&&netCheck()&&emailCheck();
 	}
 
 	/** Copy server Running Config to Startup Config **/
@@ -221,20 +221,15 @@ public class ConfigManager {
 
 	/** Check if the email config read are valid. **/
 	private static boolean emailCheck(){
-		boolean status = true; //Method status
-
-		//Check address
-		if(GlobalConfig.smtpAddress == null){
-			status = false;
-		}
+		boolean status = GlobalConfig.smtpAddress != null; //Check address
 
 		//Check port
 		if((GlobalConfig.smtpPort < 0)||(GlobalConfig.smtpPort > 65565)){
 			status = false;
 		}
 
-		//Enable or Disable SMTP/EMAIL service
-		GlobalConfig.smtpAvailable = status;
+		//"Switch off" smtp service
+		if(!status) GlobalConfig.smtpAvailable = false;
 
 		return status;
 	}

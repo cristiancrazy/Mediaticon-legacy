@@ -18,28 +18,38 @@ import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.SecurityManager;
 import it.mediaticon.config.setup.UserWizard;
-import it.mediaticon.email.EmailHandler;
+import it.mediaticon.exec.MainClass;
+import it.mediaticon.scraper.Loader;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class CommandCLI {
+	//Instance variables
+	private static boolean psw_encryption = false; //Default
+
+	//Public methods (CLI cmd)
 
 	/* Graphic function -> Clear screen */
-
 	/** Clean CLIs **/
 	public static void clear(){
 		System.out.println("\033[H\033[2J");
 		System.out.flush();
 	}
 
-	/* Server Setup */
-
-	/** Set hostname **/
+	/** Set server hostname **/
 	public static void setHostname(Scanner in){
-		String old = GlobalConfig.hostname, act;
-		System.out.print("Hostname: ");
-		GlobalConfig.hostname = ((act = in.nextLine()).isEmpty()? old : act);
+		System.out.print("\u001B[34mNew server hostname:\u001B[0m ");
+		String line = in.nextLine();
+		if(!line.isEmpty()){
+			GlobalConfig.hostname = line;
+		}else{
+			System.out.print("\u001B[31mInvalid hostname\u001B[0m ");
+		}
 	}
+
+	/* Server Setup */
 
 	/** Setting up base network setup and TELNET from Privileged CLI **/
 	public static void netSetup(Scanner in){
@@ -56,21 +66,91 @@ public class CommandCLI {
 	/** Setting up smtp service from Privileged CLI **/
 	public static void smtpSetup(Scanner in){
 		UserWizard.smtpSetup(in);
-		//Sending a test email
-		if(GlobalConfig.smtpAvailable){
-			System.out.print("Sending a test email to: " + GlobalConfig.toEmailAddress + "...");
-			System.out.println(EmailHandler.sendMail("MD SERVER - TEST", "This is a test email from the server! Bye")?
-					"[\u001B[32mOK\u001B[0m]" :
-					"[\u001B[31mFailed\u001B[0m]");
-		}
 		save(in);
 	}
+
+	/** Encrypt config information on CLIs **/
+	public static void privacy_cli(Scanner in){
+		System.out.print("\u001B[43m\u001B[30mWARNING\u001B[0m - " +
+				"Activate encryption for private data? Y/N: ");
+		String answer = in.nextLine();
+		//Set result
+		psw_encryption = answer.matches("Y|y");
+
+	}
+
+	/** Show actual configuration - submenu **/
+	public static void showConfig(Scanner in){
+		//Clone Password fields
+		String ftpPassword = GlobalConfig.ftpPassword;
+		String smtpPassword = GlobalConfig.smtpPassword;
+
+		//Menu Choice
+		int choice;
+		System.out.println("Categories:");
+		System.out.println("1) TELNET Service ");
+		System.out.println("2) FTP Service ");
+		System.out.println("3) SMTP Service ");
+		System.out.println("4) SERVER DIRS ");
+		System.out.print("Your choice: ");
+		//Check input:
+		try{
+			choice = Integer.parseInt(in.nextLine());
+		}catch(NumberFormatException ignored){
+			choice = -1;
+		}
+
+		//Password encryption if needed
+		if(psw_encryption){
+			smtpPassword = "[* Password info unavailable *]";
+			ftpPassword = smtpPassword;
+
+		}else{
+			ftpPassword = GlobalConfig.ftpPassword;
+			smtpPassword = GlobalConfig.smtpPassword;
+		}
+
+		//Show config:
+		switch (choice) {
+			case 1 -> //Telnet and server address
+					System.out.println("\u001B[34mNETWORK - MANAGEMENT CONFIG:\u001B[0m" + System.lineSeparator() +
+							"Server Address: " + GlobalConfig.serverAddress.getHostAddress() + System.lineSeparator() +
+							"Server Port: " + ((GlobalConfig.serverPort == 0) ? "Not set" : GlobalConfig.serverPort) + System.lineSeparator() +
+							"Telnet: " + (GlobalConfig.telnetAvailable ? "Yes" : "No")
+					);
+			case 2 -> //FTP
+					System.out.println("\u001B[34mFTP - MANAGEMENT CONFIG:\u001B[0m" + System.lineSeparator() +
+							"FTP Forwarding Address: " + GlobalConfig.ftpAddress.getHostAddress() + System.lineSeparator() +
+							"FTP Forwarding Port: " + ((GlobalConfig.ftpPort == 21) ? "Default" : GlobalConfig.ftpPort) + System.lineSeparator() +
+							"FTP Username/Password: " + GlobalConfig.ftpUsername + "/" + ftpPassword + System.lineSeparator() +
+							"FTP: " + (GlobalConfig.ftpAvailable ? "Yes" : "No")
+					);
+			case 3 -> //SMTP
+					System.out.println("\u001B[34mSMTP - MANAGEMENT CONFIG:\u001B[0m" + System.lineSeparator() +
+							"SMTP Server Address: " + GlobalConfig.smtpAddress.getHostAddress() + System.lineSeparator() +
+							"SMTP Server Port: " + GlobalConfig.smtpPort + System.lineSeparator() +
+							"SMTP Username/Password: " + GlobalConfig.smtpUsername + "/" + smtpPassword + System.lineSeparator() +
+							"Mailto: " + GlobalConfig.toEmailAddress + " -- from: " + GlobalConfig.fromEmailAddress + System.lineSeparator() +
+							"SMTP: " + GlobalConfig.smtpAvailable //Fix here
+					);
+			case 4 -> //Dirs
+					System.out.println("\u001B[34mDIRS - MANAGEMENT CONFIG:\u001B[0m" + System.lineSeparator() +
+							"Server config: " + GlobalConfig.serverConf.getParent().toAbsolutePath() + System.lineSeparator() +
+							"Scraper: " + GlobalConfig.scraperDir.toAbsolutePath() + System.lineSeparator() +
+							"Output: " + GlobalConfig.outputDir.toAbsolutePath() + System.lineSeparator() +
+							"Logs: " + GlobalConfig.logDir.toAbsolutePath()
+					);
+			default -> System.out.println("\u001B[31mInvalid choice\u001B[0m");
+		}
+
+	}
+
+
 
 	/* Server Configuration Commands */
 
 	/** Save running config to startup config **/
-	public static boolean save(Scanner in){
-		boolean status;
+	public static void save(Scanner in){
 
 		System.out.print("\u001B[43m\u001B[30mWARNING\u001B[0m - " +
 				"This process will overwrite the server config. Proceed? Y/N: ");
@@ -79,54 +159,43 @@ public class CommandCLI {
 
 			//Saving
 			System.out.print("Saving config to " + GlobalConfig.serverConf + "...");
-			status = ConfigManager.save();
-			System.out.println((status ? "[\u001B[32mOK\u001B[0m]" : "[\u001B[31mError\u001B[0m]"));
+			System.out.println((ConfigManager.save() ? "[\u001B[32mOK\u001B[0m]" : "[\u001B[31mError\u001B[0m]"));
 
 		}else{
-
 			//Abort reloading
 			System.out.println("Aborted.");
-			status = false;
-
 		}
-		return status;
 	}
 
 	/** Reload startup config **/
-	public static boolean reload(Scanner in){
-		boolean status = true;
+	public static void reload(Scanner in){
 
 		System.out.print("\u001B[43m\u001B[30mWARNING\u001B[0m - Proceed to reloading? Y/N: ");
 		String answer = in.nextLine();
 		if(answer.matches("Y|y")){
 
 			//Reloading
-			status = ConfigManager.load();
-			System.out.println("Loading Startup Config..." + (status? "" +
+			System.out.println("Loading Startup Config..." + (ConfigManager.load()? "" +
 					"[\u001B[32mOK\u001B[0m]" :
 					"[\u001B[31mError\u001B[0m]" )
 			);
 
-			}else{
-
+		}else{
 			//Abort reloading
 			System.out.println("Aborted.");
-			status = false;
 		}
-
-		return status;
 	}
 
 	/* The following methods will be used to switch from one CLI to another */
 
 	/** Switch to 'more' privileged CLI **/
 	public static void enable(Scanner in, Class<? extends GuestCLI> actClass){
-		final int MAX_ATTEMP = 3;
+		final int MAX_ATTEMPT = 3;
 
 		boolean psw_valid = false;
 		try{
 			System.out.println("\u001B[41m" + "AUTHENTICATION REQUIRED" + "\u001B[0m");
-			for(int i = 0; i < MAX_ATTEMP&&(!psw_valid); ++i){
+			for(int i = 0; i < MAX_ATTEMPT&&(!psw_valid); ++i){
 				String psw = new String(System.console().readPassword("Password: "));
 
 				//Encode
@@ -195,5 +264,37 @@ public class CommandCLI {
 		System.out.println("[ADMINISTRATOR]");
 		GlobalConfig.adminPassword.forEach(System.out::println);
 		System.out.println("--------------------------------------"); //Separator
+	}
+
+	/* Scraper Commands */
+
+	/** List scraper available **/
+	public static int printScraperAvailable(){
+		int count; //Number of scraper available
+
+		System.out.println("\u001B[34m" + "Scraper available: " + "\u001B[0m");
+
+		if((count = Loader.getScraperAvailable().size()) > 0){
+			Loader.getScraperAvailable().forEach(scName -> System.out.println("->" + scName));
+		}else{
+			System.out.println("\u001B[31m" + "No Scraper found." + "\u001B[0m");
+		}
+
+		return count;
+
+	}
+
+	/** This command will start a well defined scraper**/
+	public static void startScraper(Scanner in){
+		if(printScraperAvailable() > 0){
+			System.out.println("Insert scraper name: ");
+			String input = in.nextLine();
+			if(Loader.getScraperAvailable().contains(input)){
+				MainClass.executor.submit(() -> Loader.startScraper(input)); //Start scraper
+				System.out.println("\u001B[32m" + "Scraper started successfully" + "\u001B[0m");
+			}else{
+				System.out.println("\u001B[31m" + "Scraper name error" + "\u001B[0m");
+			}
+		}
 	}
 }

@@ -13,7 +13,6 @@ package it.mediaticon.config.setup;
 
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.email.EmailHandler;
-import org.apache.commons.mail.Email;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -119,9 +118,15 @@ public class UserWizard {
 
 		GlobalConfig.toEmailAddress = checkFields("Email address - receiver: ", in, emailTest);
 
-		//Msg
-		System.out.println("SMTP setup completed successfully");
+		//End msg
+		System.out.println("SMTP setup ended");
 
+		//Test smtp
+		if(GlobalConfig.smtpAvailable){
+			System.out.println("Sending test email to " + GlobalConfig.toEmailAddress + "...");
+			boolean sent = EmailHandler.sendMail("MD Server - Test email", "SMTP Service enabled");
+			System.out.println("Test email " + (sent? "sent!" : "failed to send!"));
+		}
 	}
 
 	/** Manage (locally) server's directories settings **/
