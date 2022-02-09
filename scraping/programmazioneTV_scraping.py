@@ -113,20 +113,30 @@ if __name__ == "__main__":
 #SCRAPES TROUGH THE TV PROGRAMMATION
 def channel_src(channel, session, film_name):
     with open(f'./csv/{channel.name}.csv', 'w') as f:
-        response = session.get(f'{channel.link}{Date.day:02d}-{Date.month:02d}-{Date.year:04d}')
-        soup = bs4.BeautifulSoup(response.text, 'html.parser')
+        for i in range(7):
+            response = session.get(f'{channel.link}{Date.day + i:02d}-{Date.month:02d}-{Date.year:04d}')
+            soup = bs4.BeautifulSoup(response.text, 'html.parser')
 
-        all_today_prg = soup.find_all('a', {'class' : 'program'})
+            all_today_prg = soup.find_all('a', {'class' : 'program'})
 
-        for today_prg in all_today_prg:
-            f.write(f'{str(Date.year)[-2:]}-{Date.month}-{Date.day}')
-            if((_hour := today_prg.find('div', {'class' : 'hour'}).text.replace(':', '-')) == 'IN ONDA'):
-                f.write(f';{datetime.now().strftime("%H-%M")}')
-            else:
-                f.write(f';{_hour}')
-            # if(today_date.find('span', {'class' : 'program_title'}).text.lower() == film_name):
-            #     f.write('\nciao')
-            f.write('\n')
+            for index, today_prg in enumerate(all_today_prg[:-1]):
+                if film_name in today_prg.find('div', {'class' : 'program-title'}).text.lower():
+                    #Date
+                    f.write(f'{str(Date.year)[-2:]}-{Date.month}-{Date.day + i}')
+                    
+                    #Start Hour
+                    if (_hour := today_prg.find('div', {'class' : 'hour'}).text.replace(':', '-')) == 'IN ONDA':
+                        f.write(f';{datetime.now().strftime("%H-%M")}')
+                    else:
+                        f.write(f';{_hour}')
+                    
+                    #end Hour
+                    if (_hour := all_today_prg[index + 1].find('div', {'class' : 'hour'}).text.replace(':', '-')) == 'IN ONDA':
+                        f.write(f';{datetime.now().strftime("%H-%M")}')
+                    else:
+                        f.write(f';{_hour}')
+                    
+                    f.write('\n')
 
 #SEARCH ALL THE CHANNELS
 def prgTV(session, film_name):
