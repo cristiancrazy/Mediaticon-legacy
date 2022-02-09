@@ -25,8 +25,8 @@ namespace MediaticonDB
         /// a list of channels
         /// </returns>
 
-        static string scraper = EnviromentVar.ScraperPath;
-        static string scraperToRead = EnviromentVar.ScraperPath + EnviromentVar.GuidaTvCsv + "\\";
+        static string scraper = EnviromentVar.ScraperVar.ScraperPath + "programmazioneTV_scraping" + EnviromentVar.ScraperVar.PythonExt;
+        static string csvsToRead = EnviromentVar.GuidaTvCsvPath;
 
         public static bool ReadAll(out List<Channel> canali, string ShowName)
         {
@@ -37,7 +37,7 @@ namespace MediaticonDB
 
             //if is online invoke scraper
             ScraperHandler tvScraper = new ScraperHandler(scraper);
-            tvScraper.RunScraper(ShowName); //run scraper
+            tvScraper.RunScraper("-n ", "\\", ShowName, "\\"); //run scraper
 
             if (!tvScraper.GetReturn(out _)) //if there's an error return false
                 return false;
@@ -62,7 +62,7 @@ namespace MediaticonDB
             output = new List<Channel>(); //the output
             try
             {
-                foreach(var file in Directory.GetFiles(scraperToRead))
+                foreach(var file in Directory.GetFiles(csvsToRead))
                 {//foreach file
 
                     List<Replica> repliche = new List<Replica>();
@@ -105,7 +105,7 @@ namespace MediaticonDB
             //delete all csv files
             try
             {
-                Connection.DeleteAll(scraperToRead);
+                Connection.DeleteAll(csvsToRead);
             }
             catch
             {
