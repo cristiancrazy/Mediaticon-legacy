@@ -13,7 +13,7 @@ namespace MediaticonDB
     {
         public static bool UpdateAll()
         {
-            foreach (var table in EnviromentVar.Tables) //foreach table
+            foreach (var table in EnviromentVar.ContentType.Tables) //foreach table
             {
                 //seek last title in database
                 string lastFilm = "";
@@ -124,7 +124,7 @@ namespace MediaticonDB
             //delete all csv files
             try
             {
-                foreach (var Table in EnviromentVar.Tables)
+                foreach (var Table in EnviromentVar.ContentType.Tables)
                 {
                     Connection.DeleteAll(EnviromentVar.CsvPath + "\\" + Table + "\\");
                 }

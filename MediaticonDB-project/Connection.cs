@@ -36,7 +36,7 @@ namespace MediaticonDB
 			return false;
 		}
 
-		public static bool downloadFile(string type, int year, string fromUrl, string fileExt, string toPath)
+		public static bool downloadFile(string type, int year, string fromUrl, string fileExt, string toPath, bool suppressError)
 		{
 			string contents = null;
 			string file = type + "_" + year + fileExt;
@@ -51,7 +51,10 @@ namespace MediaticonDB
 			}
 			catch
 			{
-				return false;
+				if (suppressError)
+					return true;
+				else
+					return false;
 			}
 
 			try
@@ -60,7 +63,10 @@ namespace MediaticonDB
 			}
 			catch
 			{
-				return false;
+				if (suppressError)
+					return true;
+				else
+					return false;
 			}
 
 			return true;

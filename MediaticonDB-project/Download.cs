@@ -30,7 +30,7 @@ namespace MediaticonDB
 			if (!Connection.IsOnline())
 				return false;
 
-			string[] tables = EnviromentVar.Tables;
+			string[] tables = EnviromentVar.ContentType.Tables;
 
 			foreach (string table in tables)
 			{
@@ -49,7 +49,7 @@ namespace MediaticonDB
 					for (int i = lastContent.Year; i <= today.Year; i++)
 					{
 						//for each year download file
-						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath))
+						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath, true))//TODO: change true in false
 							return false;
 					}
 				}
@@ -72,8 +72,16 @@ namespace MediaticonDB
 				}
 				catch
 				{
-					date = new DateTime(1,1,1);
-					return false;
+					try
+					{
+						date = DateTime.Today;
+						return true;
+					}
+					catch
+                    {
+						date = EnviromentVar.MinDate;
+						return false;
+                    }
 				}
 
 				string utc = resp.Substring(7, 8);
@@ -84,7 +92,7 @@ namespace MediaticonDB
 
 			public static bool lastContent(string table, out DateTime date)
 			{
-				date = new DateTime(1, 1, 1);
+				date = EnviromentVar.MinDate;
 				try
 				{
 					using (ConnectDB dB = new ConnectDB())
@@ -100,7 +108,7 @@ namespace MediaticonDB
 							if (last == null)
 							{
 								//if there wasn't a film in a list
-								date = new DateTime(1, 1, 1);
+								date = EnviromentVar.MinDate;
 								return true;
 							}
 						}
