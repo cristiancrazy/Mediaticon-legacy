@@ -105,8 +105,9 @@ def myanilist(session, _from_year, _to_year, path):
             #print(anime)
         page += 50
 
-        if(page % 250 == 0):
-            time.sleep(40)
+        time.sleep(.6)
+        # if(page % 250 == 0):
+        #     time.sleep(40)
 
 if __name__ == "__main__":
     year : int= 0
