@@ -27,6 +27,9 @@ namespace MediaticonDB
 
 		public static bool DownloadAll()
 		{
+
+			UpdateDB.DeleteAll();
+
 			if (!Connection.IsOnline())
 				return false;
 

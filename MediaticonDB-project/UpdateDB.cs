@@ -119,7 +119,7 @@ namespace MediaticonDB
             }
         }
 
-        private static bool DeleteAll()
+        public static bool DeleteAll()
         {
             //delete all csv files
             try
