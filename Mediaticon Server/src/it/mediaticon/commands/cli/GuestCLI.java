@@ -29,6 +29,7 @@ public class GuestCLI {
         command.put("show-config", () -> CommandCLI.showConfig(in)); //Show actual configuration
         command.put("privacy-mode", () -> CommandCLI.privacy_cli(in)); //Enable\Disable password encryption
         command.put("set-hostname", () -> CommandCLI.setHostname(in)); //Set server hostname
+        command.put("verify-net", CommandCLI::verifyInternet); //Verify internet connection
     }
 
     protected void helpCommand(){

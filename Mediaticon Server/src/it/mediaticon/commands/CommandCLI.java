@@ -18,6 +18,7 @@ import it.mediaticon.config.ConfigManager;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.config.SecurityManager;
 import it.mediaticon.config.setup.UserWizard;
+import it.mediaticon.exec.BackgroundService;
 import it.mediaticon.exec.MainClass;
 import it.mediaticon.scraper.Loader;
 
@@ -77,6 +78,11 @@ public class CommandCLI {
 		//Set result
 		psw_encryption = answer.matches("Y|y");
 
+	}
+
+	/** Verify internet connection: **/
+	public static void verifyInternet (){
+		System.out.println((BackgroundService.verifyConnNow())? "\u001B[32mInternet connection available\u001B[0m" : "\u001B[31mInternet connection unavailable\u001B[0m");
 	}
 
 	/** Show actual configuration - submenu **/
@@ -296,5 +302,10 @@ public class CommandCLI {
 				System.out.println("\u001B[31m" + "Scraper name error" + "\u001B[0m");
 			}
 		}
+	}
+
+	/** This command will setup scraper to run automatically **/
+	public static void autoScraperConfig(Scanner in){
+		UserWizard.manageScheduling(in);
 	}
 }
