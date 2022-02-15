@@ -1,3 +1,16 @@
+<#
+.Description
+THIS SCRIPT IS PART OF MEDIATICON PROJECT.
+
+It will install some python3 dependencies on your system:
+These dependencies are needed to run Python 3 Scraper
+programs.
+~ Cristian Capraro, Member of Mediaticon Group.
+
+.SYNOPSIS
+Python 3 dependencies installer (MEDIATICON GROUP)
+#>
+
 #===================================#
 # Author: Cristian Capraro
 # Date: February 2022
@@ -17,7 +30,8 @@ function InstallPip3Libraries{
 
     try{
         # Upgrade pip
-        pip.exe install --upgrade pip | Out-Null
+        pip3.exe install --upgrade pip | Out-Null
+
 
         # Install libraries
         foreach($libName in $dependenciesName){
@@ -28,24 +42,25 @@ function InstallPip3Libraries{
         exit 1
     }
 
-    foreach($ProgressBarStatus in 40..100){
+    foreach($ProgressBarStatus in 0..100){
         Write-Progress -Id 1 -Activity "Completed" -PercentComplete ($ProgressBarStatus)
         Start-Sleep -Milliseconds 25
     }
 }
 
-#===============[Script]===============
+
+#===============[Script Global]===============
 
 # Admin required to continue
 
-#Requires -RunAsAdministrator
+<#Requires -RunAsAdministrator #>
 
 # Welcome msg
 Clear-Host
-Write-Output "Welcome to Python Dependencies installer for Windows.`n`nInstaller will start soon..."
+Write-Output "Welcome to Python Dependencies installer for Windows.`nInstaller will start soon..."
 Start-Sleep 5
 Clear-Host
-
+$PSStyle
 # Progress Bar
 Write-Progress -Id 1 -Activity "Installing Python 3 Libraries" -PercentComplete 0
 
