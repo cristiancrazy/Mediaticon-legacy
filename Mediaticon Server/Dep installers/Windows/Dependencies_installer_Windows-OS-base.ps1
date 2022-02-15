@@ -1,3 +1,16 @@
+<#
+.Description
+THIS SCRIPT IS PART OF MEDIATICON PROJECT.
+ADMIN MODE REQUIRED
+
+It will download and install on your system Python 3 and Java Open JRE 17 (Thanks to Bell-Soft)
+These are required to start Mediaticon's Scrapers programs and Mediaticon's Server.
+~ Cristian Capraro, Member of Mediaticon Group.
+
+.SYNOPSIS
+JRE/Python 3 Downloader and Installer (MEDIATICON GROUP)
+#>
+
 #===================================#
 # Author: Cristian Capraro
 # Date: February 2022
