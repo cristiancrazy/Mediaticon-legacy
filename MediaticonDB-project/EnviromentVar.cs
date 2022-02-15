@@ -69,6 +69,7 @@ namespace MediaticonDB
             public static string[] Tables = { "Film" };
             //public static string[] Tables = { "Film", "Serie", "Anime", "Show" };
             public static string GuidaTvCsv = "GuidaTV";
+            public static string[]FilmStatus= { "Visto","Stò Guardando","Da Guardare"};
         }
 
         //datetime format
