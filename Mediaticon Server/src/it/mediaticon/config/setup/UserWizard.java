@@ -14,6 +14,7 @@ package it.mediaticon.config.setup;
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.email.EmailHandler;
 import it.mediaticon.exec.BackgroundService;
+import it.mediaticon.exec.MainClass;
 import it.mediaticon.scraper.Loader;
 
 import java.io.IOException;
@@ -138,7 +139,7 @@ public class UserWizard {
 		if(Loader.getScraperAvailable().size() > 0){
 			System.out.println("Mediaticon Setup [SCRAPER AUTOMATIC STARTER]");
 			//Use TimeUnit.HOURS
-			boolean hoursEnabled = Boolean.parseBoolean(checkFields("Use hours instead of minutes? Y/N: ", in, boolTest));
+			boolean hoursEnabled = Boolean.parseBoolean(checkFields("Use hours instead of minutes? True/False: ", in, boolTest));
 			int start_delay = Integer.parseInt(checkFields
 					(
 							("Start delay (in " + ((hoursEnabled)? TimeUnit.HOURS.name() : TimeUnit.MINUTES.name()) + "): "),
@@ -156,6 +157,12 @@ public class UserWizard {
 			//Start background service and print report
 			BackgroundService.enableScraper(( (hoursEnabled)? TimeUnit.HOURS : TimeUnit.MINUTES), start_delay, delay);
 
+			//Send an email if SMTP is enabled
+			if(GlobalConfig.smtpAvailable){
+				StringBuilder emailMessage = new StringBuilder();
+				emailMessage.append("Dear user,\nScraper are now planned." + "\nStart delay (scraper*delay) = ").append(start_delay).append(" ").append((hoursEnabled) ? (TimeUnit.HOURS.name()) : TimeUnit.MINUTES.name()).append("\nRepeated Each: (scraper*delay) = ").append(delay).append(" ").append((hoursEnabled) ? (TimeUnit.HOURS.name()) : TimeUnit.MINUTES.name()).append("\nSincerely,\nYour MD Server.");
+				MainClass.executor.submit(() -> EmailHandler.sendMail("MD Server", emailMessage.toString()));
+			}
 		}else{
 			System.out.println("\u001B[31m" + "Scrapers unavailable" + "\u001B[0m");
 		}

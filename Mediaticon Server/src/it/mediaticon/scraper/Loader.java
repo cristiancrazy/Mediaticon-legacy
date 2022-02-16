@@ -84,7 +84,7 @@ public class Loader {
 
             if(scraperName.endsWith(".py")){ //Python file
                 ProcessBuilder pb = new ProcessBuilder(
-                        "python", scraper.getAbsolutePath(),
+                        "python3", scraper.getAbsolutePath(),
                         "-y", ""+now.getYear(),
                         "-p", ""+GlobalConfig.outputDir.resolve(Path.of(String.format("%s_%d.csv", scraperName.substring(0, 5), now.getYear()))).toAbsolutePath()
                     );
