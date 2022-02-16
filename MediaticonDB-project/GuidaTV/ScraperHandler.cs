@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
+    /// <summary>
+    /// This non-static class has the method to invoke a scraper
+    /// obviously this will called by a thread
+    /// 
+    /// - for guidatv invoke the scraper and when it will finish read the file in GuidaTV folder
+    /// - for trailer and watch film, the scraper will print the url in stdout, so read
+    /// </summary>
     internal class ScraperHandler
     {
         private string path;
