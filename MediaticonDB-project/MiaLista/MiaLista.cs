@@ -72,6 +72,19 @@ namespace MediaticonDB.MiaLista
             }
             public static bool Deserialize()
             {
+                using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
+                {
+                    BinaryFormatter formattatore = new BinaryFormatter();
+                    try
+                    {
+                        MyFilmList=formattatore.Deserialize(fs).
+                    }
+                    catch (SerializationException e)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
 
             }
         }
