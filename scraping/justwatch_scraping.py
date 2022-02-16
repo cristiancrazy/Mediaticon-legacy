@@ -1,14 +1,26 @@
 import re, sys
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.options import Options
 
 def justwatch(name):
     partial_link : str = 'https://www.justwatch.com/'
 
-    driver = webdriver.Firefox()
-    driver.get(f'https://www.justwatch.com/it/cerca?q={name}')
+    try:
+        s = Service('./drivers/geckodriver.exe')
 
-    link = driver.find_element_by_class(class_='title-list-row__row-header')
-    print(link.text)
+        options = Options()
+        options.headless = True
+        driver = webdriver.Firefox(options=options, service=s)
+
+        driver.get(f'https://www.justwatch.com/it/cerca?q={name}')
+
+        link = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a')
+        print(link.get_attribute('href'))
+    except Exception as e:
+        print(e)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
