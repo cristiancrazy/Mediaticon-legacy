@@ -1,4 +1,8 @@
-import requests, bs4, sys
+import sys
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.options import Options
 
 def yt_tr_link(session, name):
     #GET HTML

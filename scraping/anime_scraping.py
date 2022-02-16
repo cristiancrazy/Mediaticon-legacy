@@ -1,4 +1,4 @@
-import requests, re, bs4, time, sys
+import requests, bs4, time, sys
 from datetime import date
 from dataclasses import dataclass, field
 
