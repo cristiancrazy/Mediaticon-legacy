@@ -13,11 +13,14 @@ package it.mediaticon.config.setup;
 
 import it.mediaticon.config.GlobalConfig;
 import it.mediaticon.email.EmailHandler;
+import it.mediaticon.exec.BackgroundService;
+import it.mediaticon.scraper.Loader;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
 public class UserWizard {
@@ -129,6 +132,37 @@ public class UserWizard {
 		}
 	}
 
+	/** This command will show a submenu selection when it possible to start scraper scheduling **/
+	public static void manageScheduling(Scanner in){
+		//User msg
+		if(Loader.getScraperAvailable().size() > 0){
+			System.out.println("Mediaticon Setup [SCRAPER AUTOMATIC STARTER]");
+			//Use TimeUnit.HOURS
+			boolean hoursEnabled = Boolean.parseBoolean(checkFields("Use hours instead of minutes? Y/N: ", in, boolTest));
+			int start_delay = Integer.parseInt(checkFields
+					(
+							("Start delay (in " + ((hoursEnabled)? TimeUnit.HOURS.name() : TimeUnit.MINUTES.name()) + "): "),
+							in, intTestPositive
+					)
+			);
+
+			int delay = Integer.parseInt(checkFields
+					(
+							("Repeat each (in " + ((hoursEnabled)? TimeUnit.HOURS.name() : TimeUnit.MINUTES.name()) + "): "),
+							in, intTestPositive
+					)
+			);
+
+			//Start background service and print report
+			BackgroundService.enableScraper(( (hoursEnabled)? TimeUnit.HOURS : TimeUnit.MINUTES), start_delay, delay);
+
+		}else{
+			System.out.println("\u001B[31m" + "Scrapers unavailable" + "\u001B[0m");
+		}
+	}
+
+
+	//TODO: MUST BE IMPLEMENTED
 	/** Manage (locally) server's directories settings **/
 	public static void directorySetup(Scanner in){
 
@@ -163,6 +197,20 @@ public class UserWizard {
 
 	//Boolean test
 	private static final Predicate<String> boolTest = i -> i.matches("True|true|False|false");
+
+	//Integer test
+	private static final Predicate<String> intTestPositive = (i) -> {
+		try{
+			if(Integer.parseInt(i) >= 0){
+				return true;
+			}else{
+				throw new NumberFormatException();
+			}
+		}
+		catch (NumberFormatException err){
+			return false;
+		}
+	};
 
 	//Port test (limited and all)
 	private static final Predicate<String> lPortsTest = i -> {

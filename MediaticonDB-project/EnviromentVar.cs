@@ -41,6 +41,7 @@ namespace MediaticonDB
         {
             public static string ScraperPath = @".\scraper\";
             public static string PythonExt = ".py";
+            public static string ExeExt = ".exe";
         }        
 
         public class ImagesVar
@@ -53,6 +54,22 @@ namespace MediaticonDB
             //default imgs
             public static string ImgfileExt = ".png";
             public static string[] defaultImages = { "Avatar", "Cover", "Background" };
+        }
+
+        public class UsersPath
+        {
+            //name
+            public static string UserName = ""; //when the user enter the username will be saved here
+
+            //path
+            public static string UsersMainPath = @".\Users\";
+            public static Func<string, string> UserPath = (name) => UsersMainPath + name + "\\";
+
+            //file
+            public static Func<string, string> UserAvatarFile = (name) =>
+            UserPath(name) + ImagesVar.defaultImages[0] + ImagesVar.ImgfileExt;
+
+            public static Func<string, string> UserMyListFile = (name) => UserPath(name) + "MyList.obj";
         }
 
         //DB path
@@ -69,6 +86,7 @@ namespace MediaticonDB
             public static string[] Tables = { "Film" };
             //public static string[] Tables = { "Film", "Serie", "Anime", "Show" };
             public static string GuidaTvCsv = "GuidaTV";
+            public static string[]FilmStatus= { "Visto", "Stò Guardando", "Da Guardare"};
         }
 
         //datetime format

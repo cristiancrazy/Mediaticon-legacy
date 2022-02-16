@@ -1,0 +1,24 @@
+1644927964785	geckodriver	INFO	Listening on 127.0.0.1:60223
+1644927967857	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "60224" "-no-remote" "-profile" "C:\\Users\\11869\\AppData\\Local\\Temp\\rust_mozprofilemsILIX"
+1644927968162	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\11869\\AppData\\Local\\Temp\\rust_mozprofilemsILIX\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:60224/devtools/browser/28a0268c-391e-450f-86d0-d04badd0b74a
+1644927969994	Marionette	INFO	Listening on port 60229
+1644927970037	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1644927980748	Marionette	INFO	Stopped listening on port 60229
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+1644995396881	geckodriver	INFO	Listening on 127.0.0.1:50680
+1644995399990	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "headless" "--remote-debugging-port" "50681" "-no-remote" "-profile" "C:\\Users\\11869\\AppData\\Local\\Temp\\rust_mozprofileCA1rGx"
+1644995400354	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\11869\\AppData\\Local\\Temp\\rust_mozprofileCA1rGx\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50681/devtools/browser/f2b5eed1-da22-478a-8ae7-53bb043551f9
+1644995402371	Marionette	INFO	Listening on port 50686
+1644995402721	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1644995408708	Marionette	INFO	Stopped listening on port 50686
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

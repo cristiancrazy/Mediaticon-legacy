@@ -1,11 +1,13 @@
 package it.mediaticon.exec;
 
 import it.mediaticon.config.GlobalConfig;
+import it.mediaticon.scraper.Loader;
 
 import java.io.IOException;
 import java.lang.management.GarbageCollectorMXBean;
 import java.net.InetAddress;
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class BackgroundService{
@@ -71,7 +73,38 @@ public class BackgroundService{
                 }, 0, TimeUnit.SECONDS.convert(Duration.ofMinutes(2)), TimeUnit.SECONDS
         );
 
+    }
 
+    /* Start Scheduling scrapers */
+    public static void enableScraper(TimeUnit unit, int start_delay, int repeat_delay){
+        if(networkUp){ //Check internet connection
+            List<String> scraper = Loader.getScraperAvailable();
 
+            int index = 1;
+            for(String name : scraper){
+                System.out.println("\u001B[32m Impostazione scraper: " +
+                        name + System.lineSeparator() + "Delay inziale:" + (start_delay*index) + unit.name() +
+                        System.lineSeparator() + "Avviato ogni: " + repeat_delay + unit.name() + System.lineSeparator()
+                        + "\u001B[0m");
+                serviceExec.scheduleAtFixedRate(
+                        () -> {
+                            Loader.startScraper(name);
+                        }, ((long) start_delay * index), repeat_delay, unit);
+
+                index++;
+            }
+        }else{
+            System.out.println("\u001B[31m"+"Connessione a Internet assente!"+"\u001B[0m\n");
+        }
+
+    }
+
+    /** Manual internet connection verifier */
+    public static boolean verifyConnNow(){
+        try{
+            networkUp = connVerifier.call();
+        }catch(Exception ignored){ }
+
+        return networkUp;
     }
 }
