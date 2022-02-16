@@ -3,21 +3,31 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-def yt_tr_link(session, name):
-    #GET HTML
+def yt_tr_link(name):
     try:
-        response = session.get(f'https://www.youtube.com/results?search_query={name}')
-        response.raise_for_status() # give an error if the page returns an error code
-    except:
+        s = Service('./drivers/geckodriver.exe')
+
+        options = Options()
+        options.headless = True
+        driver = webdriver.Firefox(options=options, service=s)
+
+        wait = WebDriverWait(driver, 3)
+        #presence = EC.presence_of_element_located
+        visible = EC.visibility_of_element_located
+
+        driver.get(f'https://www.youtube.com/results?search_query={name}')
+        driver.execute_script("window.scrollTo(0, 1000);")
+
+        wait.until(visible((By.XPATH, '//*[@id="video-title"]')))
+        link = driver.find_element(By.XPATH, '//*[@id="video-title"]')
+
+        print(link.get_attribute('href'))
+    except Exception as e:
+        print(e)
         sys.exit(1)
-
-    #PREPARE FOR PARSING
-    soup = bs4.BeautifulSoup(response.text, 'html.parser')
-
-    title = soup.find('a', {'id' : 'video-title'})
-
-    print(title)
 
 if __name__ == "__main__":
     name : str = ''
@@ -35,6 +45,9 @@ if __name__ == "__main__":
                 print('error in one of the arguments')
                 sys.exit(1)
 
-    s = requests.Session()
-    yt_tr_link(s, name)
+    if(not name):
+        print('plase insert a name')
+        sys.exit(1)
+
+    yt_tr_link(name)
     sys.exit(0)
