@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.dll;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
@@ -77,7 +78,7 @@ namespace MediaticonDB.MiaLista
                     BinaryFormatter formattatore = new BinaryFormatter();
                     try
                     {
-                        MyFilmList=formattatore.Deserialize(fs).
+                        MyFilmList= (List<MyFilm>)formattatore.Deserialize(fs);
                     }
                     catch (SerializationException e)
                     {
