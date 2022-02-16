@@ -53,7 +53,7 @@ namespace MediaticonDB.MiaLista
         {
             public static bool Serialize()
             {
-
+                
             }
             public static bool Deserialize()
             {
