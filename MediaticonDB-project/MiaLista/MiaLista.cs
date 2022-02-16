@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace MediaticonDB.MiaLista
 {
@@ -53,7 +56,19 @@ namespace MediaticonDB.MiaLista
         {
             public static bool Serialize()
             {
-                
+                using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
+                {
+                    BinaryFormatter formattatore = new BinaryFormatter();
+                    try
+                    {
+                        formattatore.Serialize(fs, MyFilmList);
+                    }
+                    catch (SerializationException e)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
             }
             public static bool Deserialize()
             {

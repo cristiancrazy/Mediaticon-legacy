@@ -58,9 +58,6 @@ namespace MediaticonDB
 
         public class UsersPath
         {
-            //name
-            public static string UserName = ""; //when the user enter the username will be saved here
-
             //path
             public static string UsersMainPath = @".\Users\";
             public static Func<string, string> UserPath = (name) => UsersMainPath + name + "\\";
