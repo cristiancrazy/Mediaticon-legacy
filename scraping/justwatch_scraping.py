@@ -1,12 +1,10 @@
-import re, sys
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.firefox.options import Options
 
 def justwatch(name):
-    partial_link : str = 'https://www.justwatch.com/'
-
     try:
         s = Service('./drivers/geckodriver.exe')
 
