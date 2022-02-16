@@ -1,4 +1,4 @@
-import requests, re, bs4, time, sys
+import requests, bs4, time, sys
 from datetime import date
 from dataclasses import dataclass, field
 
@@ -42,9 +42,6 @@ def myanilist(session, _from_year, _to_year, path):
 
         for anime_list in animes:
             anime : Anime = Anime()
-            # if(image := anime_list.find('div', {'class' : 'picSurround'})):
-            #     if(image := image.find('img')):
-            #         anime.image = image['data-src']
             
             if(header := anime_list.find('div', {'class' : 'title'})):
                 if(title := header.find('strong')):
