@@ -39,7 +39,7 @@ def myTVseries(_from_year, _to_year, path):
             trama : str = ''
             anno : int
             tags : list[str] = []
-            durata : str = ''
+            durata : int = 0
             actors_list:list[str] = []
 
             #CICLE IN PAGE
@@ -65,7 +65,7 @@ def myTVseries(_from_year, _to_year, path):
                         trama = ''
                         tags = []
                         anno = 0
-                        durata = ''
+                        durata = 0
 
                         for info in element.findChildren():
                             if info.has_attr('class'):
@@ -78,9 +78,9 @@ def myTVseries(_from_year, _to_year, path):
                                     el_tags = info.select('a')
                                     #DURATA (if exist)
                                     try:
-                                        durata = info.find('strong').text
+                                        durata = int(info.find('strong').text.split(' ')[1])
                                     except:
-                                        durata = ''
+                                        durata = 0
                                     #TAGS & YEAR
                                     for tag in el_tags:
                                         if tag.text.isnumeric():
