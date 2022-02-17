@@ -15,7 +15,6 @@ def yt_tr_link(name):
         driver = webdriver.Firefox(options=options, service=s)
 
         wait = WebDriverWait(driver, 3)
-        #presence = EC.presence_of_element_located
         visible = EC.visibility_of_element_located
 
         driver.get(f'https://www.youtube.com/results?search_query={name}')
@@ -25,6 +24,8 @@ def yt_tr_link(name):
         link = driver.find_element(By.XPATH, '//*[@id="video-title"]')
 
         print(link.get_attribute('href'))
+
+        driver.quit()
     except Exception as e:
         print(e)
         sys.exit(1)
