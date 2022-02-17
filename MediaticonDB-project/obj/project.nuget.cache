@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cXCXR8gnYlq8SW10O5gUi5lKP4PFWnn8UmqRsWERWossUc9uvGBt7E/nuRF0syCNdQszxsMsazRt7g/8Gx5QRw==",
+  "dgSpecHash": "O8qvR0P4Vj3sHxhrKLr9VbTg0C0rHKMrrRdOzR7MC4wAP6yaOhySoka9ci2CEgks3C+skn8p18bLtPOBxnx9jA==",
   "success": true,
   "projectFilePath": "C:\\Users\\12036\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
   "expectedPackageFiles": [
@@ -18,8 +18,7 @@
     "C:\\Users\\12036\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
     "C:\\Users\\12036\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
     "C:\\Users\\12036\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\12036\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\12036\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+    "C:\\Users\\12036\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

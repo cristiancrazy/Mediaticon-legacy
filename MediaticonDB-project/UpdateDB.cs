@@ -45,23 +45,27 @@ namespace MediaticonDB
                 {
                     try
                     {
-                        foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + "\\" + Table + "\\"))
+                        foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + Table + "\\"))
                         {//foreach file per table
                             string buffer = "";
                             try
                             {
-                                using (StringReader strRead = new StringReader(File))
+                                using (var  strRead = new StreamReader(File))
                                 {
-                                    while ((buffer = strRead.ReadLine()) != null)
-                                    {//foreach line
-                                        Film tmp = CsvReader.ReadLine(buffer);
-                                        if (copy == false && tmp.Title == SeekFilm)
-                                            copy = true;
+                                   
+                                   // using (StringReader strRead = new StringReader())
+                                    {
+                                        while ((buffer = strRead.ReadLine()) != null)
+                                        {//foreach line
+                                            Film tmp = CsvReader.ReadLine(buffer);
+                                            if (copy == false && tmp.Title == SeekFilm)
+                                                copy = true;
 
-                                        if (copy == true)
-                                        {
-                                            //start to copy the film from csv to database, when seekfilm will found
-                                            db.Append(tmp, Table);
+                                            if (copy == true)
+                                            {
+                                                //start to copy the film from csv to database, when seekfilm will found
+                                                db.Append(tmp, Table);
+                                            }
                                         }
                                     }
                                 }

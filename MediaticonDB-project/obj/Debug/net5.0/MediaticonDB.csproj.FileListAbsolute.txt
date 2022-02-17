@@ -39,7 +39,6 @@ C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-p
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\MediaticonDB.runtimeconfig.json
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\MediaticonDB.runtimeconfig.dev.json
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\MediaticonDB.dll
-C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\ref\MediaticonDB.dll
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\MediaticonDB.pdb
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
@@ -70,3 +69,4 @@ C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-p
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\obj\Debug\net5.0\ref\MediaticonDB.dll
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\obj\Debug\net5.0\MediaticonDB.pdb
 C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\obj\Debug\net5.0\MediaticonDB.genruntimeconfig.cache
+C:\Users\12036\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\obj\Debug\net5.0\refint\MediaticonDB.dll
