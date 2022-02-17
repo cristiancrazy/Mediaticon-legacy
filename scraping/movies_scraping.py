@@ -79,7 +79,7 @@ def mymovies(_from_year, _to_year, path):
                                     try:
                                         durata = int(info.find('strong').text.split(' ')[1])
                                     except:
-                                        durata = ''
+                                        durata = 0
                                     #TAGS & YEAR
                                     for tag in el_tags:
                                         if tag.text.isnumeric():
