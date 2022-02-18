@@ -20,3 +20,21 @@ Progetto Mediaticon - Repository privata programmatori
 
    * `git pull` update all
    * `git pull origin <branch-name>` update a branch of the local repository (from another branch)
+
+# Cose veramente utili (non come quanto scritto sopra, ovviamente VL scherza)
+## Mediaticon DB
+### Informazioni
+Mediaticon DB è il gestore del database che mediaticon app utilizzerà per prelevare le informazione dei contenuti.
+Il software serve principalmente per effettuare i download dei file csv e successivamente aggiornare il database con quanto appena scaricato.
+Inoltre sono presenti metodi sia per la gestione della guida tv sia per l'implementazione della lista di contenuti selezionati dall'utente.
+### Classi & Utilizzi
+#### Download
+La Classe download contiene i metodi utili per l'acquisizione dei file "CSV", i quali contengono i contenuti cinematografici.
+In aggiunta, sono presenti costrutti adibiti al controllo delle eccezioni e all'"Error Correction". Pertanto il programma è in grado di evitare errori nella scrittura del database, i quali, essendo i titoli ordinati per 'data di uscita', corromperebbero l'intero sistema.
+## Mediaticon APP
+### Informazioni
+### Finestre
+#### Login
+#### MainWindow
+#### Description Window
+#### MyListWindow
