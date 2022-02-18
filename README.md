@@ -21,6 +21,26 @@ Progetto Mediaticon - Repository privata programmatori
    * `git pull` update all
    * `git pull origin <branch-name>` update a branch of the local repository (from another branch)
 
+# Ideas for documentation
+## Mermaid
+```mermaid
+classDiagram
+  class Abstraction {
+    <<abstract>>
+  }
+  RefinedAbstaction1 --|> Abstraction
+  RefinedAbstaction2 --|> Abstraction
+  class Implementation {
+    <<abstract>>
+    +implementation()
+  }
+  Abstraction o-- implementation : uses
+  Implementation <|-- ConcreteImplementation1
+  Implementation <|-- ConcreteImplementation2
+  ConcreteImplementation1: +implementation()
+  ConcreteImplementation2: +implementation()
+```
+
 # Cose veramente utili (non come quanto scritto sopra, ovviamente VL scherza)
 ## Mediaticon DB
 ### Informazioni
