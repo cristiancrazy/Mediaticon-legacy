@@ -34,7 +34,7 @@ classDiagram
     <<abstract>>
     +implementation()
   }
-  Abstraction o-- implementation : uses
+  Abstraction o-- Implementation : uses
   Implementation <|-- ConcreteImplementation1
   Implementation <|-- ConcreteImplementation2
   ConcreteImplementation1: +implementation()
