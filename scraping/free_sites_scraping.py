@@ -17,6 +17,7 @@ def free_sites(name):
         wait = WebDriverWait(driver, 3)
         visible = EC.visibility_of_element_located
 
+        #RAIPLAY
         driver.get(f'https://www.raiplay.it/ricerca.html?q={name}')
 
         wait.until(visible((By.XPATH, '/html/body/main/rai-search/section[2]/div/div[2]/div[2]/div/div/div[1]/a')))
@@ -24,12 +25,14 @@ def free_sites(name):
         
         print(link.get_attribute('href'))
 
+        #MEDIASETPLAY
         driver.get('https://www.mediasetplay.mediaset.it/?search')
 
         textBox = driver.find_element(By.XPATH, '//*[@id="search"]')
         textBox.send_keys(name)
 
-        link = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a')
+        wait.until(visible((By.XPATH, '/html/body/div/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a')))
+        link = driver.find_element(By.XPATH, '/html/body/div/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a')
         print(link.get_attribute('href'))
 
         driver.quit()
