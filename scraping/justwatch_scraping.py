@@ -16,6 +16,8 @@ def justwatch(name):
 
         link = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a')
         print(link.get_attribute('href'))
+
+        driver.quit()
     except Exception as e:
         print(e)
         sys.exit(1)
