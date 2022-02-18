@@ -38,3 +38,5 @@ In aggiunta, sono presenti costrutti adibiti al controllo delle eccezioni e all'
 #### MainWindow
 #### Description Window
 #### MyListWindow
+## Mediaticon Server
+## Mediaticon Dependency installers
