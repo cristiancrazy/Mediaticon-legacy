@@ -37,7 +37,7 @@ namespace MediaticonDB
         {
             //per ogni file nella cartella, lo apre e cerca il seekfilm, con il Csvreader;
             //se il titolo è il desiderato incomincia a scrivere
-            bool copy = false;
+            bool copy = false; //serve per dire di incominciare a copiare solo i film che non sono ancora stati messi
 
             try
             {
@@ -50,22 +50,18 @@ namespace MediaticonDB
                             string buffer = "";
                             try
                             {
-                                using (var  strRead = new StreamReader(File))
+                                using (var strRead = new StreamReader(File))
                                 {
-                                   
-                                   // using (StringReader strRead = new StringReader())
-                                    {
-                                        while ((buffer = strRead.ReadLine()) != null)
-                                        {//foreach line
-                                            Film tmp = CsvReader.ReadLine(buffer);
-                                            if (copy == false && tmp.Title == SeekFilm)
-                                                copy = true;
+                                    while ((buffer = strRead.ReadLine()) != null)
+                                    {//foreach line
+                                        Film tmp = CsvReader.ReadLine(buffer);
+                                        if (copy == false && (tmp.Title == SeekFilm || SeekFilm == "")) 
+                                            copy = true;
 
-                                            if (copy == true)
-                                            {
-                                                //start to copy the film from csv to database, when seekfilm will found
-                                                db.Append(tmp, Table);
-                                            }
+                                        if (copy == true)
+                                        {
+                                            //start to copy the film from csv to database, when seekfilm will found
+                                            db.Append(tmp, Table);
                                         }
                                     }
                                 }

@@ -60,7 +60,7 @@ namespace MediaticonDB
                     read[7].ToString(),
                     read[8].ToString()
                     );
-                return output;
+                return output.RetFromSQL();
             }
             catch
             {
@@ -73,12 +73,13 @@ namespace MediaticonDB
         {
             try
             {
+                film = film.RetToSQL(); //prepare to save with sql
                 SqlCommand command = new SqlCommand(
                     $"INSERT INTO {tableName} " +
                     $"(Wallpaper, Cover, Titolo, Trama, Durata, Anno, Generi, Attori) " +
                     $"VALUES " +
                     $"(\'{film.BigImage}\', " +
-                    $"\'{film.Cover}\', " +
+                    $"\'{film.Image}\', " +
                     $"\'{film.Title}\', " +
                     $"\'{film.Description}\', " +
                     $"\'{film.Duration}\', " +
@@ -98,6 +99,7 @@ namespace MediaticonDB
         {
             try
             {
+                newFilm = newFilm.RetToSQL();
                 SqlCommand cmd = new SqlCommand(
                     $"UPDATE {tableName} SET " +
                     $"Wallpaper = {newFilm.BigImage}, " +

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace MediaticonDB
         public string Image;
         public string Title;
         public string Description;
-        public int Duration;
+        public int Duration; //minutes
         public DateTime Year;
         public List<string> Genres;
         public List<string> Actors;
@@ -66,7 +67,42 @@ namespace MediaticonDB
             this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
         }
 
-        
+        public Film RetToSQL()
+        {
+            Film output = new Film(this.BigImage, this.Image, this.Title, this.Description,
+                                    this.Duration, this.Year, this.Genres, this.Actors);
+
+            //in the sql replace ' with §
+            output.BigImage = this.BigImage.Replace('\'', '§');
+            output.Image = this.Image.Replace('\'', '§');
+            output.Title = this.Title.Replace('\'', '§');
+            output.Description = this.Description.Replace('\'', '§');
+            output.Duration = this.Duration;
+            output.Year = this.Year;
+            output.Genres = this.Genres.Select(a => a.Replace('\'','§')).ToList();
+            output.Actors = this.Actors.Select(a => a.Replace('\'','§')).ToList();
+
+            return output;
+        }
+
+        public Film RetFromSQL()
+        {
+            Film output = new Film(this.BigImage, this.Image, this.Title, this.Description,
+                                    this.Duration, this.Year, this.Genres, this.Actors);
+
+            //in the sql replace § with '
+            output.BigImage = this.BigImage.Replace('§', '\'');
+            output.Image = this.Image.Replace('§', '\'');
+            output.Title = this.Title.Replace('§', '\'');
+            output.Description = this.Description.Replace('§', '\'');
+            output.Duration = this.Duration;
+            output.Year = this.Year;
+            output.Genres = this.Genres.Select(a => a.Replace('§', '\'')).ToList();
+            output.Actors = this.Actors.Select(a => a.Replace('§', '\'')).ToList();
+
+            return output;
+        }
+
     }
 
     public static class StringExt
@@ -81,5 +117,7 @@ namespace MediaticonDB
 
             return output;
         }
+
+        
     }
 }
