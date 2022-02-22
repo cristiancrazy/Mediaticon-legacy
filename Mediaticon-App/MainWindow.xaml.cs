@@ -1,5 +1,4 @@
-﻿using HandlerMediaticon;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Mediaticon
         {
             InitializeComponent();
 
-            List<Film> listafilm = new List<Film>();
+            /*List<Film> listafilm = new List<Film>();
 
             for(int i =0 ;i< 10; i++)
                 listafilm.Add(new Film("gino " + i, "il film dell'anno", ""));
@@ -46,7 +45,7 @@ namespace Mediaticon
             listaLB.ItemsSource = listafilm;
 
             for (int i = 0; i < 30; i++)
-                filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});
+                filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});*/
 
             openform<login>(false);
             openform<details>(false);

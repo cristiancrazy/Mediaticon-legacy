@@ -36,7 +36,7 @@
     </Window.Resources>
 
     <Window.Background>
-        <ImageBrush x:Name="bkgImg" AlignmentY="Top" Stretch="UniformToFill" ImageSource="C:\Users\Visual Laser 10 New\Pictures\228300438_1627136104148396_5062049468704582859_n.jpg">
+        <ImageBrush x:Name="bkgImg" AlignmentY="Top" Stretch="UniformToFill">
             <ImageBrush.RelativeTransform>
                 <TransformGroup>
                     <ScaleTransform CenterY="0.5" CenterX="0.5"/>
