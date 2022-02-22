@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MediaticonDB-project"
   ],
-  "SelectedNode": "\\MediaticonDB.sln",
+  "SelectedNode": "\\MediaticonDB-project\\UpdateDB.cs",
   "PreviewInSolutionExplorer": false
 }
