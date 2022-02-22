@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "YQV1NMesGenvaGXV/nnouxToR+7Femi5yEneIkJyiW703BmOh87hJE1zBVSHfV1nrD1emBJyBlRzYv9+BLT2MA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\11919\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\11919\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\11919\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.21\\microsoft.windows.sdk.net.ref.10.0.19041.21.nupkg.sha512"
+  ],
+  "logs": []
+}
