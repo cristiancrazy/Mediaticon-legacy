@@ -17,7 +17,7 @@ def raiplay(driver, name):
         wait.until(visible((By.XPATH, '/html/body/main/rai-search/section[2]/div/div[2]/div[2]/div/div/div[1]/a')))
         link = driver.find_element(By.XPATH, '/html/body/main/rai-search/section[2]/div/div[2]/div[2]/div/div/div[1]/a')
 
-        driver.get(link)
+        driver.get(link.get_attribute('href'))
 
         wait.until(visible((By.XPATH, '/html/body/main/section[1]/div[1]/div/h1')))
         title = driver.find_element(By.XPATH, '/html/body/main/section[1]/div[1]/div/h1')
@@ -61,7 +61,7 @@ def mediasetplay(driver, name, name_type):
             wait.until(visible((By.XPATH, '/html/body/div[1]/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a/div/h3')))
             title = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a/div/h3')
 
-            if title.text.lower() == name.lower():
+            if name.lower() in title.text.lower():
                 wait.until(visible((By.XPATH, '/html/body/div/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a')))
                 link = driver.find_element(By.XPATH, '/html/body/div/div/div[1]/div[1]/div/div[3]/section[1]/div[1]/ul/li[1]/div/a')
             else:
@@ -81,6 +81,12 @@ def justwatch(driver, name):
         visible = EC.visibility_of_element_located
 
         driver.get(f'https://www.justwatch.com/it/cerca?q={name}')
+
+        wait.until(visible((By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a/span[1]')))
+        title = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a/span[1]')
+
+        if not (name.lower() in title.text.lower()):
+            return 1
 
         wait.until(visible((By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a')))
         link = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[3]/div/div[2]/ion-grid/div/ion-row[1]/ion-col[2]/a')
@@ -118,12 +124,13 @@ if __name__ == "__main__":
     driver = webdriver.Firefox(options=options, service=s)
 
     if(raiplay(driver, name) != 1):
-        mediasetplay(driver, name, 'Film')
-        justwatch(driver, name)
+        driver.quit()
         sys.exit(0)
     elif(mediasetplay(driver, name, 'Film') != 1):
+        driver.quit()
         sys.exit(0)
     elif(justwatch(driver, name) != 1):
+        driver.quit()
         sys.exit(0)
 
     driver.quit()
