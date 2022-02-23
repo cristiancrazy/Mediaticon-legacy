@@ -134,8 +134,7 @@ namespace MediaticonDB
                 throw new MediaticonException.ReadingDBException();
             }
         }
-
-        
+               
 
         void Close()
         {

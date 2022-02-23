@@ -13,8 +13,8 @@ namespace MediaticonDB
             //string c = @"Server=(localdb)\\MSSQLLocalDb;Integrated Security=true;database=Database1.mdf";
             //giusta    string c = @"Data Source=(localdb)\MSSQLLocalDb;Integrated Security=true;AttachDbFileName=C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\Database1.mdf;";
             MakeDirs.MakeAllsFolders();
-            //Download.DownloadAll();
-            UpdateDB.UpdateAll();
+            Download.DownloadAll();
+            //UpdateDB.UpdateAll();
             Console.ReadKey();
         }
     }
