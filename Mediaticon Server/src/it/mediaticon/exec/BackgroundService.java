@@ -36,25 +36,26 @@ public class BackgroundService{
             internet = false;
         }
 
+        //TODO: RESOLVE THIS BUG (FOUND)
         //Check FTP Server status
-        if(GlobalConfig.ftpAvailable){
+        /*if(GlobalConfig.ftpAvailable){
             try{
                 ftp = GlobalConfig.ftpAddress.isReachable(GlobalConfig.defaultInternetTimeout);
             }catch (IOException err){
                 ftp = false;
             }
             GlobalConfig.ftpAvailable = ftp;
-        }
+        }*/
 
         //Check SMTP Server status
-        if(GlobalConfig.smtpAvailable){
+        /*if(GlobalConfig.smtpAvailable){
             try{
-                smtp = GlobalConfig.ftpAddress.isReachable(GlobalConfig.defaultInternetTimeout);
+                smtp = GlobalConfig.smtpAddress.isReachable(GlobalConfig.defaultInternetTimeout);
             }catch (IOException err){
                 smtp = false;
             }
-            GlobalConfig.ftpAvailable = smtp;
-        }
+            GlobalConfig.smtpAvailable = smtp;
+        }*/
 
         //Return general network info
         return internet;

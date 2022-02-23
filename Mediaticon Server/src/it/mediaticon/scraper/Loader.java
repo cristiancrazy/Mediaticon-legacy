@@ -140,6 +140,36 @@ public class Loader {
         }
     }
 
+    /** Get return code - This method will start scraper process **/
+    public static int getExitCodeRun(String name){
+        Future<Integer> status = MainClass.executor.submit(
+                () -> {
+                    try{
+                        ProcessBuilder pb = scraperProcess.get(name);
+                        Process process = pb.start();
+                        process.waitFor();
+                        return process.exitValue();
+                    }catch (InterruptedException | IOException | NullPointerException ignored){
+                        System.out.println("\u001B[31m" + "Process Error Occurred." + "\u001B[0m");
+                        return -1; //Error
+                    }
+
+                }
+        );
+
+        //Wait finishing the task submitted and return results if possible
+        try{
+            return status.get();
+        }catch (ExecutionException exc){
+            System.out.println("Exec exception " +exc.getMessage());
+            return -1; //Error
+        }catch (InterruptedException exc){
+            System.out.println("Exception " + exc.getMessage());
+            return -1; //Error
+        }
+    }
+
+
     /** This method will start all scraper processes **/
     public static void startScraper(){
         boolean status;

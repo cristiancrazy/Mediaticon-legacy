@@ -17,6 +17,7 @@ import it.mediaticon.exec.BackgroundService;
 import it.mediaticon.exec.MainClass;
 import it.mediaticon.scraper.Loader;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -172,6 +173,17 @@ public class UserWizard {
 	//TODO: MUST BE IMPLEMENTED
 	/** Manage (locally) server's directories settings **/
 	public static void directorySetup(Scanner in){
+		//User msg
+		System.out.println("Mediaticon Setup [DIRECTORIES PATHS]");
+
+		//Inputs
+		GlobalConfig.scraperDir = new File (checkFields("Insert Scraper dir path: ", in, pathTest)).toPath();
+		GlobalConfig.outputDir = new File (checkFields("Insert Output dir path: ", in, pathTest)).toPath();
+		GlobalConfig.logDir = new File (checkFields("Insert Log dir path: ", in, pathTest)).toPath();
+
+		//End msg
+		System.out.println("Directories setup ended");
+		System.out.println("\u001B[31m" + "Warning: you must restart the server entirely to apply settings." + "\u001B[0m");
 
 	}
 
@@ -204,6 +216,12 @@ public class UserWizard {
 
 	//Boolean test
 	private static final Predicate<String> boolTest = i -> i.matches("True|true|False|false");
+
+	//Path test
+	private static final Predicate<String> pathTest = (pathname) -> {
+		File file = new File(pathname);
+		return file.exists();
+	};
 
 	//Integer test
 	private static final Predicate<String> intTestPositive = (i) -> {
