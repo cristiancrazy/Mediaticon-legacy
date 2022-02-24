@@ -1,20 +1,28 @@
 import requests, bs4, sys
 from datetime import date
+# from dataclasses import dataclass, field
+
+# @dataclass
+# class Movie:
+#     big_image : str
+#     image : str
+#     name : str
+#     trama : str
+#     durata : int
+#     anno : int
+#     tags : list[str] = field(default_factory=list)
+#     actors_list : list[str] = field(default_factory=list)
 
 def to_list(*args):
     return list(args)
 
 def mymovies(_from_year, _to_year, path):
-    #YEARS RANGE
-    #_from_year = 1970
-    #_to_year = 1972
-
     #GLOBAL VARIABLES
     page = 1
 
-    #CURRENT YEAR
-    today_date = date.today()
-    current_year = int(today_date.year)
+    # CURRENT YEAR
+    # today_date = date.today()
+    # current_year = int(today_date.year)
 
     while _from_year <= _to_year:
         while True:
@@ -64,12 +72,12 @@ def mymovies(_from_year, _to_year, path):
                         trama = ''
                         tags = []
                         anno = 0
-                        durata = 0
+                        actors_list = []
 
                         for info in element.findChildren():
                             if info.has_attr('class'):
                                 #NAME
-                                if 'schedine-titolo' in info.attrs['class']: #name
+                                if 'schedine-titolo' in info.attrs['class']:
                                     link2 = info.find('a')['href']
                                     name = info.text.strip('\n')
 
@@ -104,12 +112,13 @@ def mymovies(_from_year, _to_year, path):
                                 if not ' ' in actor.text:
                                     break
                                 
-                                actors_list.append(actor.text.encode('ascii', 'ignore').decode())
+                                actors_list.append(actor.text)#.encode('ascii', 'ignore').decode())
                         
-                        trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
+                        trama = soup2.find('p', {'class' : 'corpo'}).text.strip().replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
-                        with open(path, 'a') as f:
-                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
+                        with open(path, 'a', encoding="utf-16") as f:
+                            #f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
+                            f.write(f'{big_image};{image};{name};{trama};{durata};{anno};{tags};{actors_list}')
                             f.write('\n')
                         image = ''
                         big_image = ''
