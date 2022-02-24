@@ -72,15 +72,15 @@ namespace MediaticonDB
             Film output = new Film(this.BigImage, this.Image, this.Title, this.Description,
                                     this.Duration, this.Year, this.Genres, this.Actors);
 
-            //in the sql replace ' with §
-            output.BigImage = this.BigImage.Replace('\'', '§');
-            output.Image = this.Image.Replace('\'', '§');
-            output.Title = this.Title.Replace('\'', '§');
-            output.Description = this.Description.Replace('\'', '§');
+            //in the sql replace ' with Ø
+            output.BigImage = this.BigImage.Replace('\'', 'Ø');
+            output.Image = this.Image.Replace('\'', 'Ø');
+            output.Title = this.Title.Replace('\'', 'Ø');
+            output.Description = this.Description.Replace('\'', 'Ø');
             output.Duration = this.Duration;
             output.Year = this.Year;
-            output.Genres = this.Genres.Select(a => a.Replace('\'','§')).ToList();
-            output.Actors = this.Actors.Select(a => a.Replace('\'','§')).ToList();
+            output.Genres = this.Genres.Select(a => a.Replace('\'','Ø')).ToList();
+            output.Actors = this.Actors.Select(a => a.Replace('\'','Ø')).ToList();
 
             return output;
         }
@@ -90,15 +90,15 @@ namespace MediaticonDB
             Film output = new Film(this.BigImage, this.Image, this.Title, this.Description,
                                     this.Duration, this.Year, this.Genres, this.Actors);
 
-            //in the sql replace § with '
-            output.BigImage = this.BigImage.Replace('§', '\'');
-            output.Image = this.Image.Replace('§', '\'');
-            output.Title = this.Title.Replace('§', '\'');
-            output.Description = this.Description.Replace('§', '\'');
+            //in the sql replace Ø with '
+            output.BigImage = this.BigImage.Replace('Ø', '\'');
+            output.Image = this.Image.Replace('Ø', '\'');
+            output.Title = this.Title.Replace('Ø', '\'');
+            output.Description = this.Description.Replace('Ø', '\'');
             output.Duration = this.Duration;
             output.Year = this.Year;
-            output.Genres = this.Genres.Select(a => a.Replace('§', '\'')).ToList();
-            output.Actors = this.Actors.Select(a => a.Replace('§', '\'')).ToList();
+            output.Genres = this.Genres.Select(a => a.Replace('Ø', '\'')).ToList();
+            output.Actors = this.Actors.Select(a => a.Replace('Ø', '\'')).ToList();
 
             return output;
         }

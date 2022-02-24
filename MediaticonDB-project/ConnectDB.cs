@@ -48,19 +48,21 @@ namespace MediaticonDB
             {
                 SqlCommand cmd = new SqlCommand(
                     $"SELECT * FROM {tableName} WHERE id=\'{line}\'", sqlConnection);
-                SqlDataReader read = cmd.ExecuteReader();
-
-                Film output = new Film(
-                    read[1].ToString(),
-                    read[2].ToString(),
-                    read[3].ToString(),
-                    read[4].ToString(),
-                    Convert.ToInt32(read[5]),
-                    read[6].ToString(),
-                    read[7].ToString(),
-                    read[8].ToString()
-                    );
-                return output.RetFromSQL();
+                using (SqlDataReader read = cmd.ExecuteReader())
+                {
+                    read.Read();
+                    Film output = new Film(
+                        read[1].ToString(),
+                        read[2].ToString(),
+                        read[3].ToString(),
+                        read[4].ToString(),
+                        Convert.ToInt32(read[5]),
+                        read[6].ToString(),
+                        read[7].ToString(),
+                        read[8].ToString()
+                        );
+                    return output.RetFromSQL();
+                }
             }
             catch
             {
@@ -83,7 +85,7 @@ namespace MediaticonDB
                     $"\'{film.Title}\', " +
                     $"\'{film.Description}\', " +
                     $"\'{film.Duration}\', " +
-                    $"\'{film.Year}\', " +
+                    $"\'{film.Year.Year}\', " +
                     $"\'{film.Genres.ListToString()}\', " +
                     $"\'{film.Actors.ListToString()}\')", sqlConnection);
 
@@ -107,7 +109,7 @@ namespace MediaticonDB
                     $"Titolo = {newFilm.Title}, " +
                     $"Trama = {newFilm.Description}, " +
                     $"Durata = {newFilm.Duration}, " +
-                    $"Anno = {newFilm.Year}, " +
+                    $"Anno = {newFilm.Year.Year}, " +
                     $"Generi = {newFilm.Genres.ListToString()}, " +
                     $"Attori = {newFilm.Actors.ListToString()} " +
                     $" WHERE id = \'{lineToReplace}\'", sqlConnection);
@@ -125,9 +127,12 @@ namespace MediaticonDB
             try
             {
                 SqlCommand cmd = new SqlCommand($"SELECT MAX(Id) FROM {tableName}", sqlConnection);
-                SqlDataReader lastId = cmd.ExecuteReader();
-
-                return Int32.Parse(lastId.ToString());
+                using (SqlDataReader lastId = cmd.ExecuteReader())
+                {
+                    lastId.Read();
+                    int a =  Int32.Parse(lastId[0].ToString());
+                    return a;
+                }
             }
             catch
             {
