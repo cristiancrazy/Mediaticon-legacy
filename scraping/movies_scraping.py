@@ -35,6 +35,10 @@ def mymovies(_from_year, _to_year, path):
 
             #PREPARE FOR PARSING
             soup = bs4.BeautifulSoup(response.text, 'html.parser')
+
+            # for e in soup.findAll('br'):
+            #     e.extract()
+
             #GET NEEDED HTML
             films = soup.find('div', {'class' : 'mm-col sm-7 md-6 lg-6'})
             films = films.findChildren()
@@ -114,9 +118,9 @@ def mymovies(_from_year, _to_year, path):
                                 
                                 actors_list.append(actor.text)#.encode('ascii', 'ignore').decode())
                         
-                        trama = soup2.find('p', {'class' : 'corpo'}).text.strip().replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
+                        trama = soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
-                        with open(path, 'a', encoding="utf-16") as f:
+                        with open(path, 'a', encoding='utf-8') as f:
                             #f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
                             f.write(f'{big_image};{image};{name};{trama};{durata};{anno};{tags};{actors_list}')
                             f.write('\n')
