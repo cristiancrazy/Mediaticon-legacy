@@ -118,7 +118,7 @@ def mymovies(_from_year, _to_year, path):
                                 
                                 actors_list.append(actor.text)#.encode('ascii', 'ignore').decode())
                         
-                        trama = soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
+                        trama = soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
                         with open(path, 'a', encoding='utf-8') as f:
                             #f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
