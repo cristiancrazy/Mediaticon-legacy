@@ -32,7 +32,6 @@ function InstallPip3Libraries{
         # Upgrade pip
         pip3.exe install --upgrade pip | Out-Null
 
-
         # Install libraries
         foreach($libName in $dependenciesName){
             pip3.exe install $libName | Out-Null
@@ -60,7 +59,7 @@ Clear-Host
 Write-Output "Welcome to Python Dependencies installer for Windows.`nInstaller will start soon..."
 Start-Sleep 5
 Clear-Host
-$PSStyle
+
 # Progress Bar
 Write-Progress -Id 1 -Activity "Installing Python 3 Libraries" -PercentComplete 0
 
