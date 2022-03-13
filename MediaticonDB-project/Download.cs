@@ -22,6 +22,7 @@ namespace MediaticonDB
 		//download all csv from that year to today, put them in ./csv/film/film_2020.csv
 
 		private static string fromUrl = EnviromentVar.CsvfromUrl;
+		//private static string fromUrl = EnviromentVar.JsonVar.JsonfromUrl;
 		private static string toPath = EnviromentVar.CsvPath;
 		private static string fileExt = EnviromentVar.CsvfileExt;
 
@@ -52,7 +53,7 @@ namespace MediaticonDB
 					for (int i = lastContent.Year; i <= today.Year; i++)
 					{
 						//for each year download file
-						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath, true))//TODO: change true in false
+						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath, true))
 							return false;
 					}
 				}

@@ -37,7 +37,7 @@ namespace MediaticonDB
         {
             //per ogni file nella cartella, lo apre e cerca il seekfilm, con il Csvreader;
             //se il titolo è il desiderato incomincia a scrivere
-            bool copy = false; //serve per dire di incominciare a copiare solo i film che non sono ancora stati messi
+            bool copy = false; //serve incominciare a copiare solo i film che non sono ancora stati immessi
 
             try
             {
@@ -46,6 +46,7 @@ namespace MediaticonDB
                     try
                     {
                         foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + Table + "\\"))
+                        //foreach (var File in Directory.GetFiles(EnviromentVar.JsonVar.JsonPath + Table + "\\"))
                         {//foreach file per table
                             string buffer = "";
                             try
@@ -57,6 +58,7 @@ namespace MediaticonDB
                                         if (!String.IsNullOrWhiteSpace(buffer))//sometimes happen that the line is empty
                                         {
                                             Film tmp = CsvReader.ReadLine(buffer);
+                                            //Film tmp = JsonReader.ReadFilm(buffer);
                                             if (copy == false && (tmp.Title == SeekFilm || SeekFilm == ""))
                                             {
                                                 copy = true;
