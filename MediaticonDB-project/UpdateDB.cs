@@ -54,14 +54,20 @@ namespace MediaticonDB
                                 {
                                     while ((buffer = strRead.ReadLine()) != null)
                                     {//foreach line
-                                        Film tmp = CsvReader.ReadLine(buffer);
-                                        if (copy == false && (tmp.Title == SeekFilm || SeekFilm == "")) 
-                                            copy = true;
-
-                                        if (copy == true)
+                                        if (!String.IsNullOrWhiteSpace(buffer))//sometimes happen that the line is empty
                                         {
-                                            //start to copy the film from csv to database, when seekfilm will found
-                                            db.Append(tmp, Table);
+                                            Film tmp = CsvReader.ReadLine(buffer);
+                                            if (copy == false && (tmp.Title == SeekFilm || SeekFilm == ""))
+                                            {
+                                                copy = true;
+                                                continue; //with this it doesn't set the last film 2 times
+                                            }
+
+                                            if (copy == true)
+                                            {
+                                                //start to copy the film from csv to database, when seekfilm will found
+                                                db.Append(tmp, Table);
+                                            }
                                         }
                                     }
                                 }
