@@ -1,17 +1,24 @@
-import requests, bs4, sys
+import requests, bs4, sys, json
 from datetime import date
 # from dataclasses import dataclass, field
 
 # @dataclass
 # class Movie:
-#     big_image : str
-#     image : str
-#     name : str
-#     trama : str
-#     durata : int
-#     anno : int
-#     tags : list[str] = field(default_factory=list)
-#     actors_list : list[str] = field(default_factory=list)
+#     big_image : str #BigImage
+#     image : str #Image
+#     name : str #Title
+#     trama : str #Description
+#     durata : int #Duration
+#     anno : int #Year
+#     tags : list[str] = field(default_factory=list) #Genres
+#     actors_list : list[str] = field(default_factory=list) #Actors
+
+
+'''
+{
+    {BigImage: ------, Image: ------}
+}
+'''
 
 def to_list(*args):
     return list(args)
@@ -121,9 +128,20 @@ def mymovies(_from_year, _to_year, path):
                         trama = soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' ').replace(';', '§')#.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
                         #############################################################################################################
                         with open(path, 'a', encoding='utf-8') as f:
+                            _dict  = {
+                                'BigImage' : big_image,
+                                'Image' : image,
+                                'Title' : name,
+                                'Description' : trama,
+                                'Duration' : durata,
+                                'Year' : anno,
+                                'Genres' : tags,
+                                'Actors' : actors_list
+                            }
+                            f.write(json.dumps(_dict) + '\n')
                             #f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
-                            f.write(f'{big_image};{image};{name};{trama};{durata};{anno};{tags};{actors_list}')
-                            f.write('\n')
+                            #f.write(f'{big_image};{image};{name};{trama};{durata};{anno};{tags};{actors_list}')
+                            #f.write('\n')
                         image = ''
                         big_image = ''
             
