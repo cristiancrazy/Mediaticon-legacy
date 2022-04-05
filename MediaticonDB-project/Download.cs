@@ -14,7 +14,7 @@ namespace MediaticonDB
 	/// <summary>
 	/// download all film from last in DB to latest movie released
 	/// </summary>
-	internal class Download
+	public class Download
 	{
 		//check connection
 		//check date online

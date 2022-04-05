@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lEfIs0uTOcaWD0jGWn9XDa5337q0a4cylB+QZVSyabzmurPmczs+Z/HIt+1oVH4blm+rWdLx2qFWBfsG5R3E2A==",
+  "dgSpecHash": "wczlN/IeOvTe5bq7jYStjeL5Lz8K5zi5jAnWgPfEqQfT/9/f2WjzhrTIc7pnX/6KG22h8QMKLfalIY34y/EfbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
+  "projectFilePath": "C:\\Users\\Visual Laser 10 New\\source\\repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
