@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,6 +68,20 @@ namespace MediaticonDB
             this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
         }
 
+        [JsonConstructor]
+        public Film(string BigImage, string Image, string Title, string Description,
+                    int Duration, int Year, List<string> Genres, List<string> Actors)
+        {
+            this.BigImage = BigImage;
+            this.Image = Image;
+            this.Title = Title;
+            this.Description = Description;
+            this.Duration = Duration;
+            this.Year = new DateTime(Year, 1, 1);
+            this.Genres = Genres;
+            this.Actors = Actors;
+        }
+
         public Film RetToSQL()
         {
             Film output = new Film(this.BigImage, this.Image, this.Title, this.Description,
@@ -117,7 +132,5 @@ namespace MediaticonDB
 
             return output;
         }
-
-        
     }
 }

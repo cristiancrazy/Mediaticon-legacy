@@ -57,8 +57,8 @@ namespace MediaticonDB
                                     {//foreach line
                                         if (!String.IsNullOrWhiteSpace(buffer))//sometimes happen that the line is empty
                                         {
-                                            Film tmp = CsvReader.ReadLine(buffer);
-                                            //Film tmp = JsonReader.ReadFilm(buffer);
+                                            //Film tmp = CsvReader.ReadLine(buffer);
+                                            Film tmp = JsonReader.ReadFilm(buffer);
                                             if (copy == false && (tmp.Title == SeekFilm || SeekFilm == ""))
                                             {
                                                 copy = true;
@@ -143,7 +143,5 @@ namespace MediaticonDB
             }
             return true;
         }
-
-
     }
 }
