@@ -9,6 +9,7 @@
       "Mediaticon/1.0.0": {
         "dependencies": {
           "MediaticonDB": "1.0.0",
+          "MediaticonWorker": "1.0.0",
           "System.Drawing.Common": "6.0.0",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.23"
         },
@@ -237,6 +238,14 @@
         "runtime": {
           "MediaticonDB.dll": {}
         }
+      },
+      "MediaticonWorker/1.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
+        "runtime": {
+          "MediaticonWorker.dll": {}
+        }
       }
     }
   },
@@ -364,6 +373,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "MediaticonDB/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MediaticonWorker/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

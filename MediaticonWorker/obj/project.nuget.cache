@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "fORXqkNpqBj6nyNRU+rdZoiew4QKEC7VbE7btTY+I3ws+YOXZHWay3RXSjs6aBzyWDfydYLyUVGxQJ2OFxyOVw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

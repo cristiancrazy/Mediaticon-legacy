@@ -6,10 +6,6 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\App.g.cs
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon_MarkupCompile.cache
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon_MarkupCompile.lref
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonDB.deps.json
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonDB.runtimeconfig.json
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonDB.runtimeconfig.dev.json
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonDB.exe
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\Mediaticon.exe
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\Mediaticon.deps.json
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\Mediaticon.runtimeconfig.json
@@ -56,3 +52,5 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.pdb
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.genruntimeconfig.cache
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\ref\Mediaticon.dll
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonWorker.dll
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonWorker.pdb

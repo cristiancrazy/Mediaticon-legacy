@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaticonDB-project\MediaticonDB.csproj" />
+    <ProjectReference Include="..\MediaticonWorker\MediaticonWorker.csproj" />
   </ItemGroup>
 
 </Project>

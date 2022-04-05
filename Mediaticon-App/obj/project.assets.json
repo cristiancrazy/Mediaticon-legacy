@@ -271,6 +271,19 @@
         "runtime": {
           "bin/placeholder/MediaticonDB.dll": {}
         }
+      },
+      "MediaticonWorker/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MediaticonWorker.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MediaticonWorker.dll": {}
+        }
       }
     }
   },
@@ -789,11 +802,17 @@
       "type": "project",
       "path": "../MediaticonDB-project/MediaticonDB.csproj",
       "msbuildProject": "../MediaticonDB-project/MediaticonDB.csproj"
+    },
+    "MediaticonWorker/1.0.0": {
+      "type": "project",
+      "path": "../MediaticonWorker/MediaticonWorker.csproj",
+      "msbuildProject": "../MediaticonWorker/MediaticonWorker.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows10.0.19041": [
       "MediaticonDB >= 1.0.0",
+      "MediaticonWorker >= 1.0.0",
       "System.Drawing.Common >= 6.0.0"
     ]
   },
@@ -831,6 +850,9 @@
           "projectReferences": {
             "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
               "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
+            },
+            "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
+              "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj"
             }
           }
         }
