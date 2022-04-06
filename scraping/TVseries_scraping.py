@@ -65,14 +65,14 @@ def myTVseries(_from_year, _to_year, path):
                         trama = ''
                         tags = []
                         anno = 0
-                        durata = 0
+                        actors_list = []
 
                         for info in element.findChildren():
                             if info.has_attr('class'):
                                 #NAME
                                 if 'schedine-titolo' in info.attrs['class']: #name
                                     link2 = info.find('a')['href']
-                                    name = info.text.strip('\n')
+                                    name = ftfy.fix_text(info.text.strip('\n'))
 
                                 if 'mm-line-height-130' in info.attrs['class'] and 'schedine-lancio' in info.attrs['class']:
                                     el_tags = info.select('a')
@@ -107,11 +107,20 @@ def myTVseries(_from_year, _to_year, path):
                                 
                                 actors_list.append(actor.text.encode('ascii', 'ignore').decode())
                         
-                        trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
+                        trama = ftfy.fix_text(soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' '))
                         #############################################################################################################
                         with open(path, 'a') as f:
-                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
-                            f.write('\n')
+                            _dict  = {
+                                'BigImage' : big_image,
+                                'Image' : image,
+                                'Title' : name,
+                                'Description' : trama,
+                                'Duration' : durata,
+                                'Year' : anno,
+                                'Genres' : tags,
+                                'Actors' : actors_list
+                            }
+                            f.write(json.dumps(_dict) + '\n')
                         image = ''
                         big_image = ''
             
