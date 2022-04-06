@@ -12,7 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="mediaticon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="mediaticon.png" />
   </ItemGroup>
 
 </Project>

@@ -50,6 +50,7 @@ namespace Mediaticon
             openform<login>(false);
             openform<details>(false);
             openform<mylist>(false);
+            openform<newMSSbox>(false);
         }
 
         private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)

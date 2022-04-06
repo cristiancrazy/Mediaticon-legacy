@@ -67,7 +67,7 @@
     </Window.Resources>
 
     <Grid x:Name="gridBack" Background="#0e0e10">
-        <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="42" Margin="19,16,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="32" Margin="59,24,0,0" VerticalAlignment="Top" Width="107"/>
 
         <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right">
             <ComboBoxItem>La mia lista</ComboBoxItem>
@@ -76,16 +76,16 @@
         </ComboBox>
         <Border x:Name="accountBord" BorderThickness="1" HorizontalAlignment="Right" Width="148" Height="65" VerticalAlignment="Top" Margin="0,-1,-1,0" CornerRadius="0,0,0,10" MouseLeftButtonDown="accountBord_MouseLeftButtonDown">
             <Grid x:Name="accountGrid" d:LayoutOverrides="Height">
-                <Label x:Name="accountLbl" Content="Account" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Center" Width="73" FontWeight="Bold"/>
+                <Label x:Name="accountLbl" Content="Account" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Center" Width="73" FontWeight="Bold" FontSize="16"/>
                 <Image x:Name="accountImg" HorizontalAlignment="Left" Height="50" Margin="10,4,0,0" VerticalAlignment="Top" Width="50"/>
             </Grid>
         </Border>
-        <Border x:Name="typeBtnBord"  BorderThickness="1" Margin="186,-2,264,0" Height="75" VerticalAlignment="Top" CornerRadius="0,0,10,10"  Width="400" MaxWidth="400">
+        <Border x:Name="typeBtnBord"  BorderThickness="1" Margin="186,-2,240,0" Height="75" VerticalAlignment="Top" CornerRadius="0,0,10,10" MaxWidth="400">
             <Grid x:Name="typeBtnGrid" Margin="-1,-1,-1,-1">
                 <Button x:Name="filmBtn" Style="{StaticResource MenuBtn}" Content="Film" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="73" Margin="15,0,0,0" />
-                <Button x:Name="serieBtn" Style="{StaticResource MenuBtn}" Content="Serie Tv" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="76" Margin="113,0,0,0"/>
-                <Button x:Name="animeBtn"  Style="{StaticResource MenuBtn}" Content="Anime" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="67" Margin="223,0,0,0"/>
-                <Button x:Name="programmiBtn" Style="{StaticResource MenuBtn}" Content="Show" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="58" Margin="319,0,0,0"/>
+                <Button x:Name="serieBtn" Style="{StaticResource MenuBtn}" Content="Serie Tv" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="76"/>
+                <Button x:Name="animeBtn"  Style="{StaticResource MenuBtn}" Content="Anime" HorizontalAlignment="Right" Height="42" VerticalAlignment="Center" Width="68" Margin="319,0,15,0"/>
+                <Button x:Name="programmiBtn" Style="{StaticResource MenuBtn}" Content="Show" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="58" Margin="319,0,0,0" Visibility="Hidden"/>
             </Grid>
         </Border>
         <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="19,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
@@ -106,11 +106,12 @@
         <Border x:Name="filterBord" BorderThickness="1" Margin="0,113,0,38" HorizontalAlignment="Right" Width="147" CornerRadius="10,0,0,10">
             <Grid x:Name="filterGrid">
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
-                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,0,-1,9" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged"/>
+                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14"/>
                 </Border>
-                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FFBCBCBE" FontWeight="Bold"/>
+                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold"/>
             </Grid>
         </Border>
+        <Image HorizontalAlignment="Left" Height="38" Margin="16,18,0,0" VerticalAlignment="Top" Width="48" Source="/mediaticon.png"/>
     </Grid>
 
 </Window>

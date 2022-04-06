@@ -34,3 +34,5 @@ C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App
 C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\ref\Mediaticon.dll
 C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.pdb
 C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.genruntimeconfig.cache
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\newMSSbox.g.cs
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\newMSSbox.baml
