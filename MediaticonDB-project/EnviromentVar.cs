@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
 
 /// <summary>
 /// this file contains the global variables
@@ -20,7 +21,7 @@ using System.IO;
 
 namespace MediaticonDB
 {
-    internal class EnviromentVar
+    public class EnviromentVar
     {
         //path url
 
@@ -66,6 +67,9 @@ namespace MediaticonDB
         {
             //name
             public static string UserName = ""; //when the user enter the username will be saved here
+
+            //avatar
+            public static Bitmap Avatar;
 
             //path
             public static string UsersMainPath = @".\Users\";

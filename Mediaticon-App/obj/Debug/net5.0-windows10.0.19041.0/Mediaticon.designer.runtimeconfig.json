@@ -6,8 +6,8 @@
       "version": "5.0.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\Visual Laser 10 New\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Visual Laser 10 New\\.nuget\\packages",
+      "C:\\Users\\12036\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\12036\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {

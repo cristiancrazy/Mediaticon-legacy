@@ -13,5 +13,15 @@ namespace Mediaticon
     /// </summary>
     public partial class App : Application
     {
+        public static void openWindow<T,U>(bool close) where T : Window, new() where U : Window, new()
+        {
+            T a = new T();
+            U b = new U();
+            a.Show();
+            if (close)
+                b.Close();
+
+            GC.Collect();
+        }
     }
 }
