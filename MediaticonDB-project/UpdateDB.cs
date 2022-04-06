@@ -9,7 +9,7 @@ using System.IO;
 
 namespace MediaticonDB
 {
-    internal class UpdateDB
+    public class UpdateDB
     {
         public static bool UpdateAll()
         {

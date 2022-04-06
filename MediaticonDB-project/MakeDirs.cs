@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
-    internal class MakeDirs
+    public class MakeDirs
     {
         public static bool MakeAllsFolders()
         {
@@ -20,12 +20,35 @@ namespace MediaticonDB
             if (!DataFolders())
                 return false;
 
+            if (!UserFolders())
+                return false;
+
             return true;
         }
 
         public static bool UserFolders()
         {
-            
+            try
+            {
+                Directory.CreateDirectory(EnviromentVar.UsersPath.UsersMainPath);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool SpecificUserFolders(string username)
+        {
+            try
+            {
+                Directory.CreateDirectory(EnviromentVar.UsersPath.UserPath(username));
+            }
+            catch
+            {
+                return false;
+            }
             return true;
         }
 

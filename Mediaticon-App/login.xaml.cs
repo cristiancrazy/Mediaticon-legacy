@@ -25,6 +25,8 @@ namespace Mediaticon
         public login()
         {
             InitializeComponent();
+            
+            DBHelper.UpdateDB();
         }
 
         //GOT FOCUS ON TEXTBOX
@@ -43,7 +45,10 @@ namespace Mediaticon
         {
             if(!String.IsNullOrEmpty(nameTxt.Text))
             {
-                LoginHelper.LoadUser(nameTxt.Text);
+                if (LoginHelper.LoadUser(nameTxt.Text))
+                {
+                    App.openWindow<MainWindow, login>(true);
+                }
             }
         }
     }
