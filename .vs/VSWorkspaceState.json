@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Mediaticon-App",
+    "\\NewMessageBox"
   ],
-  "SelectedNode": "\\Mediaticon.sln",
+  "SelectedNode": "\\NewMessageBox\\NewMessageBox.csproj",
   "PreviewInSolutionExplorer": false
 }

@@ -45,7 +45,7 @@ namespace MediaticonDB
                 {
                     try
                     {
-                        foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + Table + "\\"))
+                        foreach (var File in Directory.GetFiles(EnviromentVar.JsonVar.JsonPath + Table + "\\"))
                         //foreach (var File in Directory.GetFiles(EnviromentVar.JsonVar.JsonPath + Table + "\\"))
                         {//foreach file per table
                             string buffer = "";
@@ -134,7 +134,7 @@ namespace MediaticonDB
             {
                 foreach (var Table in EnviromentVar.ContentType.Tables)
                 {
-                    Connection.DeleteAll(EnviromentVar.CsvPath + "\\" + Table + "\\");
+                    Connection.DeleteAll(EnviromentVar.JsonVar.JsonPath + "\\" + Table + "\\");
                 }
             }
             catch

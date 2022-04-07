@@ -21,10 +21,10 @@ namespace MediaticonDB
 		//check date of the last film in db
 		//download all csv from that year to today, put them in ./csv/film/film_2020.csv
 
-		private static string fromUrl = EnviromentVar.CsvfromUrl;
+		private static string fromUrl = EnviromentVar.JsonVar.JsonfromUrl;
 		//private static string fromUrl = EnviromentVar.JsonVar.JsonfromUrl;
-		private static string toPath = EnviromentVar.CsvPath;
-		private static string fileExt = EnviromentVar.CsvfileExt;
+		private static string toPath = EnviromentVar.JsonVar.JsonPath;
+		private static string fileExt = EnviromentVar.JsonVar.JsonfileExt;
 
 		public static bool DownloadAll()
 		{

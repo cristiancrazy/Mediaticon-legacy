@@ -95,3 +95,7 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonWorker.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\MediaticonWorker.pdb
 >>>>>>> main
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\newMSSbox.g.cs
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\newMSSbox.baml
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\NewMessageBox.dll
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\NewMessageBox.pdb

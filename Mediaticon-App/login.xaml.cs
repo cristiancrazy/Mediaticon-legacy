@@ -25,7 +25,6 @@ namespace Mediaticon
         public login()
         {
             InitializeComponent();
-            
             DBHelper.UpdateDB();
         }
 

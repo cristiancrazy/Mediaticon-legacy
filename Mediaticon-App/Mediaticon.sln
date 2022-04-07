@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mediaticon", "Mediaticon.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonDB", "..\MediaticonDB-project\MediaticonDB.csproj", "{47CD530E-2958-4FF0-9632-001CF3741E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaticonWorker", "..\MediaticonWorker\MediaticonWorker.csproj", "{4329C740-7FD9-4640-A69B-919F21F1E08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonWorker", "..\MediaticonWorker\MediaticonWorker.csproj", "{4329C740-7FD9-4640-A69B-919F21F1E08B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewMessageBox", "..\NewMessageBox\NewMessageBox.csproj", "{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

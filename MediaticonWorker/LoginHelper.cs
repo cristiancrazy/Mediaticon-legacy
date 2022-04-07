@@ -43,7 +43,8 @@ namespace MediaticonWorker
 
 		private static bool makeUser(string username)
 		{
-			if(NewMessageBox.Show("Creare un nuovo utente?"))
+			//if(NewMessageBox.Show("Creare un nuovo utente?"))
+			if(true)
             {
 				MakeDirs.SpecificUserFolders(username);
 				File.Copy(EnviromentVar.ImagesVar.defaultImgPath, EnviromentVar.UsersPath.UserPath(username), true);

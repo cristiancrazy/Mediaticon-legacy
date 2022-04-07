@@ -10,3 +10,6 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0\refint\MediaticonWorker.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0\MediaticonWorker.pdb
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0\ref\MediaticonWorker.dll
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0\MediaticonDB.dll
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0\MediaticonDB.pdb
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0\MediaticonWorker.csproj.CopyComplete
