@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using NewMessageBox;
 using MediaticonDB;
 
 namespace MediaticonWorker
@@ -18,7 +18,8 @@ namespace MediaticonWorker
             var res = await Task.Run(() => update());
             if(!res)
             {
-                
+                NMSG.Show("Si è verificato un errore nel caricamento dei contenuti", NMSGtype.Ok);
+                Applicazione.Close(1);
             }
         }
 

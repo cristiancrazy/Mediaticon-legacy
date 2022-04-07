@@ -1,5 +1,6 @@
 ﻿using System;
 using MediaticonDB;
+using NewMessageBox;
 using System.IO;
 using System.Drawing;
 
@@ -43,11 +44,18 @@ namespace MediaticonWorker
 
 		private static bool makeUser(string username)
 		{
-			//if(NewMessageBox.Show("Creare un nuovo utente?"))
-			if(true)
+			if(NMSG.Show("Creare un nuovo utente?", NMSGtype.YesNo))
             {
-				MakeDirs.SpecificUserFolders(username);
-				File.Copy(EnviromentVar.ImagesVar.defaultImgPath, EnviromentVar.UsersPath.UserPath(username), true);
+				try
+				{
+					MakeDirs.SpecificUserFolders(username);
+					File.Copy(EnviromentVar.ImagesVar.defaultImgPath, EnviromentVar.UsersPath.UserPath(username), true);
+				}
+				catch
+                {
+					NMSG.Show("Impossibile creare un nuovo utente, riprovare", NMSGtype.Ok);
+					return false;
+                }
 				return true;
 			}
 			return false;
