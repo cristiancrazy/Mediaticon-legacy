@@ -6,6 +6,8 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+<<<<<<< HEAD
+=======
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
           "System.Security.AccessControl": "6.0.0",
@@ -32,6 +34,7 @@
           }
         }
       },
+>>>>>>> main
       "Microsoft.Win32.SystemEvents/6.0.0": {
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.Win32.SystemEvents.dll": {
@@ -48,6 +51,8 @@
           }
         }
       },
+<<<<<<< HEAD
+=======
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -129,6 +134,7 @@
           }
         }
       },
+>>>>>>> main
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
@@ -153,6 +159,8 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+<<<<<<< HEAD
+=======
       },
       "System.Memory/4.5.4": {},
       "System.Security.AccessControl/6.0.0": {
@@ -245,10 +253,13 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+>>>>>>> main
       }
     }
   },
   "libraries": {
+<<<<<<< HEAD
+=======
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -256,6 +267,7 @@
       "path": "microsoft.win32.registry/4.7.0",
       "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
     },
+>>>>>>> main
     "Microsoft.Win32.SystemEvents/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -263,6 +275,8 @@
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
       "serviceable": true,
@@ -312,12 +326,15 @@
       "path": "system.data.sqlclient/4.8.3",
       "hashPath": "system.data.sqlclient.4.8.3.nupkg.sha512"
     },
+>>>>>>> main
     "System.Drawing.Common/6.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
+<<<<<<< HEAD
+=======
     },
     "System.Memory/4.5.4": {
       "type": "package",
@@ -360,6 +377,7 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+>>>>>>> main
     }
   }
 }
