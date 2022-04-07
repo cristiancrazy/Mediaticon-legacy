@@ -1,4 +1,4 @@
-import requests, bs4, time, sys
+import requests, bs4, time, sys, json, re
 from datetime import date
 from dataclasses import dataclass, field
 
@@ -29,7 +29,7 @@ def myanilist(session, _from_year, _to_year, path):
     while True:
         #GET HTML
         try:
-            response = session.get(f'https://myanimelist.net/anime.php?cat=0&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy={_from_year}&em=0&ed=0&ey={_to_year}&c%5B0%5D=d&o=2&w=2&show={page}')
+            response = session.get(f'https://myanimelist.net/anime.php?cat=anime&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy={_from_year}&em=0&ed=0&ey={_to_year+1}&c[0]=d&show={page}')
             response.raise_for_status() # give an error if the page returns an error code
         except:
             break
@@ -42,6 +42,7 @@ def myanilist(session, _from_year, _to_year, path):
 
         for anime_list in animes:
             anime : Anime = Anime()
+            anime.anno = 2020
             
             if(header := anime_list.find('div', {'class' : 'title'})):
                 if(title := header.find('strong')):
@@ -68,18 +69,6 @@ def myanilist(session, _from_year, _to_year, path):
                         #NUMBER OF APISODES
                         if('Episodes' in info.text):
                             anime.episodes = info.text.split(':')[1].strip()
-                        #YEAR
-                        elif('Aired' in info.text):
-                            if('to' in info.text):
-                                anime.anno = info.text.split(', ')[1].split(' to')[0].strip()
-                            else:
-                                try:
-                                    anime.anno = info.text.split(', ')[1].strip()
-                                except:
-                                    try:
-                                        anime.anno = info.text.split(':')[1].strip()
-                                    except:
-                                        anime.anno = [s for s in info.text.split('to ')[1] if s.isdigit()][0]
                         #TAGS
                         elif('Genres' in info.text or 'Genre' in info.text):
                             for genre in info.find_all('a'):
@@ -96,7 +85,7 @@ def myanilist(session, _from_year, _to_year, path):
                             anime.actors_list.append(actor.text.strip())
 
                     with open(path, 'a', encoding="utf-8") as f:
-                        f.write(str(anime))
+                        f.write(json.dumps(anime.__dict__))
                         f.write('\n')
             
             #print(anime)
