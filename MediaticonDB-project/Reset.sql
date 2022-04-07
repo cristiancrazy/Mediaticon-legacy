@@ -1,0 +1,2 @@
+﻿DELETE FROM Film;
+DBCC CHECKIDENT ('Film', RESEED, 0);

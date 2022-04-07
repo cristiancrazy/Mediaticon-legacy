@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
 
 /// <summary>
 /// this file contains the global variables
@@ -20,7 +21,7 @@ using System.IO;
 
 namespace MediaticonDB
 {
-    internal class EnviromentVar
+    public class EnviromentVar
     {
         //path url
 
@@ -35,6 +36,12 @@ namespace MediaticonDB
         //guidatv csv path
         public static string GuidaTvCsvPath = Path.Combine(CsvPath, ContentType.GuidaTvCsv) + "\\";
 
+        public class JsonVar
+        {
+            public static string JsonfromUrl = SiteUrl + "json/";
+            public static string JsonPath = @".\json\";
+            public static string JsonfileExt = ".json";
+        }
 
         //scraper path
         public class ScraperVar
@@ -61,6 +68,9 @@ namespace MediaticonDB
             //name
             public static string UserName = ""; //when the user enter the username will be saved here
 
+            //avatar
+            public static Bitmap Avatar;
+
             //path
             public static string UsersMainPath = @".\Users\";
             public static Func<string, string> UserPath = (name) => UsersMainPath + name + "\\";
@@ -74,9 +84,9 @@ namespace MediaticonDB
 
         //DB path
 #if DEBUG
-        //static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\MediaticonDB\";
+        static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
         //static string cwd = @"C:\Users\12036\Downloads\Mediaticon-sviluppatori-main\Mediaticon-sviluppatori-main\MediaticonDB-project\";
-        static string cwd = @"C:\Users\12036\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
+        //static string cwd = @"C:\Users\12036\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
 #else
         static string cwd = System.Environment.CurrentDirectory + "\\";
 #endif

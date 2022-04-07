@@ -19,6 +19,7 @@ import it.mediaticon.scraper.Loader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class StartupHandler {
 	/** This method initialize the server **/
@@ -27,6 +28,7 @@ public class StartupHandler {
 		loadConfig();
 		loadSecurity();
 		loadScrapers();
+		loadYearScrapers();
 		loadCLI();
 	}
 
@@ -77,7 +79,7 @@ public class StartupHandler {
 
 	private static void loadScrapers(){
 		boolean status = Loader.loadScrapers();
-		System.out.println("Loading Scraper's Directory..." + (status? "" +
+		System.out.println("Loading Scraper's Directory (default)..." + (status? "" +
 				"[\u001B[32mOK\u001B[0m]" :
 				"[\u001B[31mError\u001B[0m]" )
 		);
@@ -88,6 +90,14 @@ public class StartupHandler {
 			System.out.println("\u001B[33mPlease check directory at: " + GlobalConfig.scraperDir + "\u001B[0m");
 			System.out.println("\u001B[33mPlease check allowed scrapers files" + "\u001B[0m");
 		}
+	}
+
+	private static void loadYearScrapers(){
+		boolean status = Loader.loadCustomScraper(1970, (LocalDate.now().getYear()-1));
+		System.out.println("Loading Scraper's Directory (custom)..." + (status? "" +
+				"[\u001B[32mOK\u001B[0m]" :
+				"[\u001B[31mError\u001B[0m]" )
+		);
 	}
 
 

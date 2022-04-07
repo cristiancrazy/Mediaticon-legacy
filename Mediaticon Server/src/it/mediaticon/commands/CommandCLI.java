@@ -21,6 +21,7 @@ import it.mediaticon.config.setup.UserWizard;
 import it.mediaticon.exec.BackgroundService;
 import it.mediaticon.exec.MainClass;
 import it.mediaticon.scraper.Loader;
+import it.mediaticon.scraper.PlannedRun;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -70,6 +71,12 @@ public class CommandCLI {
 		save(in);
 	}
 
+	/** Setting up server directories from Admin CLI **/
+	public static void dirSetup(Scanner in){
+		UserWizard.directorySetup(in);
+		save(in);
+	}
+
 	/** Encrypt config information on CLIs **/
 	public static void privacy_cli(Scanner in){
 		System.out.print("\u001B[43m\u001B[30mWARNING\u001B[0m - " +
@@ -80,8 +87,14 @@ public class CommandCLI {
 
 	}
 
+	/** Show the loaded plan for scrapers -> Guest CLI **/
+	public static void showPlan(){
+		PlannedRun.printPlans();
+	}
+
 	/** Verify internet connection: **/
 	public static void verifyInternet (){
+		System.out.println("\u001B[34mThis process may takes a while to be executed... Please wait.\u001B[0m");
 		System.out.println((BackgroundService.verifyConnNow())? "\u001B[32mInternet connection available\u001B[0m" : "\u001B[31mInternet connection unavailable\u001B[0m");
 	}
 
@@ -171,6 +184,31 @@ public class CommandCLI {
 			//Abort reloading
 			System.out.println("Aborted.");
 		}
+	}
+
+	/** Reload plan -> Admin mode **/
+	public static void loadPlan(Scanner in){
+		System.out.print("\u001B[43m\u001B[30mWARNING\u001B[0m - Proceed to load the PLAN? Y/N: ");
+		String answer = in.nextLine();
+		if(answer.matches("Y|y")){
+
+			//Reloading
+
+			System.out.println("Loading Plan..." + ((PlannedRun.load())? "" +
+					"[\u001B[32mOK\u001B[0m]" :
+					"[\u001B[31mError\u001B[0m]" )
+			);
+
+		}else{
+			//Abort reloading
+			System.out.println("Aborted.");
+		}
+	}
+
+	/** Start planned server -> Admin mode **/
+	public static void startPlannedServer(){
+		it.mediaticon.scraper.PlannedRun.ParsePlans();
+		System.out.println("OK");
 	}
 
 	/** Reload startup config **/

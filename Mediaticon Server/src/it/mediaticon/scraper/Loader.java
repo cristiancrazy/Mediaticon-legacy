@@ -29,8 +29,8 @@ import java.util.stream.Collectors;
 public class Loader {
     //Private fields
     private static List<File> scraperAvailable = new ArrayList<>(); //This list contains all scraper files
-    private static Map<String, ProcessBuilder> scraperProcess = new HashMap<>(); //This map contains pre-configured process
-
+    private static Map<String, ProcessBuilder> scraperProcess = new HashMap<>(); //This map contains pre-configured process (standard init)
+    private static Map<String, ProcessBuilder> customScraperProcess = new HashMap<>(); //This map contains pre-configured process (customized)
     //Private Methods
 
     /** This initialize and check scraper directory **/
@@ -48,12 +48,12 @@ public class Loader {
                 //Check file type
 
                 /* Python files */
-                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".py")).collect(Collectors.toList()));
+                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".py")).toList());
 
                 /* Java and Java bytecode files */
-                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".java")).collect(Collectors.toList()));
-                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".class")).collect(Collectors.toList()));
-                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".jar")).collect(Collectors.toList()));
+                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".java")).toList());
+                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".class")).toList());
+                scraperAvailable.addAll(Arrays.stream(scraper).filter(i -> i.getName().endsWith(".jar")).toList());
 
                 if(scraperAvailable.isEmpty()) status = false; //If no elements are contained in the list
 
@@ -68,7 +68,7 @@ public class Loader {
         return status;
     }
 
-    /** This method will add information - to start the scraper with the appropriate commands **/
+    /** This method will add (default) information - to start the scraper with the appropriate commands **/
     private static boolean initScraper(int number) throws IndexOutOfBoundsException{
         //Get date
         LocalDate now = LocalDate.now();
@@ -102,6 +102,39 @@ public class Loader {
         }
         return status;
     }
+
+    /** Variant (year choosing) This method adds information to start scraper with appropriate commands **/
+    private static boolean initScraperCustom(int number, int year){
+        //Verify date:
+        if(year <= LocalDate.now().getYear()){
+
+            //Find scraper in the list
+            File scraper = scraperAvailable.get(number);
+
+            if(scraper!=null){
+                String scraperName = scraper.getName();
+                if(scraperName.endsWith(".py")){ //Python file
+
+                    ProcessBuilder pb = new ProcessBuilder(
+                            "python3", scraper.getAbsolutePath(),
+                            "-y", ""+year,
+                            "-p", ""+GlobalConfig.outputDir.resolve(Path.of(String.format("%s_%d.csv", scraperName.substring(0, 5), year))).toAbsolutePath()
+                    );
+                    customScraperProcess.put(String.format("%s_%d", scraperName, year), pb); //ID=movies_scraping.py_2009
+                    return true;
+
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false; //Year error - aborting
+        }
+    }
+
+
 
     //Public methods
 
@@ -140,7 +173,66 @@ public class Loader {
         }
     }
 
+    /** Get return code - This method will start scraper process **/
+    public static int getExitCodeRun(String name){
+        Future<Integer> status = MainClass.executor.submit(
+                () -> {
+                    try{
+                        ProcessBuilder pb = scraperProcess.get(name);
+                        Process process = pb.start();
+                        process.waitFor();
+                        return process.exitValue();
+                    }catch (InterruptedException | IOException | NullPointerException ignored){
+                        System.out.println("\u001B[31m" + "Process Error Occurred." + "\u001B[0m");
+                        return -1; //Error
+                    }
+
+                }
+        );
+
+        //Wait finishing the task submitted and return results if possible
+        try{
+            return status.get();
+        }catch (ExecutionException exc){
+            System.out.println("Exec exception " +exc.getMessage());
+            return -1; //Error
+        }catch (InterruptedException exc){
+            System.out.println("Exception " + exc.getMessage());
+            return -1; //Error
+        }
+    }
+
+    /** Get return code - This method will start YEAR CUSTOM scraper Process **/
+    public static int getCustomExitCodeRun(String name){
+        Future<Integer> status = MainClass.executor.submit(
+                () -> {
+                    try{
+                        ProcessBuilder pb = customScraperProcess.get(name);
+                        Process process = pb.start();
+                        process.waitFor();
+                        return process.exitValue();
+                    }catch (InterruptedException | IOException | NullPointerException ignored){
+                        System.out.println("\u001B[31m" + "Process Error Occurred." + "\u001B[0m");
+                        return -1; //Error
+                    }
+
+                }
+        );
+
+        //Wait finishing the task submitted and return results if possible
+        try{
+            return status.get();
+        }catch (ExecutionException exc){
+            System.out.println("Exec exception " +exc.getMessage());
+            return -1; //Error
+        }catch (InterruptedException exc){
+            System.out.println("Exception " + exc.getMessage());
+            return -1; //Error
+        }
+    }
+
     /** This method will start all scraper processes **/
+    @Deprecated(since = "Snapshot")
     public static void startScraper(){
         boolean status;
         for(String name : scraperProcess.keySet()){
@@ -172,4 +264,21 @@ public class Loader {
         return status;
     }
 
+    /** This method will load the scraper directory and to set up
+     * scraper's information, required to start these programs.
+     * Variant: (Custom for Each year) **/
+
+    public static boolean loadCustomScraper(int startYearRange, int stopYearRange){
+        boolean status; //Method status
+
+        //Init file scraper directory - for years
+        for(int i = 0; i < scraperAvailable.size(); ++i){
+            for(int yr = startYearRange; yr <= stopYearRange; ++yr){
+                status = initScraperCustom(i, yr);
+                if(!status) return false; //Init scraper failed
+            }
+        }
+
+        return true;
+    }
 }

@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="mediaticon.png" />
+    <ProjectReference Include="..\MediaticonDB-project\MediaticonDB.csproj" />
+    <ProjectReference Include="..\MediaticonWorker\MediaticonWorker.csproj" />
   </ItemGroup>
 
 </Project>

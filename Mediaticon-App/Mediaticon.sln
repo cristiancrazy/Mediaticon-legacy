@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32317.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mediaticon", "Mediaticon.csproj", "{7556D463-23A8-447D-A6E3-CC4A71143443}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonDB", "..\MediaticonDB-project\MediaticonDB.csproj", "{47CD530E-2958-4FF0-9632-001CF3741E67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaticonWorker", "..\MediaticonWorker\MediaticonWorker.csproj", "{4329C740-7FD9-4640-A69B-919F21F1E08B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{7556D463-23A8-447D-A6E3-CC4A71143443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7556D463-23A8-447D-A6E3-CC4A71143443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7556D463-23A8-447D-A6E3-CC4A71143443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CD530E-2958-4FF0-9632-001CF3741E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CD530E-2958-4FF0-9632-001CF3741E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CD530E-2958-4FF0-9632-001CF3741E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CD530E-2958-4FF0-9632-001CF3741E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4329C740-7FD9-4640-A69B-919F21F1E08B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

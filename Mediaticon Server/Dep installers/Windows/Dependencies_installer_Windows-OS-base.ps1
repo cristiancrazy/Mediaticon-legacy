@@ -194,16 +194,42 @@ function InstallPython3 {
     }
     
     #Update progress bar
-    foreach($ProgressBarStatus in 30..100){
-        Write-Progress -Id 1 -Activity "Completed successfully." -PercentComplete ($ProgressBarStatus)
+    foreach($ProgressBarStatus in 30..45){
+        Write-Progress -Id 1 -Activity "Installing Windows Terminal." -PercentComplete ($ProgressBarStatus)
         Start-Sleep -Milliseconds 25
     }
 }
 
-#===============[Script]===============
+# ==== [Install Windows Terminal] ====
+function InstallWTerminal{
+    Add-AppPackage -Path ".\WTerminal.Msixbundle" #Installing
+    
+    #Update progress bar
+    foreach($ProgressBarStatus in 45..70){
+        Write-Progress -Id 1 -Activity "Patching Python3 installation" -PercentComplete ($ProgressBarStatus)
+        Start-Sleep -Milliseconds 25
+    }
+}
+
+
+# ==== [Patch Python3 path ] ====
+function pyPatch{
+    # Copy python.exe to python3.exe
+    
+    # WARN: Installation version!!!
+    Copy-Item "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python39\python.exe" "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python39\python3.exe"
+    
+    #Update progress bar
+    foreach($ProgressBarStatus in 70..100){
+        Write-Progress -Id 1 -Activity "Patching Python3 installation" -PercentComplete ($ProgressBarStatus)
+        Start-Sleep -Milliseconds 25
+    }
+}
+
+
+#===============[Script]================
 
 # Admin required to continue
-
 #Requires -RunAsAdministrator
 
 # Welcome msg
@@ -223,7 +249,13 @@ Start-Sleep 5
 
 # Download and Install Python 3
 DownloadPython3
-InstallPython3
+InstallPython3 #>
+
+# Install Windows Terminal
+InstallWTerminal
+
+# Patch Python installation
+pyPatch
 
 Start-Sleep 5
 Write-Output "Now Reboot your System and execute the pyLibs installer script."

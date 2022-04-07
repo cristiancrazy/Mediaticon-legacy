@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MediaticonWorker;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -15,15 +16,20 @@ using System.Windows.Shapes;
 namespace Mediaticon
 {
     /// <summary>
-    /// Interaction logic for login.xaml
+    /// load account info, or make new account
+    /// start download films list --> async, another tasks
+    /// start load films list ------^
     /// </summary>
     public partial class login : Window
     {
         public login()
         {
             InitializeComponent();
+            
+            DBHelper.UpdateDB();
         }
 
+        //GOT FOCUS ON TEXTBOX
         private void nameTxt_GotFocus(object sender, RoutedEventArgs e)
         {
             nameTxt.SelectAll();
@@ -33,5 +39,19 @@ namespace Mediaticon
         {
             nameTxt.SelectAll();
         }
+
+        //CLICK ON LOGIN BTN
+        private void enterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(!String.IsNullOrEmpty(nameTxt.Text))
+            {
+                if (LoginHelper.LoadUser(nameTxt.Text))
+                {
+                    App.openWindow<MainWindow, login>(true);
+                }
+            }
+        }
     }
+
+  
 }

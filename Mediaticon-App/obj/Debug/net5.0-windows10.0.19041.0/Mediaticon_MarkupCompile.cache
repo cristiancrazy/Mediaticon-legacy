@@ -4,17 +4,26 @@
 winexe
 C#
 .cs
-C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\
+C:\Users\12036\source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\
 Mediaticon
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+<<<<<<< HEAD
 C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\App.xaml
 5933923402
 
 7-509137057
 1961198810517
 details.xaml;login.xaml;MainWindow.xaml;mylist.xaml;newMSSbox.xaml;
+=======
+C:\Users\12036\source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\App.xaml
+4-924464447
+
+6259766446
+2001929309592
+details.xaml;login.xaml;MainWindow.xaml;mylist.xaml;
+>>>>>>> main
 
 False
 

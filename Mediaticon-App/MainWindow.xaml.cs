@@ -13,54 +13,47 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MediaticonDB;
 
 namespace Mediaticon
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
 
-    
+	
 
+	public partial class MainWindow : Window
+	{
+		
 
-    public partial class MainWindow : Window
-    {
-        void openform<T>(bool close) where T : Window, new()
-        {
-            T a = new T();
-            a.Show();
-            if(close)
-                this.Close();
-        }
+		public MainWindow()
+		{
+			InitializeComponent();
 
-        public MainWindow()
-        {
-            InitializeComponent();
+			/*List<Film> listafilm = new List<Film>();
 
-            /*List<Film> listafilm = new List<Film>();
+			for(int i =0 ;i< 10; i++)
+				listafilm.Add(new Film("gino " + i, "il film dell'anno", ""));
 
-            for(int i =0 ;i< 10; i++)
-                listafilm.Add(new Film("gino " + i, "il film dell'anno", ""));
+			listaLB.ItemsSource = listafilm;
 
-            listaLB.ItemsSource = listafilm;
+			for (int i = 0; i < 30; i++)
+				filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});
+			*/
+			App.openWindow<login, MainWindow>(false);
+			App.openWindow<details, MainWindow>(false);
+			App.openWindow<mylist, MainWindow>(false);
+		}
 
-            for (int i = 0; i < 30; i++)
-                filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});*/
+		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			searchTxt.SelectAll();
+		}
 
-            openform<login>(false);
-            openform<details>(false);
-            openform<mylist>(false);
-            openform<newMSSbox>(false);
-        }
-
-        private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            searchTxt.SelectAll();
-        }
-
-        private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
-        }
-    }
+		private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
+		}
+	}
 }

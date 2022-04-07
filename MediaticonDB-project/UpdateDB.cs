@@ -9,7 +9,7 @@ using System.IO;
 
 namespace MediaticonDB
 {
-    internal class UpdateDB
+    public class UpdateDB
     {
         public static bool UpdateAll()
         {
@@ -37,7 +37,7 @@ namespace MediaticonDB
         {
             //per ogni file nella cartella, lo apre e cerca il seekfilm, con il Csvreader;
             //se il titolo è il desiderato incomincia a scrivere
-            bool copy = false;
+            bool copy = false; //serve incominciare a copiare solo i film che non sono ancora stati immessi
 
             try
             {
@@ -46,20 +46,24 @@ namespace MediaticonDB
                     try
                     {
                         foreach (var File in Directory.GetFiles(EnviromentVar.CsvPath + Table + "\\"))
+                        //foreach (var File in Directory.GetFiles(EnviromentVar.JsonVar.JsonPath + Table + "\\"))
                         {//foreach file per table
                             string buffer = "";
                             try
                             {
-                                using (var  strRead = new StreamReader(File))
+                                using (var strRead = new StreamReader(File))
                                 {
-                                   
-                                   // using (StringReader strRead = new StringReader())
-                                    {
-                                        while ((buffer = strRead.ReadLine()) != null)
-                                        {//foreach line
-                                            Film tmp = CsvReader.ReadLine(buffer);
-                                            if (copy == false && tmp.Title == SeekFilm)
+                                    while ((buffer = strRead.ReadLine()) != null)
+                                    {//foreach line
+                                        if (!String.IsNullOrWhiteSpace(buffer))//sometimes happen that the line is empty
+                                        {
+                                            //Film tmp = CsvReader.ReadLine(buffer);
+                                            Film tmp = JsonReader.ReadFilm(buffer);
+                                            if (copy == false && (tmp.Title == SeekFilm || SeekFilm == ""))
+                                            {
                                                 copy = true;
+                                                continue; //with this it doesn't set the last film 2 times
+                                            }
 
                                             if (copy == true)
                                             {
@@ -139,7 +143,5 @@ namespace MediaticonDB
             }
             return true;
         }
-
-
     }
 }

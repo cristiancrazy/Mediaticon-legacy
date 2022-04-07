@@ -25,8 +25,9 @@ public class GlobalConfig {
 
 	/* File and Directory Path */
 
-	//Config file PATH
+	//Config files PATHs
 	public static Path serverConf = Path.of("config", "server.conf");
+	public static Path scraperPlan = Path.of("config", "plan.conf");
 
 	//Log directory PATH
 	public static Path logDir = Path.of("log");

@@ -1,20 +1,25 @@
-import requests, bs4, sys
+import requests, bs4, sys, json, ftfy
 from datetime import date
+# from dataclasses import dataclass, field
 
-def to_list(*args):
-    return list(args)
+# @dataclass
+# class Movie:
+#     big_image : str #BigImage
+#     image : str #Image
+#     name : str #Title
+#     trama : str #Description
+#     durata : int #Duration
+#     anno : int #Year
+#     tags : list[str] = field(default_factory=list) #Genres
+#     actors_list : list[str] = field(default_factory=list) #Actors
 
 def mymovies(_from_year, _to_year, path):
-    #YEARS RANGE
-    #_from_year = 1970
-    #_to_year = 1972
-
     #GLOBAL VARIABLES
     page = 1
 
-    #CURRENT YEAR
-    today_date = date.today()
-    current_year = int(today_date.year)
+    # CURRENT YEAR
+    # today_date = date.today()
+    # current_year = int(today_date.year)
 
     while _from_year <= _to_year:
         while True:
@@ -27,6 +32,7 @@ def mymovies(_from_year, _to_year, path):
 
             #PREPARE FOR PARSING
             soup = bs4.BeautifulSoup(response.text, 'html.parser')
+
             #GET NEEDED HTML
             films = soup.find('div', {'class' : 'mm-col sm-7 md-6 lg-6'})
             films = films.findChildren()
@@ -43,7 +49,7 @@ def mymovies(_from_year, _to_year, path):
 
             #CICLE IN PAGE
             for element in films:
-                #VARIABLES
+                #RESET VARIABLES
                 link2: str = ''
 
                 if element.has_attr('class'):
@@ -64,14 +70,14 @@ def mymovies(_from_year, _to_year, path):
                         trama = ''
                         tags = []
                         anno = 0
-                        durata = 0
+                        actors_list = []
 
                         for info in element.findChildren():
                             if info.has_attr('class'):
                                 #NAME
                                 if 'schedine-titolo' in info.attrs['class']: #name
                                     link2 = info.find('a')['href']
-                                    name = info.text.strip('\n')
+                                    name = ftfy.fix_text(info.text.strip('\n'))
 
                                 if 'mm-line-height-130' in info.attrs['class'] and 'schedine-lancio' in info.attrs['class']:
                                     el_tags = info.select('a')
@@ -104,13 +110,22 @@ def mymovies(_from_year, _to_year, path):
                                 if not ' ' in actor.text:
                                     break
                                 
-                                actors_list.append(actor.text.encode('ascii', 'ignore').decode())
+                                actors_list.append(ftfy.fix_text(actor.text))#.encode('ascii', 'ignore').decode())
                         
-                        trama = soup2.find('p', {'class' : 'corpo'}).text.encode('ascii', 'ignore').decode().strip().replace('\n', ' ').replace(';', '§')
+                        trama = ftfy.fix_text(soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' '))
                         #############################################################################################################
                         with open(path, 'a') as f:
-                            f.write(';'.join(str(i) for i in to_list(big_image, image, name, trama, durata, anno, tags, actors_list)))
-                            f.write('\n')
+                            _dict  = {
+                                'BigImage' : big_image,
+                                'Image' : image,
+                                'Title' : name,
+                                'Description' : trama,
+                                'Duration' : durata,
+                                'Year' : anno,
+                                'Genres' : tags,
+                                'Actors' : actors_list
+                            }
+                            f.write(json.dumps(_dict) + '\n')
                         image = ''
                         big_image = ''
             

@@ -30,6 +30,7 @@ public class GuestCLI {
         command.put("privacy-mode", () -> CommandCLI.privacy_cli(in)); //Enable\Disable password encryption
         command.put("set-hostname", () -> CommandCLI.setHostname(in)); //Set server hostname
         command.put("verify-net", CommandCLI::verifyInternet); //Verify internet connection
+        command.put("show-planning", CommandCLI::showPlan); //Show the server plan (for scrapers)
     }
 
     protected void helpCommand(){

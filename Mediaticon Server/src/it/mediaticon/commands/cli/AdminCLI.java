@@ -31,7 +31,10 @@ public class AdminCLI extends PrivilegedCLI{
 		super.command.put("addUser", () -> CommandCLI.addUser(in)); //Add a user password
 		super.command.put("infoUser", CommandCLI::printUser); //Show user informations
 		super.command.put("shutdown", () -> System.exit(0)); //Shutdown -> Server exit
-		super.command.put("auto-scraper-starter", () -> CommandCLI.autoScraperConfig(in));
+		super.command.put("delayed-start-scraper", () -> CommandCLI.autoScraperConfig(in));
+		super.command.put("directory-setup", () -> CommandCLI.dirSetup(in));
+		super.command.put("load-server-plan", () -> CommandCLI.loadPlan(in)); //Load the plan
+		super.command.put("start-server-plan", CommandCLI::startPlannedServer); //Start the planned server
 	}
 
 	@Override

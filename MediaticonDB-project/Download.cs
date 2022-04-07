@@ -14,7 +14,7 @@ namespace MediaticonDB
 	/// <summary>
 	/// download all film from last in DB to latest movie released
 	/// </summary>
-	internal class Download
+	public class Download
 	{
 		//check connection
 		//check date online
@@ -22,6 +22,7 @@ namespace MediaticonDB
 		//download all csv from that year to today, put them in ./csv/film/film_2020.csv
 
 		private static string fromUrl = EnviromentVar.CsvfromUrl;
+		//private static string fromUrl = EnviromentVar.JsonVar.JsonfromUrl;
 		private static string toPath = EnviromentVar.CsvPath;
 		private static string fileExt = EnviromentVar.CsvfileExt;
 
@@ -52,7 +53,7 @@ namespace MediaticonDB
 					for (int i = lastContent.Year; i <= today.Year; i++)
 					{
 						//for each year download file
-						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath, true))//TODO: change true in false
+						if (!Connection.downloadFile(table, i, fromUrl, fileExt, toPath, true))
 							return false;
 					}
 				}
@@ -86,8 +87,17 @@ namespace MediaticonDB
 						return false;
                     }
 				}
+				string utc = null;
+				try
+				{
+					utc = resp.Substring(7, 8);
+					//sometimes happen that the date is cought in wrong way, so retry
+				}
+				catch
+                {
+					return getDate(out date);					
+                }
 
-				string utc = resp.Substring(7, 8);
 				CultureInfo info = CultureInfo.InvariantCulture;
 				date = DateTime.ParseExact(utc, EnviromentVar.DateFormat, info);
 				return true;

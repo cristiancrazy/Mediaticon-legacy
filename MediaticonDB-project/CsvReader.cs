@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Newtonsoft.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MediaticonDB
@@ -43,6 +44,15 @@ namespace MediaticonDB
             Replica dati = new Replica(info[1], info[2], info[3]);
 
             return dati;
+        }
+    }
+    
+    internal class JsonReader
+    {
+        public static Film ReadFilm(string line)
+        {
+            Film tmp = JsonConvert.DeserializeObject<Film>(line);
+            return tmp;
         }
     }
 }
