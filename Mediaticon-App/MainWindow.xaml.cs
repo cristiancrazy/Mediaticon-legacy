@@ -18,10 +18,22 @@ using MediaticonDB;
 namespace Mediaticon
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// load the film/anime/tv series list, only the first 50 elements
+	/// 
+	/// show loading progress gif
+	/// create another task:
+	///		load last 50 elements from db, obviously chosing appropriate table
+	///		foreach file, download image picture from internet, and set it to Cover of film
+	/// close the other task and set the listbox
+	/// 
+	/// Handle when user scroll down the listbox
+	/// Handle when user click on tab menu
+	/// Handle when user click on listboxItem
+	/// Handle when user do a search
+	/// Handle when user click on account button, or image
 	/// </summary>
 
-	
+
 
 	public partial class MainWindow : Window
 	{
@@ -41,9 +53,6 @@ namespace Mediaticon
 			for (int i = 0; i < 30; i++)
 				filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});
 			*/
-			App.openWindow<login, MainWindow>(false);
-			App.openWindow<details, MainWindow>(false);
-			App.openWindow<mylist, MainWindow>(false);
 		}
 
 		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)

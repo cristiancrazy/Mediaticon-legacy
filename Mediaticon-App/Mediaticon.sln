@@ -9,7 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonDB", "..\Mediatic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonWorker", "..\MediaticonWorker\MediaticonWorker.csproj", "{4329C740-7FD9-4640-A69B-919F21F1E08B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewMessageBox", "..\NewMessageBox\NewMessageBox.csproj", "{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewMessageBox", "..\NewMessageBox\NewMessageBox.csproj", "{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default", "Default", "{60B12B4B-61CF-4D27-8A71-54508D6561BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{FCE7687C-EF6E-421C-9755-E474D1428B95}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Pictures\load_progress.gif = ..\..\..\..\..\Pictures\load_progress.gif
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channels", "Channels", "{EEF9B65D-FA3C-49D8-9635-90E82B0F86BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +45,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FCE7687C-EF6E-421C-9755-E474D1428B95} = {60B12B4B-61CF-4D27-8A71-54508D6561BA}
+		{EEF9B65D-FA3C-49D8-9635-90E82B0F86BF} = {60B12B4B-61CF-4D27-8A71-54508D6561BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AA92784-8EA4-4F2D-A2F0-4E59EA784DF3}

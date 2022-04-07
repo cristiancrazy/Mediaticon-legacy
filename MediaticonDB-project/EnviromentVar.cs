@@ -101,6 +101,16 @@ namespace MediaticonDB
             public static string[]FilmStatus= { "Visto", "Stò Guardando", "Da Guardare"};
         }
 
+        public class Modality
+        {
+            //this is the opened modality in main window
+            public enum modType
+            {
+                Film, Serie, Anime, //Show
+            }
+            public static modType CurrentModality = modType.Film;
+        }
+
         //datetime format
 
         public static string NTPServer = "time.nist.gov";
