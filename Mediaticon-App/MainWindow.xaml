@@ -114,8 +114,10 @@
         </Border>
         <Image HorizontalAlignment="Left" Height="38" Margin="16,18,0,0" VerticalAlignment="Top" Width="48" Source="/mediaticon.png"/>
 
-        <!--<Image gif:ImageBehavior.AnimatedSource="./Default/Images/load_progress.gif" /> git push -f origin main:new_design2-->
-        <Rectangle Margin="0" Fill="Green"/>
+        <Grid x:Name="loadingShadow" Margin="0" Opacity="50">
+            <!--<Image gif:ImageBehavior.AnimatedSource="./Default/Images/load_progress.gif" /> git push -f origin main:new_design2-->
+            <Rectangle Margin="0" Fill="Green"/>
+        </Grid>
     </Grid>
 
 </Window>

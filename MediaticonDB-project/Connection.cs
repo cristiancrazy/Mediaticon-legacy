@@ -17,7 +17,7 @@ namespace MediaticonDB
 	/// </summary>
 	
 	
-    internal class Connection
+    public class Connection
     {
 		public static bool IsOnline()
 		{

@@ -26,8 +26,6 @@ namespace Mediaticon
 	///		foreach file, download image picture from internet, and set it to Cover of film
 	/// close the other task and set the listbox
 	/// 
-	/// load the film/anime/tv series list, only the first 50 elements
-	/// 
 	/// Handle when user scroll down the listbox
 	/// Handle when user click on tab menu
 	/// Handle when user click on listboxItem
@@ -39,8 +37,6 @@ namespace Mediaticon
 
 	public partial class MainWindow : Window
 	{
-		
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -62,8 +58,17 @@ namespace Mediaticon
 		private void loadElement()
         {
 			//show the gif
+			ShadowCircular load = new ShadowCircular();
+			load.showLoading(ref loadingShadow);
+
 			//wait the end of loading of 50 elements in DBHelper
-			listaLB.DataContext = DBHelper.loadedFilmList;
+			while (!DBHelper.Ready);
+
+			//set the 50 elements on listBox
+			listaLB.ItemsSource = DBHelper.loadedFilmList;
+
+			//hide the gif
+			load.hideLoading(ref loadingShadow);
         }
 
 		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -75,5 +80,32 @@ namespace Mediaticon
 		{
 			accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
 		}
+
+		private class ShadowCircular
+		{
+			public void showLoading(ref Grid grid)
+			{
+				grid.Visibility = Visibility.Visible;
+				grid.Opacity = 0;
+				for (int i = 0; i < 10; i++)
+				{
+					grid.Opacity += 10;
+					Task.Delay(50).Wait();
+				}
+			}
+
+			public void hideLoading(ref Grid grid)
+			{
+				grid.Opacity = 100;
+				for (int i = 0; i < 10; i++)
+				{
+					grid.Opacity -= 10;
+					Task.Delay(50).Wait();
+				}
+				grid.Visibility = Visibility.Hidden;
+			}
+		}
+		
+		
 	}
 }

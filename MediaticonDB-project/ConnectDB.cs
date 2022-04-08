@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
-    internal class ConnectDB : IDisposable
+    public class ConnectDB : IDisposable
     {
 
         private static SqlConnection sqlConnection;
