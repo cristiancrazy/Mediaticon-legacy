@@ -13,6 +13,7 @@ namespace MediaticonWorker
     /// </summary>
     public class DBHelper
     {
+        public static List<Film> loadedFilmList = new List<Film>();
         public static async void UpdateDB()
         {
             var res = await Task.Run(() => update());
@@ -21,6 +22,8 @@ namespace MediaticonWorker
                 NMSG.Show("Si è verificato un errore nel caricamento dei contenuti", NMSGtype.Ok);
                 Applicazione.Close(1);
             }
+
+            //when load the last 50 film on loadedFilmList, stop the task, so the calling func get the list<film> to set in listbox
         }
 
         private static bool update()

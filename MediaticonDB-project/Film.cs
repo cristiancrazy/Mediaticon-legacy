@@ -12,7 +12,7 @@ namespace MediaticonDB
     /// <summary>
     /// class level 0
     /// </summary>
-    internal class Film
+    public class Film
     {
         public string BigImage;
         public string Image;

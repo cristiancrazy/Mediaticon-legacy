@@ -14,17 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MediaticonDB;
+using MediaticonWorker;
 
 namespace Mediaticon
 {
 	/// <summary>
-	/// load the film/anime/tv series list, only the first 50 elements
 	/// 
 	/// show loading progress gif
 	/// create another task:
 	///		load last 50 elements from db, obviously chosing appropriate table
 	///		foreach file, download image picture from internet, and set it to Cover of film
 	/// close the other task and set the listbox
+	/// 
+	/// load the film/anime/tv series list, only the first 50 elements
 	/// 
 	/// Handle when user scroll down the listbox
 	/// Handle when user click on tab menu
@@ -42,6 +44,7 @@ namespace Mediaticon
 		public MainWindow()
 		{
 			InitializeComponent();
+			loadElement();
 
 			/*List<Film> listafilm = new List<Film>();
 
@@ -53,7 +56,15 @@ namespace Mediaticon
 			for (int i = 0; i < 30; i++)
 				filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});
 			*/
+
 		}
+
+		private void loadElement()
+        {
+			//show the gif
+			//wait the end of loading of 50 elements in DBHelper
+			listaLB.DataContext = DBHelper.loadedFilmList;
+        }
 
 		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
