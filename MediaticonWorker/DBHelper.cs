@@ -30,6 +30,9 @@ namespace MediaticonWorker
 				Applicazione.Close(1);
 			}
 
+			//load mylist
+			await Task.Run(() => loadMyList());
+
 			//when load the last 50 film on loadedFilmList, stop the task, so the calling func get the list<film> to set in listbox
 			await GetFilms(false);
 		}
@@ -72,7 +75,7 @@ namespace MediaticonWorker
 			{
 				using (ConnectDB conn = new ConnectDB())
 				{
-					int line = conn.LastID(EnviromentVar.Modality.CurrentModality.ToString());
+					int line = conn.LastID(EnviromentVar.Modality.CurrentModality.ToString()) - loadedFilmList.Count;
 					for (int i = 0; i < 50; i++)
 					{
 						//add film in list
@@ -95,5 +98,9 @@ namespace MediaticonWorker
 			return Task.FromResult(true);
 		}
 
+		private static async Task<bool> loadMyList()
+        {
+			return await Task.FromResult(MediaticonDB.MiaLista.MiaLista.Serialization.Deserialize());
+        }
 	}
 }

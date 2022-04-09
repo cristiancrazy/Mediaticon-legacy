@@ -11,6 +11,7 @@
           "MediaticonDB": "1.0.0",
           "MediaticonWorker": "1.0.0",
           "System.Drawing.Common": "6.0.0",
+          "WpfAnimatedGif": "2.0.2",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.23"
         },
         "runtime": {
@@ -228,6 +229,14 @@
           }
         }
       },
+      "WpfAnimatedGif/2.0.2": {
+        "runtime": {
+          "lib/netcoreapp3.0/WpfAnimatedGif.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.2.0"
+          }
+        }
+      },
       "MediaticonDB/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
@@ -378,6 +387,13 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "WpfAnimatedGif/2.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B0j9SqtThyHVTiOPvu6yR+39Te0g3o+7Jjb+qEm7+Iz1HRqbE5/4QV+ntHWOYYBPOUFr9x1mdzGl/EzWP+nKiA==",
+      "path": "wpfanimatedgif/2.0.2",
+      "hashPath": "wpfanimatedgif.2.0.2.nupkg.sha512"
     },
     "MediaticonDB/1.0.0": {
       "type": "project",

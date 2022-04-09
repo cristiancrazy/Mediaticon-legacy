@@ -70,7 +70,7 @@
     <Grid x:Name="gridBack" Background="#0e0e10">
         <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="32" Margin="59,24,0,0" VerticalAlignment="Top" Width="107"/>
 
-        <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right">
+        <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right" SelectionChanged="accountCombo_SelectionChanged">
             <ComboBoxItem>La mia lista</ComboBoxItem>
             <ComboBoxItem>Informazioni</ComboBoxItem>
             <ComboBoxItem>Esci</ComboBoxItem>
@@ -83,20 +83,20 @@
         </Border>
         <Border x:Name="typeBtnBord"  BorderThickness="1" Margin="186,-2,240,0" Height="75" VerticalAlignment="Top" CornerRadius="0,0,10,10" MaxWidth="400">
             <Grid x:Name="typeBtnGrid" Margin="-1,-1,-1,-1">
-                <Button x:Name="filmBtn" Style="{StaticResource MenuBtn}" Content="Film" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="73" Margin="15,0,0,0" />
-                <Button x:Name="serieBtn" Style="{StaticResource MenuBtn}" Content="Serie Tv" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="76"/>
-                <Button x:Name="animeBtn"  Style="{StaticResource MenuBtn}" Content="Anime" HorizontalAlignment="Right" Height="42" VerticalAlignment="Center" Width="68" Margin="319,0,15,0"/>
+                <Button x:Name="filmBtn" Style="{StaticResource MenuBtn}" Content="Film" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="73" Margin="15,0,0,0" Click="TabBtn_Click" />
+                <Button x:Name="serieBtn" Style="{StaticResource MenuBtn}" Content="Serie Tv" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="76" Click="TabBtn_Click"/>
+                <Button x:Name="animeBtn"  Style="{StaticResource MenuBtn}" Content="Anime" HorizontalAlignment="Right" Height="42" VerticalAlignment="Center" Width="68" Margin="319,0,15,0" Click="TabBtn_Click"/>
                 <Button x:Name="programmiBtn" Style="{StaticResource MenuBtn}" Content="Show" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="58" Margin="319,0,0,0" Visibility="Hidden"/>
             </Grid>
         </Border>
-        <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="19,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+        <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="19,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="90" Width="600" >
-                        <Image x:Name="ListPic" Source="{Binding Imglink}" Width="50" Height="70" Margin="10,0,10,0"/>
+                        <Image x:Name="ListPic" Source="{Binding Cover}" Width="50" Height="70" Margin="10,0,10,0"/>
                         <StackPanel Orientation="Vertical" Width="458">
                             <Label x:Name="ListTitle" Content="{Binding Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
-                            <TextBlock x:Name="ListDescr" Text="{Binding ShortDesc}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
+                            <TextBlock x:Name="ListDescr" Text="{Binding Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -107,14 +107,14 @@
         <Border x:Name="filterBord" BorderThickness="1" Margin="0,113,0,38" HorizontalAlignment="Right" Width="147" CornerRadius="10,0,0,10">
             <Grid x:Name="filterGrid">
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
-                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14"/>
+                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14" TextChanged="searchTxt_TextChanged"/>
                 </Border>
-                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold"/>
+                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="filterCBL_SelectionChanged"/>
             </Grid>
         </Border>
         <Image HorizontalAlignment="Left" Height="38" Margin="16,18,0,0" VerticalAlignment="Top" Width="48" Source="/mediaticon.png"/>
 
-        <Grid x:Name="loadingShadow" Margin="0" Opacity="50">
+        <Grid x:Name="loadingShadow" Margin="0" Opacity="0" Visibility="Hidden">
             <!--<Image gif:ImageBehavior.AnimatedSource="./Default/Images/load_progress.gif" /> git push -f origin main:new_design2-->
             <Rectangle Margin="0" Fill="Green"/>
         </Grid>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MediaticonDB;
+using NewMessageBox;
 using MediaticonWorker;
 
 namespace Mediaticon
@@ -52,6 +53,13 @@ namespace Mediaticon
 			for (int i = 0; i < 30; i++)
 				filterCBL.Items.Add(new CheckBox { Content=$"ciao{i}"});
 			*/
+		}
+
+		private void fillFilterCBL()
+        {
+			/*for (int i = 0; i < 30; i++)
+				filterCBL.Items.Add(new CheckBox { Content = $"ciao{i}" });
+			*/
 
 		}
 
@@ -64,11 +72,21 @@ namespace Mediaticon
 			//wait the end of loading of 50 elements in DBHelper
 			while (!DBHelper.Ready);
 
-			//set the 50 elements on listBox
-			listaLB.ItemsSource = DBHelper.loadedFilmList;
-
-			//hide the gif
-			load.hideLoading(ref loadingShadow);
+			try
+			{
+				//set the 50 elements on listBox
+				listaLB.ItemsSource = DBHelper.loadedFilmList;
+			}
+			catch
+			{
+				NMSG.Show("Si è verificato un errore nel caricamento dei contenuti", NMSGtype.Ok);
+				Applicazione.Close(1);
+			}
+			finally
+			{
+				//hide the gif
+				load.hideLoading(ref loadingShadow);
+			}
         }
 
 		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -105,7 +123,44 @@ namespace Mediaticon
 				grid.Visibility = Visibility.Hidden;
 			}
 		}
-		
-		
-	}
+
+
+		//PRIMARY EVENT HANDLER METHODS
+        private async void TabBtn_Click(object sender, RoutedEventArgs e)
+        {
+			string clicked = ((Button)sender).Name;
+			EnviromentVar.Modality.CurrentModality = clicked switch
+			{
+				"filmBtn" => EnviromentVar.Modality.modType.Film,
+				"serieBtn" => EnviromentVar.Modality.modType.Serie,
+				"animeBtn" => EnviromentVar.Modality.modType.Anime,
+				_ => EnviromentVar.Modality.modType.Film
+			};
+			DBHelper.GetFilms(true);
+			loadElement();
+        }
+
+
+        private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+			//open the details.xaml and pass the selected film
+        }
+
+        private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+			//do the research
+			object tokenLock = new object();
+			ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
+        }
+
+        private void filterCBL_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			//do the research
+        }
+
+        private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			//when user click on accountCombo item
+        }
+    }
 }

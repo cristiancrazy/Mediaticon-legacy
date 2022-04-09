@@ -100,6 +100,9 @@ namespace MediaticonDB
 		public static bool DownloadImage(string url, out Bitmap bitmap)
         {
 			bitmap = null;
+			if (String.IsNullOrWhiteSpace(url))
+				return false;
+
 			using(var wc = new WebClient())
             {
 				try

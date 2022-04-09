@@ -12,7 +12,7 @@ namespace MediaticonDB.MiaLista
 /// parameters
 /// the film, the index to point to array of film status
 /// </example>
-    class MyFilm : Film
+    public class MyFilm : Film
     {
         //dichiarazioni variabili pubbliche
         public Film film;

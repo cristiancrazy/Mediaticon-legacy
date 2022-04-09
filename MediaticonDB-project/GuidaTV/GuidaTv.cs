@@ -7,7 +7,7 @@ using System.IO;
 
 namespace MediaticonDB
 {
-    internal class GuidaTv
+    public class GuidaTv
     {
         /// <summary>
         /// check if is online

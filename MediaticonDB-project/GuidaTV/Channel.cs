@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MediaticonDB
 {
-    class Replica
+    public class Replica
     {
         public DateTime data, orainizio, orafine;
         public Replica(DateTime data,DateTime orainizio,DateTime orafine)
@@ -26,7 +26,7 @@ namespace MediaticonDB
         }
     }
 
-    class Channel
+    public class Channel
     {
         public string link;
         public Bitmap image;

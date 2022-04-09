@@ -77,7 +77,7 @@ namespace NewMessageBox {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/NewMessageBox;V1.0.0.0;component/newmessagebox.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/NewMessageBox;component/newmessagebox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\NewMessageBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

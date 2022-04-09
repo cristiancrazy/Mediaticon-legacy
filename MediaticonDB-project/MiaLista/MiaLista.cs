@@ -9,9 +9,9 @@ using System.Runtime.Serialization;
 
 namespace MediaticonDB.MiaLista
 {
-    class MiaLista
+    public class MiaLista
     {
-        public static List<MyFilm> MyFilmList;
+        public static List<MyFilm> MyFilmList = new List<MyFilm>();
 
         public static bool Append(MyFilm Input) 
         {
@@ -52,40 +52,53 @@ namespace MediaticonDB.MiaLista
             
         }
 
-        class Serialization
+        public class Serialization
         {
             public static bool Serialize()
             {
-                using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
+                try
                 {
-                    BinaryFormatter formattatore = new BinaryFormatter();
-                    try
+                    using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
                     {
-                        formattatore.Serialize(fs, MyFilmList);
+                        BinaryFormatter formattatore = new BinaryFormatter();
+                        try
+                        {
+                            formattatore.Serialize(fs, MyFilmList);
+                        }
+                        catch (SerializationException e)
+                        {
+                            return false;
+                        }
+                        return true;
                     }
-                    catch (SerializationException e)
-                    {
-                        return false;
-                    }
-                    return true;
+                }
+                catch
+                {
+                    return false;
                 }
             }
             public static bool Deserialize()
             {
-                using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
+                try
                 {
-                    BinaryFormatter formattatore = new BinaryFormatter();
-                    try
+                    using (FileStream fs = new FileStream(EnviromentVar.UsersPath.UserMyListFile(EnviromentVar.UsersPath.UserName), FileMode.Create))
                     {
-                        MyFilmList= (List<MyFilm>)formattatore.Deserialize(fs);
+                        BinaryFormatter formattatore = new BinaryFormatter();
+                        try
+                        {
+                            MyFilmList = (List<MyFilm>)formattatore.Deserialize(fs);
+                        }
+                        catch (SerializationException e)
+                        {
+                            return false;
+                        }
+                        return true;
                     }
-                    catch (SerializationException e)
-                    {
-                        return false;
-                    }
-                    return true;
                 }
-
+                catch
+                {
+                    return false;
+                }
             }
         }
     }
