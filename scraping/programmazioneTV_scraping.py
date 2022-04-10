@@ -1,4 +1,4 @@
-import requests, bs4, sys, re
+import requests, bs4, sys, re, json
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime
 from itertools import repeat
@@ -17,31 +17,42 @@ class Date:
 
 #SCRAPES TROUGH THE TV PROGRAMMATION
 def channel_src(channel, session, film_name):
-    with open(f'./csv/{channel.name}.csv', 'w') as f:
+    with open(f'./json/{channel.name}.json', 'w') as f:
         for i in range(7):
             response = session.get(f'{channel.link}{Date.day + i:02d}-{Date.month:02d}-{Date.year:04d}')
             soup = bs4.BeautifulSoup(response.text, 'html.parser')
 
             all_today_prg = soup.find_all('a', {'class' : 'program'})
 
+            _dict = {
+                'date' : '',
+                'start_time' : '',
+                'end_time' : ''
+            }
+
             for index, today_prg in enumerate(all_today_prg[:-1]):
                 if film_name in today_prg.find('div', {'class' : 'program-title'}).text.lower():
                     #Date
-                    f.write(f'{str(Date.year)[-2:]}-{Date.month}-{Date.day + i}')
+                    _dict['date'] = f'{str(Date.year)[-2:]}-{Date.month}-{Date.day + i}'
+                    #f.write(f'{str(Date.year)[-2:]}-{Date.month}-{Date.day + i}')
                     
                     #Start Hour
                     if (_hour := today_prg.find('div', {'class' : 'hour'}).text.replace(':', '-')) == 'IN ONDA':
-                        f.write(f';{datetime.now().strftime("%H-%M")}')
+                        _dict['start_time'] = f'{datetime.now().strftime("%H-%M")}'
+                        #f.write(f';{datetime.now().strftime("%H-%M")}')
                     else:
-                        f.write(f';{_hour}')
+                        _dict['start_time'] = f'{_hour}'
+                        #f.write(f';{_hour}')
                     
                     #end Hour
                     if (_hour := all_today_prg[index + 1].find('div', {'class' : 'hour'}).text.replace(':', '-')) == 'IN ONDA':
-                        f.write(f';{datetime.now().strftime("%H-%M")}')
+                        _dict['end_time'] = f'{datetime.now().strftime("%H-%M")}'
+                        #f.write(f';{datetime.now().strftime("%H-%M")}')
                     else:
-                        f.write(f';{_hour}')
+                        _dict['end_time'] = f'{_hour}'
+                        #f.write(f';{_hour}')
                     
-                    f.write('\n')
+                    f.write(json.dumps(_dict) + '\n')
 
 #SEARCH ALL THE CHANNELS
 def prgTV(session, film_name):
