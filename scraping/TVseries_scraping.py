@@ -1,9 +1,6 @@
 import requests, bs4, sys, json, ftfy
 from datetime import date
 
-def to_list(*args):
-    return list(args)
-
 def myTVseries(_from_year, _to_year, path):
     #YEARS RANGE
     #_from_year = 1970
