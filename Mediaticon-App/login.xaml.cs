@@ -46,7 +46,7 @@ namespace Mediaticon
 			{
 				if (LoginHelper.LoadUser(nameTxt.Text))
 				{
-					App.openWindow<MainWindow, login>(true);
+					Applicazione.openWindow<MainWindow, login>(Applicazione.CloserType.Close);
 				}
 			}
 		}

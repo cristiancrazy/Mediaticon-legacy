@@ -38,6 +38,7 @@ namespace Mediaticon
 
 	public partial class MainWindow : Window
 	{
+		private static List<Film> basedList = new List<Film>();
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -55,8 +56,75 @@ namespace Mediaticon
 			*/
 		}
 
-		private void fillFilterCBL()
+
+		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			searchTxt.SelectAll();
+		}
+
+		private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
+		}
+
+		
+		//PRIMARY EVENT HANDLER METHODS
+        private async void TabBtn_Click(object sender, RoutedEventArgs e)
         {
+			string clicked = ((Button)sender).Name;
+			EnviromentVar.Modality.CurrentModality = clicked switch
+			{
+				"filmBtn" => EnviromentVar.Modality.modType.Film,
+				"serieBtn" => EnviromentVar.Modality.modType.Serie,
+				"animeBtn" => EnviromentVar.Modality.modType.Anime,
+				_ => EnviromentVar.Modality.modType.Film
+			};
+			DBHelper.GetFilms(true);
+			loadElement();
+        }
+
+        private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            //open the details.xaml and pass the selected film
+            openDetails(basedList[listaLB.SelectedIndex]);
+        }
+
+        private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+			//do the research
+			object tokenLock = new object();
+			ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
+        }
+
+        private void filterCBL_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			//do the research
+        }
+
+        private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			//when user click on accountCombo item
+			switch(accountCombo.SelectedIndex)
+            {
+				case 0:
+					//open my list
+					Applicazione.openWindow<mylist, MainWindow>(Applicazione.CloserType.Close);
+					break;
+				case 1:
+					//open website
+					break;
+				case 2:
+					//exit from account
+					Applicazione.openWindow<login, MainWindow>(Applicazione.CloserType.Close);
+					break;
+			}
+		}
+    }
+
+	public partial class MainWindow : Window
+    {
+		private void fillFilterCBL()
+		{
 			/*for (int i = 0; i < 30; i++)
 				filterCBL.Items.Add(new CheckBox { Content = $"ciao{i}" });
 			*/
@@ -64,18 +132,19 @@ namespace Mediaticon
 		}
 
 		private void loadElement()
-        {
+		{
 			//show the gif
 			ShadowCircular load = new ShadowCircular();
 			load.showLoading(ref loadingShadow);
 
 			//wait the end of loading of 50 elements in DBHelper
-			while (!DBHelper.Ready);
+			while (!DBHelper.Ready) ;
 
 			try
 			{
 				//set the 50 elements on listBox
-				listaLB.ItemsSource = DBHelper.loadedFilmList;
+				basedList = DBHelper.loadedFilmList;
+				listaLB.ItemsSource = basedList;
 			}
 			catch
 			{
@@ -87,16 +156,6 @@ namespace Mediaticon
 				//hide the gif
 				load.hideLoading(ref loadingShadow);
 			}
-        }
-
-		private void searchTxt_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			searchTxt.SelectAll();
-		}
-
-		private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
 		}
 
 		private class ShadowCircular
@@ -124,43 +183,9 @@ namespace Mediaticon
 			}
 		}
 
-
-		//PRIMARY EVENT HANDLER METHODS
-        private async void TabBtn_Click(object sender, RoutedEventArgs e)
-        {
-			string clicked = ((Button)sender).Name;
-			EnviromentVar.Modality.CurrentModality = clicked switch
-			{
-				"filmBtn" => EnviromentVar.Modality.modType.Film,
-				"serieBtn" => EnviromentVar.Modality.modType.Serie,
-				"animeBtn" => EnviromentVar.Modality.modType.Anime,
-				_ => EnviromentVar.Modality.modType.Film
-			};
-			DBHelper.GetFilms(true);
-			loadElement();
-        }
-
-
-        private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-			//open the details.xaml and pass the selected film
-        }
-
-        private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-			//do the research
-			object tokenLock = new object();
-			ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
-        }
-
-        private void filterCBL_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-			//do the research
-        }
-
-        private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-			//when user click on accountCombo item
-        }
-    }
+		private void openDetails(Film toPass)
+		{
+			Applicazione.openWindow<details, MainWindow>(Applicazione.CloserType.Close, toPass);
+		}
+	}
 }
