@@ -1,5 +1,15 @@
+<img src="mediaticon.png" width=250 height=250 align="left" />
+
 # Mediaticon-sviluppatori
 Progetto Mediaticon - Repository privata programmatori
+<br />
+<br />
+![tag](https://img.shields.io/badge/languages-C%23%20%7c%20Java%20%7c%20python-orange.svg)
+
+<br />
+<br />
+<br />
+<br />
 
 # Git help
    * `git clone <link>` copy all the repository in the current path
