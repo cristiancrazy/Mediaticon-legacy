@@ -1,15 +1,11 @@
-<img src="mediaticon.png" width=250 height=250 align="left" />
+<img src="mediaticon.png" width=250 height=250 align="left"></img>
 
 # Mediaticon-sviluppatori
 Progetto Mediaticon - Repository privata programmatori
-<br />
-<br />
+<br></br>
 ![tag](https://img.shields.io/badge/languages-C%23%20%7c%20Java%20%7c%20python-orange.svg)
 
-<br />
-<br />
-<br />
-<br />
+please follow the [workflow guide](#workflow) to avoid any conflicts in the various commits and to make the workflow smoother
 
 # Git help
    * `git clone <link>` copy all the repository in the current path
@@ -32,6 +28,14 @@ Progetto Mediaticon - Repository privata programmatori
    * `git pull origin <branch-name>` update a branch of the local repository (from another branch)
    
    * `git push -f origin <branch to copy>:<branch to paste>` make a branch equal to another
+
+## <a name="workflow"></a> Workflow
+> 1) make a new branch to work on the feature
+> 2) make a pull request to merge the branch
+> 3) wait for testing (or if u do it yourself for the ok of the contributors)
+> 4) if at the time u make the pull request a branch has already been merged, update your branch with the new changes
+> 5) if the case above has happened return to point 4.
+> 6) merge once u have the approval of all the contributors
 
 # Ideas for documentation
 ## Mermaid
