@@ -41,6 +41,8 @@ namespace MediaticonDB
             public static string JsonfromUrl = SiteUrl + "json/";
             public static string JsonPath = @".\json\";
             public static string JsonfileExt = ".json";
+
+            public static string GuidaTvJsonPath = Path.Combine(JsonPath, ContentType.GuidaTvCsv) + "\\";
         }
 
         //scraper path
