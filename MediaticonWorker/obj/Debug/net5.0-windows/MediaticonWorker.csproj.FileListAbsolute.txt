@@ -15,3 +15,20 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\refint\MediaticonWorker.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.pdb
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\ref\MediaticonWorker.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.csproj.AssemblyReference.cache
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.AssemblyInfoInputs.cache
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.AssemblyInfo.cs
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.csproj.CoreCompileInputs.cache
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\ref\MediaticonWorker.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.pdb
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\MediaticonWorker.deps.json
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\MediaticonWorker.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\ref\MediaticonWorker.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\MediaticonWorker.pdb
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\MediaticonDB.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\NewMessageBox.dll
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\MediaticonDB.pdb
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\bin\Debug\net5.0-windows\NewMessageBox.pdb
+C:\Users\11919\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonWorker\obj\Debug\net5.0-windows\MediaticonWorker.csproj.CopyComplete

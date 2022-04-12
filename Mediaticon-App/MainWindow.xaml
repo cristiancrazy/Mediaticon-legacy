@@ -68,7 +68,19 @@
     </Window.Resources>
 
     <Grid x:Name="gridBack" Background="#0e0e10">
-        <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="32" Margin="59,24,0,0" VerticalAlignment="Top" Width="107"/>
+        <Button x:Name="HomeBtn"  Content="&#xD;&#xA;" HorizontalAlignment="Left" Height="59" Margin="68,10,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.685"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.471"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/mediaticon.png"/>
+            </Button.Background>
+        </Button>
 
         <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right" SelectionChanged="accountCombo_SelectionChanged">
             <ComboBoxItem>La mia lista</ComboBoxItem>
@@ -89,21 +101,29 @@
                 <Button x:Name="programmiBtn" Style="{StaticResource MenuBtn}" Content="Show" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="58" Margin="319,0,0,0" Visibility="Hidden"/>
             </Grid>
         </Border>
-        <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="19,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height="90" Width="600" >
-                        <Image x:Name="ListPic" Source="{Binding Cover}" Width="50" Height="70" Margin="10,0,10,0"/>
-                        <StackPanel Orientation="Vertical" Width="458">
-                            <Label x:Name="ListTitle" Content="{Binding Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
-                            <TextBlock x:Name="ListDescr" Text="{Binding Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
+        <Border BorderBrush="#5c16c5" BorderThickness="0,0,5,5" Margin="18,93,163,10" CornerRadius="0,0,10,0" Background="#0e0e10" Padding="0,0,0,0">
+            <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="17,3,2,2" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" RenderTransformOrigin="0.5,0.5" >
+                <ListBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.114"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.488"/>
+                    </TransformGroup>
+                </ListBox.RenderTransform>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Height="90" Width="600" >
+                            <Image x:Name="ListPic" Source="{Binding Cover}" Width="50" Height="70" Margin="10,0,10,0"/>
+                            <StackPanel Orientation="Vertical" Width="458">
+                                <Label x:Name="ListTitle" Content="{Binding Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
+                                <TextBlock x:Name="ListDescr" Text="{Binding Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
         <Border x:Name="filterBord" BorderThickness="1" Margin="0,113,0,38" HorizontalAlignment="Right" Width="147" CornerRadius="10,0,0,10">
             <Grid x:Name="filterGrid">
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
@@ -112,7 +132,6 @@
                 <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="filterCBL_SelectionChanged"/>
             </Grid>
         </Border>
-        <Image HorizontalAlignment="Left" Height="38" Margin="16,18,0,0" VerticalAlignment="Top" Width="48" Source="/mediaticon.png"/>
 
         <Grid x:Name="loadingShadow" Margin="0" Opacity="0" Visibility="Hidden">
             <!--<Image gif:ImageBehavior.AnimatedSource="./Default/Images/load_progress.gif" /> git push -f origin main:new_design2-->

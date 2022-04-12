@@ -12,6 +12,7 @@ namespace MediaticonWorker
 		private static Object tokenLock = new Object();
 		public static List<Film> foundList = new List<Film>();
 
+		/*
 
 		public static async Task<bool> Search()
 		{
@@ -21,6 +22,6 @@ namespace MediaticonWorker
             {
 				foundList =
             }
-		}
+		}*/
 	}
 }

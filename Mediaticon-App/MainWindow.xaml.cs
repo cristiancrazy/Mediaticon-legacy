@@ -93,7 +93,7 @@ namespace Mediaticon
         {
 			//do the research
 			object tokenLock = new object();
-			ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
+			//ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
         }
 
         private void filterCBL_SelectionChanged(object sender, SelectionChangedEventArgs e)
