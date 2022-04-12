@@ -30,6 +30,8 @@ Progetto Mediaticon - Repository privata programmatori
 
    * `git pull` update all
    * `git pull origin <branch-name>` update a branch of the local repository (from another branch)
+   
+   * `git push -f origin <branch to copy>:<branch to paste>` make a branch equal to another
 
 # Ideas for documentation
 ## Mermaid
