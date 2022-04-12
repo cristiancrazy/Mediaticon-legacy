@@ -4,6 +4,7 @@
 Progetto Mediaticon - Repository privata programmatori
 <br></br>
 ![tag](https://img.shields.io/badge/languages-C%23%20%7c%20Java%20%7c%20python-orange.svg)
+![tag](https://img.shields.io/badge/testing--on-Windows-green.svg)
 
 please follow the [workflow guide](#workflow) to avoid any conflicts in the various commits and to make the workflow smoother
 
