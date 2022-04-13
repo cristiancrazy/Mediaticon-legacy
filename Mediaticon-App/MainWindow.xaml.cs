@@ -42,7 +42,7 @@ namespace Mediaticon
 		public MainWindow()
 		{
 			InitializeComponent();
-			loadElement();
+			//loadElement();
 
 			/*List<Film> listafilm = new List<Film>();
 
@@ -119,9 +119,14 @@ namespace Mediaticon
 					break;
 			}
 		}
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
-	public partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
 		private void fillFilterCBL()
 		{

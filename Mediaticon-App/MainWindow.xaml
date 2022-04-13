@@ -68,15 +68,7 @@
     </Window.Resources>
 
     <Grid x:Name="gridBack" Background="#0e0e10">
-        <Button x:Name="HomeBtn"  Content="&#xD;&#xA;" HorizontalAlignment="Left" Height="59" Margin="68,10,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.5,0.5">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.685"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.471"/>
-                </TransformGroup>
-            </Button.RenderTransform>
+        <Button x:Name="HomeBtn"  Content="&#xD;&#xA;" HorizontalAlignment="Left" Height="63" Margin="37,4,0,0" Style="{StaticResource ImgBtn}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" Click="HomeBtn_Click" BorderBrush="#00707070">
             <Button.Background>
                 <ImageBrush ImageSource="/mediaticon.png"/>
             </Button.Background>
@@ -102,7 +94,10 @@
             </Grid>
         </Border>
         <Border BorderBrush="#5c16c5" BorderThickness="0,0,5,5" Margin="18,93,163,10" CornerRadius="0,0,10,0" Background="#0e0e10" Padding="0,0,0,0">
-            <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="17,3,2,2" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" RenderTransformOrigin="0.5,0.5" >
+            <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="1,3,2,2" BorderBrush="Transparent" FontWeight="Bold" Foreground="#00000000" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" RenderTransformOrigin="0.5,0.5" >
+                <ListBox.Background>
+                    <ImageBrush/>
+                </ListBox.Background>
                 <ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -127,9 +122,9 @@
         <Border x:Name="filterBord" BorderThickness="1" Margin="0,113,0,38" HorizontalAlignment="Right" Width="147" CornerRadius="10,0,0,10">
             <Grid x:Name="filterGrid">
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
-                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14" TextChanged="searchTxt_TextChanged"/>
+                    <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14" TextChanged="searchEvent"/>
                 </Border>
-                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="filterCBL_SelectionChanged"/>
+                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="searchEvent"/>
             </Grid>
         </Border>
 

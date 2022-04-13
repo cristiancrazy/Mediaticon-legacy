@@ -40,24 +40,25 @@
 
     <Grid Background="#0e0e10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="28*"/>
-            <ColumnDefinition Width="113*"/>
-            <ColumnDefinition Width="709*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="HomeBtn" Style="{StaticResource MenuBtn}" Content="Mediaticon" HorizontalAlignment="Left" Height="42" Margin="19,16,0,0" VerticalAlignment="Top" Width="115" Grid.ColumnSpan="2"/>
-
-        <ComboBox x:Name ="accountCombo" Height="16" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right" Grid.Column="2">
+        <Button x:Name="HomeBtn" HorizontalAlignment="Left" Height="63" Margin="26,8,0,0" Style="{StaticResource ImgBtn}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" BorderBrush="#00707070">
+            <Button.Background>
+                <ImageBrush ImageSource="/mediaticon.png"/>
+            </Button.Background>
+        </Button>
+        <ComboBox x:Name ="accountCombo" Height="32" Margin="0,30,0,0" Style="{StaticResource NormalCombo}" VerticalAlignment="Top" Width="144" HorizontalAlignment="Right">
             <ComboBoxItem>La mia lista</ComboBoxItem>
             <ComboBoxItem>Informazioni</ComboBoxItem>
             <ComboBoxItem>Esci</ComboBoxItem>
         </ComboBox>
-        <Border x:Name="accountBord" BorderThickness="1" HorizontalAlignment="Right" Width="148" Height="65" VerticalAlignment="Top" Margin="0,-1,-1,0" CornerRadius="0,0,0,10" MouseLeftButtonDown="accountBord_MouseLeftButtonDown" Grid.Column="2">
+        <Border x:Name="accountBord" BorderThickness="1" HorizontalAlignment="Right" Width="148" Height="65" VerticalAlignment="Top" Margin="0,-1,-1,0" CornerRadius="0,0,0,10" MouseLeftButtonDown="accountBord_MouseLeftButtonDown">
             <Grid x:Name="accountGrid" d:LayoutOverrides="Height">
-                <Label x:Name="accountLbl" Content="Account" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Center" Width="73" FontWeight="Bold"/>
+                <Label x:Name="accountLbl" Content="Account" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Center" Width="73" FontWeight="Bold" FontSize="16"/>
                 <Image x:Name="accountImg" HorizontalAlignment="Left" Height="50" Margin="10,4,0,0" VerticalAlignment="Top" Width="50"/>
             </Grid>
         </Border>
-        <Border x:Name="typeBtnBord"  BorderThickness="1" Margin="45,-2,264,0" Height="75" VerticalAlignment="Top" CornerRadius="0,0,10,10"  Width="400" MaxWidth="400" Grid.Column="2">
+        <Border x:Name="typeBtnBord"  BorderThickness="1" Margin="183,-2,262,0" Height="75" VerticalAlignment="Top" CornerRadius="0,0,10,10" MaxWidth="400">
             <Grid x:Name="typeBtnGrid" Margin="-1,-1,-1,-1">
                 <Button x:Name="filmBtn" Style="{StaticResource MenuBtn}" Content="Visto" HorizontalAlignment="Left" Height="42" VerticalAlignment="Center" Width="94" Margin="30,0,0,0" />
                 <Button x:Name="serieBtn" Style="{StaticResource MenuBtn}" Content="Da vedere" HorizontalAlignment="Center" Height="42" VerticalAlignment="Center" Width="110"/>
@@ -65,27 +66,34 @@
             </Grid>
         </Border>
 
-
-        <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="19,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="3" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height="90" Width="600" >
-                        <Image x:Name="ListPic" Width="50" Height="70" Margin="10,0,10,0"/>
-                        <StackPanel Orientation="Vertical" Width="458">
-                            <Label x:Name="ListTitle" Content="{Binding Path=Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
-                            <TextBlock x:Name="ListDescr" Text="{Binding Path=Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
+        <Border BorderBrush="#5c16c5" BorderThickness="0,0,5,5" Margin="18,93,163,10" CornerRadius="0,0,10,0" Background="#0e0e10" Padding="0,0,0,0">
+            <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="10,85,172,10" Background="#FF0E0E10" BorderBrush="Transparent" FontWeight="Bold" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Height="90" Width="600" >
+                            <Image x:Name="ListPic" Width="50" Height="70" Margin="10,0,10,0"/>
+                            <StackPanel Orientation="Vertical" Width="458">
+                                <Label x:Name="ListTitle" Content="{Binding Path=Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
+                                <TextBlock x:Name="ListDescr" Text="{Binding Path=Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <WrapPanel Margin="0,0,-1,0" Height="158" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="173" Grid.Column="2">
-            <Button x:Name="exportBtn" Height="54" Width="128" Style="{DynamicResource NormalBtn}" HorizontalAlignment="Center" Margin="22,0,22,0">
-                <Button Content="Button"/>
-            </Button>
-            <Button x:Name="inportBtn" Content="Importa" Width="128" Style="{DynamicResource NormalBtn}" HorizontalAlignment="Center" Height="54" Margin="22,15,22,0"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+        <WrapPanel Margin="0,0,-1,0" Height="185" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="164" RenderTransformOrigin="0.5,0.5">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.334"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Button x:Name="exportBtn" Content="Esporta"  Style="{DynamicResource NormalBtn}"  Margin="44,40,0,0" Height="29" Width="78" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button x:Name="inportBtn" Content="Importa"  Style="{DynamicResource NormalBtn}"  Margin="44,10,22,0" Height="29" Width="78" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </WrapPanel>
-        <Label Content="La mia Lista" HorizontalContentAlignment="Center" Height="41" Margin="0,85,22,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalAlignment="Right" Width="121" Grid.Column="2"/>
+        <Label Content="La mia Lista" HorizontalContentAlignment="Center" Height="41" Margin="0,85,22,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalAlignment="Right" Width="121"/>
     </Grid>
 
 </Window>
