@@ -3,8 +3,8 @@
 # Mediaticon-sviluppatori
 Progetto Mediaticon - Repository privata programmatori
 <br></br>
-![tag](https://img.shields.io/badge/languages-C%23%20%7c%20Java%20%7c%20python-orange.svg)
-![tag](https://img.shields.io/badge/testing--on-Windows-green.svg)
+[![tag](https://img.shields.io/badge/languages-C%23%20%7c%20Java%20%7c%20python-orange.svg)](https://github.com/VisualLaser10New)
+[![tag](https://img.shields.io/badge/testing--on-Windows-green.svg)](https://github.com/Giova-Bell)
 
 please follow the [workflow guide](#workflow) to avoid any conflicts in the various commits and to make the workflow smoother
 
