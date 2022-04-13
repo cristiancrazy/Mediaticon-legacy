@@ -122,6 +122,20 @@ namespace MediaticonDB
 			return true;
         }
 
+		public static Bitmap generateBitmap(int width, int height, Color color)
+        {
+			Bitmap bitmap = new Bitmap(width, height);
+			using (Graphics gfs = Graphics.FromImage(bitmap))
+            {
+				using (SolidBrush brush = new SolidBrush(color))
+                {
+					gfs.FillRectangle(brush, 0, 0, width, height);
+                }
+            }
+
+			return bitmap;
+        }
+
 		public static bool openImage(string path, out Bitmap bitmap)
         {
 			try
@@ -132,6 +146,7 @@ namespace MediaticonDB
 			}
 			catch
             {
+				bitmap = generateBitmap(180, 180, Color.Transparent);
 				return false;
             }
 			return true;
