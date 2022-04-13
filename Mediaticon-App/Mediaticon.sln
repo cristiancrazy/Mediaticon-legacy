@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32317.152
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mediaticon", "Mediaticon.csproj", "{7556D463-23A8-447D-A6E3-CC4A71143443}"
 EndProject
@@ -10,15 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaticonWorker", "..\MediaticonWorker\MediaticonWorker.csproj", "{4329C740-7FD9-4640-A69B-919F21F1E08B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewMessageBox", "..\NewMessageBox\NewMessageBox.csproj", "{B80B7D1F-57F0-4B89-9785-8C9178D37E1E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default", "Default", "{60B12B4B-61CF-4D27-8A71-54508D6561BA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{FCE7687C-EF6E-421C-9755-E474D1428B95}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\Pictures\load_progress.gif = ..\..\..\..\..\Pictures\load_progress.gif
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channels", "Channels", "{EEF9B65D-FA3C-49D8-9635-90E82B0F86BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{FCE7687C-EF6E-421C-9755-E474D1428B95} = {60B12B4B-61CF-4D27-8A71-54508D6561BA}
-		{EEF9B65D-FA3C-49D8-9635-90E82B0F86BF} = {FCE7687C-EF6E-421C-9755-E474D1428B95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AA92784-8EA4-4F2D-A2F0-4E59EA784DF3}
