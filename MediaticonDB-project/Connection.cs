@@ -121,5 +121,20 @@ namespace MediaticonDB
             }
 			return true;
         }
+
+		public static bool openImage(string path, out Bitmap bitmap)
+        {
+			try
+			{
+				Image image = Image.FromFile(path);
+
+				bitmap = new Bitmap(image);
+			}
+			catch
+            {
+				return false;
+            }
+			return true;
+        }
 	}
 }

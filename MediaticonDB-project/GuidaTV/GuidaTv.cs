@@ -45,7 +45,7 @@ namespace MediaticonDB
 
             //if the scraper has run, read all csv files
             //foreach csv read all line
-            if (!readCSVs(out canali))
+            if (!readJSONs(out canali))
             {
                 DeleteAll();
                 return false;
@@ -110,7 +110,7 @@ namespace MediaticonDB
                 foreach(var file in Directory.GetFiles(jsonsToread))
                 {
                     List<Replica> repliche = new List<Replica>();
-                    string imagePath = "";
+                    string imagePath = EnviromentVar.ImagesVar.ChannelLogoPath + file + EnviromentVar.ImagesVar.ImgfileExt;
 
                     try
                     {
@@ -129,6 +129,8 @@ namespace MediaticonDB
                     {
                         return false;
                     }
+
+                    output.Add(new Channel(imagePath, repliche));
                 }
             }
             catch
