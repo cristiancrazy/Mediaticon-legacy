@@ -10,6 +10,8 @@ namespace MediaticonWorker
 	public class ResearchHelper
 	{
 		private static Object tokenLock = new Object();
+
+		[ObsoleteAttribute("sobstituted with yield", false)]
 		public static List<Film> foundList = new List<Film>();
 
 
@@ -17,10 +19,8 @@ namespace MediaticonWorker
 		{
 			 
 			while()
-			lock(tokenLock)
-            {
-				foundList =
-            }
+				//return an element by element found with a yield
+
 		}
 	}
 }

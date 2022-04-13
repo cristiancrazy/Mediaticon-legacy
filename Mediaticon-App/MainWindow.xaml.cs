@@ -89,16 +89,12 @@ namespace Mediaticon
             openDetails(basedList[listaLB.SelectedIndex]);
         }
 
-        private async void searchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        private async void searchEvent(object sender, TextChangedEventArgs e)
         {
 			//do the research
 			object tokenLock = new object();
-			ResearchHelper.Search(); //i don't know if use a yield or do a while that get one element for time
-        }
-
-        private void filterCBL_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-			//do the research
+			ResearchHelper.Search(); 
+			//while this return a yield get add element to baselist, load it to screen 
         }
 
         private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
