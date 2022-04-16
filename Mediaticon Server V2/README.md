@@ -158,7 +158,7 @@ It is a **.json array** formatted file, with the following properties:
 **Valid ***TimeUnit*** for "Start Date" property:**
 
 |Time Unit        |
--------------------
+|-----------------|
 | Minutes         |
 | Hours           |
 | Days            |
