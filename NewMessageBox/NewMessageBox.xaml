@@ -45,8 +45,14 @@
 
     </Window.Resources>
     <Grid>
-        <Button x:Name="YesBTN" Style="{DynamicResource NormalBtn}" Content="Si" HorizontalAlignment="Left" Margin="30,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="14" FontSize="11" Click="YesBTN_Click" Visibility="Hidden"/>
-        <Button x:Name="NoBTN" Style="{DynamicResource NormalBtn}" Content="No" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="14" FontSize="11" Click="NoBTN_Click" Visibility="Hidden"/>
-        <Button x:Name="OkBTN" Style="{DynamicResource NormalBtn}" Content="Ok" HorizontalAlignment="Left" Margin="164,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="14" FontSize="11" Click="OkBTN_Click" Visibility="Hidden"/>
+        <Button x:Name="YesBTN" Style="{DynamicResource NormalBtn}" Content="Si" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="YesBTN_Click" Visibility="Visible"/>
+        <Button x:Name="NoBTN" Style="{DynamicResource NormalBtn}" Content="No" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="NoBTN_Click" Visibility="Visible"/>
+        <Button x:Name="OkBTN" Style="{DynamicResource NormalBtn}" Content="Ok" HorizontalAlignment="Left" Margin="180,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="OkBTN_Click" Visibility="Visible"/>
+        <Label x:Name="TxtLabel" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Height="82" Width="222"/>
+        <Image Margin="7,6,211,132">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/NewMessageBox;component/mediaticon.png"/>
+            </Image.OpacityMask>
+        </Image>
     </Grid>
 </Window>

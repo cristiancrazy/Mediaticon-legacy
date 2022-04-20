@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {}
+    "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+    "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
+        "projectUniqueName": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
         "projectName": "MediaticonDB",
-        "projectPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
-        "packagesPath": "C:\\Users\\11919\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\obj\\",
+        "projectPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
+        "packagesPath": "C:\\Users\\utente\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\11919\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\utente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -80,20 +80,20 @@
         }
       }
     },
-    "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
+    "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
+        "projectUniqueName": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
         "projectName": "MediaticonWorker",
-        "projectPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
-        "packagesPath": "C:\\Users\\11919\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\obj\\",
+        "projectPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
+        "packagesPath": "C:\\Users\\utente\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\11919\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\utente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -108,11 +108,11 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
-                "projectPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
+              "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+                "projectPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
               },
-              "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
-                "projectPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj"
+              "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
+                "projectPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj"
               }
             }
           }
@@ -151,20 +151,20 @@
         }
       }
     },
-    "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
+    "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
+        "projectUniqueName": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
         "projectName": "NewMessageBox",
-        "projectPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
-        "packagesPath": "C:\\Users\\11919\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\11919\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\obj\\",
+        "projectPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
+        "packagesPath": "C:\\Users\\utente\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\utente\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\11919\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\utente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
