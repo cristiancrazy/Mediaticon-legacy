@@ -149,6 +149,8 @@ public class PlanLoader {
                 @Override
                 public void run() {
                     i.run();
+                    this.cancel(); //Delete task after finish and run GC
+                    System.gc();
                 }
             }, Date.from(i.getStartTime().atZone(ZoneId.systemDefault()).toInstant()));
         }
@@ -170,7 +172,7 @@ class Plan implements Runnable{
     private ChronoUnit ChronosNext;
     private int AmountNext;
 
-    //Fields for FTP Service
+    //Fields for FTP Service (remote path)
     private Path MidPath;
 
     // ====== [Public Fields] ======
@@ -206,9 +208,8 @@ class Plan implements Runnable{
         AmountNext = NextRunLDT;
         //Calculated NextRepeat
         NextRepeat = StartTime.plus(NextRunLDT, NextRunLDTUnit);
-        this.MidPath = MidPath;
+        this.MidPath = MidPath; //Remote path
     }
-
 
     @Deprecated(forRemoval = true)
     public Plan(int PlanID, String AppName, int yearToScrape, LocalDateTime StartTime, LocalDateTime NextRepeat){
