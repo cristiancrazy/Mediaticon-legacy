@@ -22,7 +22,7 @@ Python 3 dependencies installer (MEDIATICON GROUP)
 #===================================#
 
 #======================[PIP DEPENDENCIES NAME]=========================
-$pipDependencies = "beautifulsoup4", "bs4", "certifi", "charset-normalizer", "idna", "requests", "soupsieve", "urllib3"
+$pipDependencies = "beautifulsoup4", "bs4", "certifi", "charset-normalizer", "idna", "requests", "soupsieve", "urllib3", "ftfy"
 
 #============================[PYTHON DEPENDENCIES]==================================
 function InstallPip3Libraries{
