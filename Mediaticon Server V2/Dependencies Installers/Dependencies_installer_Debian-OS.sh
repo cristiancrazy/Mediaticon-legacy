@@ -66,6 +66,9 @@ install_scraper_dependencies(){
     
     pip3 install urllib3 >/dev/null
     verifier "PIP-urllib3"
+    
+    pip3 install ftfy >/dev/null
+    verifier "PIP-ftfy"
 }
 
 # JAVA JRE 17 FROM Bell Soft
