@@ -2,6 +2,8 @@ import requests, bs4, sys, json, ftfy
 from datetime import date
 # from dataclasses import dataclass, field
 
+#TODO: check if title is present
+
 # @dataclass
 # class Movie:
 #     big_image : str #BigImage
