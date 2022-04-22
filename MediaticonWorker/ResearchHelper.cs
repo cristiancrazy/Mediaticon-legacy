@@ -14,8 +14,7 @@ namespace MediaticonWorker
 		[ObsoleteAttribute("sobstituted with yield", false)]
 		public static List<Film> foundList = new List<Film>();
 
-
-		public static async Task<bool> Search()
+		public static async IEnumerable<Task<Film>> Search()
 		{
 			 
 			while()
