@@ -69,8 +69,8 @@ namespace Mediaticon
 
 		
 		//PRIMARY EVENT HANDLER METHODS
-        private async void TabBtn_Click(object sender, RoutedEventArgs e)
-        {
+		private async void TabBtn_Click(object sender, RoutedEventArgs e)
+		{
 			string clicked = ((Button)sender).Name;
 			EnviromentVar.Modality.CurrentModality = clicked switch
 			{
@@ -81,27 +81,33 @@ namespace Mediaticon
 			};
 			DBHelper.GetFilms(true);
 			loadElement();
-        }
+		}
 
-        private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            //open the details.xaml and pass the selected film
-            openDetails(basedList[listaLB.SelectedIndex]);
-        }
+		private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
+		{
+			//open the details.xaml and pass the selected film
+			openDetails(basedList[listaLB.SelectedIndex]);
+		}
 
-        private async void searchEvent(object sender, TextChangedEventArgs e)
-        {
+		private async void searchEvent(object sender, TextChangedEventArgs e)
+		{
 			//do the research
-			object tokenLock = new object();
-			ResearchHelper.Search(); 
+			basedList.Clear();
+			await Dispatcher.BeginInvoke(new Action(() => {	//i'm not sure that this await is correct
+				foreach (var film in ResearchHelper.Search())
+				{
+					basedList.Add(film.Result);
+					showElement();
+				}
+			}));
 			//while this return a yield get add element to baselist, load it to screen 
-        }
+		}
 
-        private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+		private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
 			//when user click on accountCombo item
 			switch(accountCombo.SelectedIndex)
-            {
+			{
 				case 0:
 					//open my list
 					Applicazione.openWindow<mylist, MainWindow>(Applicazione.CloserType.Close);
@@ -115,10 +121,10 @@ namespace Mediaticon
 					break;
 			}
 		}
-    }
+	}
 
 	public partial class MainWindow : Window
-    {
+	{
 		private void fillFilterCBL()
 		{
 			/*for (int i = 0; i < 30; i++)
@@ -134,13 +140,13 @@ namespace Mediaticon
 			load.showLoading(ref loadingShadow);
 
 			//wait the end of loading of 50 elements in DBHelper
-			while (!DBHelper.Ready) ;
+			while (!DBHelper.Ready);
 
 			try
 			{
 				//set the 50 elements on listBox
 				basedList = DBHelper.loadedFilmList;
-				listaLB.ItemsSource = basedList;
+				showElement();
 			}
 			catch
 			{
@@ -182,6 +188,12 @@ namespace Mediaticon
 		private void openDetails(Film toPass)
 		{
 			Applicazione.openWindow<details, MainWindow>(Applicazione.CloserType.Close, toPass);
+		}
+
+		private void showElement()
+		{
+			listaLB.Items.Clear();
+			listaLB.ItemsSource = basedList;
 		}
 	}
 }
