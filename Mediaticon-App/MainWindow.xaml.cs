@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using MediaticonDB;
 using NewMessageBox;
 using MediaticonWorker;
+using System.Threading;
 
 namespace Mediaticon
 {
@@ -79,7 +80,7 @@ namespace Mediaticon
 				"animeBtn" => EnviromentVar.Modality.modType.Anime,
 				_ => EnviromentVar.Modality.modType.Film
 			};
-			DBHelper.GetFilms(true);
+			DBHelper.GetFilms(true); //this will run async, not wait
 			loadElement();
 		}
 
@@ -89,17 +90,10 @@ namespace Mediaticon
 			openDetails(basedList[listaLB.SelectedIndex]);
 		}
 
-		private async void searchEvent(object sender, TextChangedEventArgs e)
+		private void searchEvent(object sender, TextChangedEventArgs e)
 		{
 			//do the research
-			basedList.Clear();
-			await Dispatcher.BeginInvoke(new Action(() => {	//i'm not sure that this await is correct
-				foreach (var film in ResearchHelper.Search())
-				{
-					basedList.Add(film.Result);
-					showElement();
-				}
-			}));
+			Search();
 			//while this return a yield get add element to baselist, load it to screen 
 		}
 
@@ -114,6 +108,7 @@ namespace Mediaticon
 					break;
 				case 1:
 					//open website
+					System.Diagnostics.Process.Start(@"https://github.com/VisualLaser10New");
 					break;
 				case 2:
 					//exit from account
@@ -131,6 +126,33 @@ namespace Mediaticon
 				filterCBL.Items.Add(new CheckBox { Content = $"ciao{i}" });
 			*/
 
+		}
+
+		static CancellationTokenSource  cancelTask = new CancellationTokenSource();
+		static CancellationToken token = cancelTask.Token;
+		private async void Search()
+        {
+			//cancel the previous search
+			cancelTask.Cancel();
+			//wait a second
+			Thread.Sleep(1000);
+
+			//do the new search
+			basedList.Clear();
+			Task searchTask = new Task(doSearch, token);
+			searchTask.Start();
+			showElement(); //in case there is no result -> show empty list, and messagebox will showed by research helper
+		}
+
+		private async void doSearch()
+        {
+			await Dispatcher.BeginInvoke(new Action(() => { //i'm not sure that this await is correct
+				foreach (var film in ResearchHelper.Search())
+				{
+					basedList.Add(film.Result);
+					showElement();
+				}
+			}));
 		}
 
 		private void loadElement()
@@ -193,7 +215,14 @@ namespace Mediaticon
 		private void showElement()
 		{
 			listaLB.Items.Clear();
-			listaLB.ItemsSource = basedList;
+			try
+			{
+				listaLB.ItemsSource = basedList;
+			}
+			catch
+            {
+				listaLB.Items.Clear();
+            }
 		}
 	}
 }

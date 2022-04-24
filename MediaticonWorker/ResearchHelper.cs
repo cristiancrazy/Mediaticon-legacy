@@ -16,7 +16,6 @@ namespace MediaticonWorker
 
 		public static async IEnumerable<Task<Film>> Search()
 		{
-			 
 			while()
 				//return an element by element found with a yield
 
