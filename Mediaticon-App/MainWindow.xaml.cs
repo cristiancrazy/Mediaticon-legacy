@@ -122,10 +122,9 @@ namespace Mediaticon
 	{
 		private void fillFilterCBL()
 		{
-			/*for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 30; i++)
 				filterCBL.Items.Add(new CheckBox { Content = $"ciao{i}" });
-			*/
-
+			
 		}
 
 		static CancellationTokenSource  cancelTask = new CancellationTokenSource();
@@ -140,12 +139,15 @@ namespace Mediaticon
 			//do the new search
 			basedList.Clear();
 			Task searchTask = new Task(doSearch, token);
+
+			ResearchHelper.setSearchParams(searchTxt.Text, filterCBL.Items);
 			searchTask.Start();
 			showElement(); //in case there is no result -> show empty list, and messagebox will showed by research helper
 		}
 
 		private async void doSearch()
         {
+			//this function run in another task
 			await Dispatcher.BeginInvoke(new Action(() => { //i'm not sure that this await is correct
 				foreach (var film in ResearchHelper.Search())
 				{
@@ -158,8 +160,8 @@ namespace Mediaticon
 		private void loadElement()
 		{
 			//show the gif
-			ShadowCircular load = new ShadowCircular();
-			load.showLoading(ref loadingShadow);
+			//ShadowCircular load = new ShadowCircular();
+			ShadowCircular.showLoading(ref loadingShadow);
 
 			//wait the end of loading of 50 elements in DBHelper
 			while (!DBHelper.Ready);
@@ -178,13 +180,13 @@ namespace Mediaticon
 			finally
 			{
 				//hide the gif
-				load.hideLoading(ref loadingShadow);
+				ShadowCircular.hideLoading(ref loadingShadow);
 			}
 		}
 
 		private class ShadowCircular
 		{
-			public void showLoading(ref Grid grid)
+			public static void showLoading(ref Grid grid)
 			{
 				grid.Visibility = Visibility.Visible;
 				grid.Opacity = 0;
@@ -195,7 +197,7 @@ namespace Mediaticon
 				}
 			}
 
-			public void hideLoading(ref Grid grid)
+			public static void hideLoading(ref Grid grid)
 			{
 				grid.Opacity = 100;
 				for (int i = 0; i < 10; i++)

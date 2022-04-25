@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Mediaticon-App"
+    "\\Mediaticon-App",
+    "\\MediaticonDB-project",
+    "\\MediaticonDB-project\\GuidaTV"
   ],
+  "SelectedNode": "\\MediaticonDB-project\\GuidaTV\\GuidaTv.cs",
   "PreviewInSolutionExplorer": false
 }
