@@ -122,9 +122,15 @@ namespace Mediaticon
 	{
 		private void fillFilterCBL()
 		{
-            for (int i = 0; i < 30; i++)
-				filterCBL.Items.Add(new CheckBox { Content = $"ciao{i}" });
-			
+			//fill the filter of 
+			var items = new ObservableCollection<FilterItem>();
+
+			for (int i = 0; i < 30; i++) //TODO: populate list
+				items.Add(new FilterItem { Content = $"ciao{i}" });
+
+			filterCBL.Items.Clear();
+			filterCBL.ItemsSource = null;
+			filterCBL.ItemsSource = items;
 		}
 
 		static CancellationTokenSource  cancelTask = new CancellationTokenSource();
@@ -157,6 +163,7 @@ namespace Mediaticon
 			}));
 		}
 
+
 		private void loadElement()
 		{
 			//show the gif
@@ -184,6 +191,50 @@ namespace Mediaticon
 			}
 		}
 
+		private void loadNewElements()
+        {
+			ShadowCircular.showLoading(ref loadingShadow);
+			DBHelper.GetFilms(false);
+
+			while (!DBHelper.Ready) ;
+
+            try
+            {
+				basedList = DBHelper.loadedFilmList;
+				showElement();
+            }
+			catch
+			{
+				NMSG.Show("Si è verificato un errore nel caricamento dei contenuti", NMSGtype.Ok);
+				Applicazione.Close(1);
+			}
+			finally
+			{
+				//hide the gif
+				ShadowCircular.hideLoading(ref loadingShadow);
+			}
+		}
+
+		private void showElement()
+		{
+			listaLB.Items.Clear();
+			listaLB.ItemsSource = null;
+			try
+			{
+				listaLB.ItemsSource = basedList;
+			}
+			catch
+            {
+				listaLB.Items.Clear();
+            }
+		}
+
+		
+		private void openDetails(Film toPass)
+		{
+			Applicazione.openWindow<details, MainWindow>(Applicazione.CloserType.Close, toPass);
+		}
+
 		private class ShadowCircular
 		{
 			public static void showLoading(ref Grid grid)
@@ -207,24 +258,6 @@ namespace Mediaticon
 				}
 				grid.Visibility = Visibility.Hidden;
 			}
-		}
-
-		private void openDetails(Film toPass)
-		{
-			Applicazione.openWindow<details, MainWindow>(Applicazione.CloserType.Close, toPass);
-		}
-
-		private void showElement()
-		{
-			listaLB.Items.Clear();
-			try
-			{
-				listaLB.ItemsSource = basedList;
-			}
-			catch
-            {
-				listaLB.Items.Clear();
-            }
 		}
 	}
 }
