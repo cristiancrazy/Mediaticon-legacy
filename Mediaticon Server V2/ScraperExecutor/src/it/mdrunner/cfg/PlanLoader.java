@@ -31,6 +31,36 @@ public class PlanLoader {
 
     protected static HashMap<String, Timer> timerExe = new HashMap<>();
 
+    // ===== [Actual Running Python Processes and Shutdown Method] =====
+    public static ArrayList<Process> RunningPyPS = new ArrayList<>();
+
+    /** Clear loaded and temporary data - delete everything from collections used - Cancel all scheduled tasks
+     *  Kill (and wait termination) all running py processes. - Meanwhile run garbage collector **/
+    public boolean shutdown(){
+
+        PlanID.clear();
+        loadedPlanList.clear();
+
+        for(String i : timerExe.keySet()){
+            timerExe.get(i).cancel();
+        }
+
+        timerExe.clear();
+        System.gc();
+
+        for(Process i : RunningPyPS) {
+            try{
+                //Kill and wait termination
+                i.destroyForcibly().waitFor();
+            }catch (Exception exc){
+                return false;
+            }
+        }
+
+        RunningPyPS.clear();
+        System.gc();
+        return true;
+    }
 
     // ====== [Public Fields] ======
 
@@ -149,7 +179,8 @@ public class PlanLoader {
                 @Override
                 public void run() {
                     i.run();
-                    this.cancel(); //Delete task after finish and run GC
+                    this.cancel();
+                    timerExe.remove(i.getAppName());
                     System.gc();
                 }
             }, Date.from(i.getStartTime().atZone(ZoneId.systemDefault()).toInstant()));
@@ -172,7 +203,7 @@ class Plan implements Runnable{
     private ChronoUnit ChronosNext;
     private int AmountNext;
 
-    //Fields for FTP Service (remote path)
+    //Fields for FTP Service
     private Path MidPath;
 
     // ====== [Public Fields] ======
@@ -208,7 +239,7 @@ class Plan implements Runnable{
         AmountNext = NextRunLDT;
         //Calculated NextRepeat
         NextRepeat = StartTime.plus(NextRunLDT, NextRunLDTUnit);
-        this.MidPath = MidPath; //Remote path
+        this.MidPath = MidPath;
     }
 
     @Deprecated(forRemoval = true)
@@ -253,14 +284,22 @@ class Plan implements Runnable{
                 }
 
                 Process ps = process.start();
+                PlanLoader.RunningPyPS.add(ps); //Add this PS to currently running list
                 ps.waitFor(); //Wait ends
                 if(ps.exitValue() != 0){
                     System.out.println("\033[31mTimer@ Execution: " + PlanID + " - " + AppName + System.lineSeparator() + "Ended with error.\033[0m"
                     +System.lineSeparator() + "Exit Code: " + ps.exitValue());
+
+                    //Remove this PS from currently running list
+                    PlanLoader.RunningPyPS.remove(ps);
+
                     throw new IOException("Failed Scraper - Exit Code: " + ps.exitValue());
                 }
                 else{
                     System.out.println("\033[32mTimer@ Execution: " + PlanID + " - " + AppName + System.lineSeparator() + "Ended correctly.\033[0m");
+
+                    //Remove this PS from currently running list
+                    PlanLoader.RunningPyPS.remove(ps);
 
                     //Upload on FTP Off-Shore Server
                     if(SharedConfig.FTPEnabled){
@@ -287,17 +326,19 @@ class Plan implements Runnable{
                 }
 
             }catch (InterruptedException | IOException exc){
-                try(BufferedWriter log = new BufferedWriter(new FileWriter(SharedConfig.LogFolder.resolve("FAIL_"+AppName.toLowerCase()+".txt").toFile(), false))){
-                    log.write("Error occurred with this scraper. Please check it manually.");
+                Path logFile = SharedConfig.LogFolder.resolve("FAIL_"+AppName.toLowerCase()+".txt");
+                try(BufferedWriter log = new BufferedWriter(new FileWriter(logFile.toFile(), true))){
+                    log.write("[" + LocalDateTime.now() + "]--> " + "Error occurred with a scraper.");
                     log.newLine();
                     log.write(exc.getMessage());
                     log.newLine();
-                    log.write("Plan ID = " + PlanID);
+                    log.write("Plan ID = " + PlanID + "\t" + "Year = " + yearToScrape);
                     log.newLine();
-                    log.write("[Process parameters]");
+                    log.write("Scraper initialized with the following arguments: ");
                     log.newLine();
                     log.write(process.command().toString());
-                    log.newLine();
+                    log.flush(); //Flush the stream
+                    for(int i = 0; i < 3; ++i) log.newLine(); //Separate errors
                 }catch (IOException ignored){ }
             }finally{
                 //Reschedule
@@ -313,7 +354,10 @@ class Plan implements Runnable{
 
                         @Override
                         public void run() {
-                            new Plan(PlanID, AppName, yearToScrape, NextRepeat, AmountNext, ChronosNext).run();
+                            if(MidPath != null) //Check if MidPath is already set
+                                new Plan(PlanID, AppName, yearToScrape, NextRepeat, AmountNext, ChronosNext, MidPath).run();
+                            else //Init without MidPath (unnecessary)
+                                new Plan(PlanID, AppName, yearToScrape, NextRepeat, AmountNext, ChronosNext).run();
                         }
                     }, Date.from(NextRepeat.atZone(ZoneId.systemDefault()).toInstant()));
                 }

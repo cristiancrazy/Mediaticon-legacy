@@ -182,7 +182,7 @@ public class AppLoader {
 
 	// ====== [ Public Fields & Methods] ======
 
-	/** This method will pre-load python execution environment
+	/** This method will preload python execution environment
 	 *  It returns if there's a problem, for instance invalid apps and invalid arguments **/
 	public static void initPython(){
 		//Check Python 3
@@ -193,10 +193,10 @@ public class AppLoader {
 			System.exit(255); // Missing minimum requirements exit.
 		}
 
-		//Load py apps from folder, and parse params from the app. config (replace auto tags)
+
 		if(getPyApps() && loadPyAppsArgument()){
 
-			//Print valid py exec files
+			//Print valid executable
 			System.out.println("\033[32mPython executable found:\033[0m");
 			pyApps.forEach(System.out::println);
 
@@ -212,7 +212,7 @@ public class AppLoader {
 		}
 	}
 
-	/** Ready to run (init single) -> Set year and get Process from the AppList **/
+	/** Ready to run (init single) -> Set year and insert Process to the AppList **/
 	public static ProcessBuilder pyReady(String appName, int year){
 		setPyAppsArgumentYear(year);
 		initPyPS(appName);
@@ -220,7 +220,7 @@ public class AppLoader {
 	}
 
 	/** ready to run (init all) -> Set year and insert all Process to the AppList **/
-	@Deprecated(forRemoval = true)
+	@Deprecated
 	public static void pyReady(int year){
 		setPyAppsArgumentYear(year);
 		initAllPyPS();
