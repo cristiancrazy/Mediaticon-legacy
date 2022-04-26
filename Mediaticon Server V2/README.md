@@ -1,4 +1,7 @@
 # **MEDIATICON™ SERVER V2 - GUIDE**
+![tag](https://img.shields.io/badge/platform-Win32%2FWin64%2FLinux32%2FLinux64-red.svg)
+![tag](https://img.shields.io/badge/licence-MIT-green.svg)
+
 ***Important:*** all sources contained in this repository are part of Mediaticon™ Project. These were deployed by Mediaticon™ Developers Team. *Sharing any part of this project, without asking permission to each project's developers and members, are highly PROHIBITED. **Any illegal action, and any agreement violation, will be punished.***
 
 -------------------------------------------------------------------------------------
