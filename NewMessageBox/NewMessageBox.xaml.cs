@@ -36,6 +36,7 @@ namespace NewMessageBox
         {
             NMSG a = new NMSG();
             a.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            a.TxtLabel.Content = text;
             a.ShowDialog();
             ManualResetEvent waitHandle = new ManualResetEvent(false);
 

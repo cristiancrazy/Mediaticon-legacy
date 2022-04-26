@@ -14,7 +14,7 @@ namespace MediaticonWorker
 		private static List<string> titlesToSearch = new List<string>();
 		private static List<string> genreToSearch = new List<string>();
 
-		/*
+		
 
 		public static void setSearchParams(string title, ItemCollection genreFilter)
 		{

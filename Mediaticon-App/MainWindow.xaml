@@ -124,7 +124,15 @@
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
                     <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14" TextChanged="searchEvent"/>
                 </Border>
-                <ListBox x:Name="filterCBL" d:ItemsSource="{d:SampleData ItemCount=6}" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="searchEvent"/>
+                <ListBox x:Name="filterCBL" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="searchEvent">
+                    <ItemsControl x:Name="myItemsControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Content}" Checked="{Binding IsChecked}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ListBox>
             </Grid>
         </Border>
 

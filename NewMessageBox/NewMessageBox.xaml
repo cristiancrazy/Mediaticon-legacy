@@ -6,7 +6,7 @@
 		
 		xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="NewMessageBox.NMSG"
 		
-		Title="Mediaticon" MinWidth="1" MinHeight="1" WindowStyle="None" Width="242" Height="162" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Background="#FF0E0E10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStartupLocation="CenterScreen">
+		Title="Mediaticon" MinWidth="1" MinHeight="1" WindowStyle="None" Width="242" Height="126" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Background="#FF0E0E10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="NormalBtn" >
 
@@ -45,14 +45,15 @@
 
     </Window.Resources>
     <Grid>
-        <Button x:Name="YesBTN" Style="{DynamicResource NormalBtn}" Content="Si" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="YesBTN_Click" Visibility="Visible"/>
-        <Button x:Name="NoBTN" Style="{DynamicResource NormalBtn}" Content="No" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="NoBTN_Click" Visibility="Visible"/>
-        <Button x:Name="OkBTN" Style="{DynamicResource NormalBtn}" Content="Ok" HorizontalAlignment="Left" Margin="180,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="OkBTN_Click" Visibility="Visible"/>
-        <Label x:Name="TxtLabel" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Height="82" Width="222"/>
-        <Image Margin="7,6,211,132">
+        <Button x:Name="YesBTN" Style="{DynamicResource NormalBtn}" Content="Si" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="YesBTN_Click" Visibility="Visible"/>
+        <Button x:Name="NoBTN" Style="{DynamicResource NormalBtn}" Content="No" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="NoBTN_Click" Visibility="Visible"/>
+        <Button x:Name="OkBTN" Style="{DynamicResource NormalBtn}" Content="Ok" HorizontalAlignment="Left" Margin="180,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.05,0.251" Width="52" Background="#FF2D2D30" Height="18" FontSize="11" Click="OkBTN_Click" Visibility="Visible"/>
+        <Label x:Name="TxtLabel" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Height="51" Width="222"/>
+        <Image Margin="7,6,0,0" Source="/NewMessageBox;component/mediaticon.png" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22">
             <Image.OpacityMask>
                 <ImageBrush ImageSource="/NewMessageBox;component/mediaticon.png"/>
             </Image.OpacityMask>
         </Image>
+        <Label Content="Mediaticon" HorizontalAlignment="Left" Height="11" Margin="34,10,0,0" VerticalAlignment="Top" Width="43"/>
     </Grid>
 </Window>
