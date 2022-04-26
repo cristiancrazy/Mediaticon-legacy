@@ -76,4 +76,5 @@ In aggiunta, sono presenti costrutti adibiti al controllo delle eccezioni e all'
 #### Description Window
 #### MyListWindow
 ## Mediaticon Server
+[V2 Description & Guide](https://github.com/cristiancrazy/Mediaticon-sviluppatori/blob/6963698901a5a1cb5bb3f337466f44f958cd8925/Mediaticon%20Server%20V2/README.md)
 ## Mediaticon Dependency installers
