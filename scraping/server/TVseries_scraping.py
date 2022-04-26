@@ -1,6 +1,8 @@
 import requests, bs4, sys, json, ftfy
 from datetime import date
 
+#TODO: check presence of actors
+
 def myTVseries(_from_year, _to_year, path):
     #YEARS RANGE
     #_from_year = 1970

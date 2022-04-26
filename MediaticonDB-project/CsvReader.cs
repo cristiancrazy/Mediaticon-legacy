@@ -54,5 +54,12 @@ namespace MediaticonDB
             Film tmp = JsonConvert.DeserializeObject<Film>(line);
             return tmp;
         }
+
+        public static Replica ReadLineGuidaTv(string line)
+        {
+            dynamic data = JsonConvert.DeserializeObject(line);
+
+            return new Replica(data.date, data.start_time, data.end_time);
+        }
     }
 }

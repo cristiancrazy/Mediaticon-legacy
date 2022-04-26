@@ -1,0 +1,14 @@
+{
+  "App Config File": "./config/appconfig.json",
+  "Time Plan File": "./config/plan.json",
+
+  "App Folder": "./pyexe",
+  "Output Folder": "./output",
+  "Log Folder": "./logs",
+
+  "FTP Service": true,
+  "FTP Server": "LINK_TO_SERVER_MUST_BE_SET_HERE",
+  "FTP Port": 21,
+  "FTP Username": "USERNAME_MUST_BE_SET_HERE",
+  "FTP Password": "PASSWORD_MUST_BE_SET_HERE"
+}

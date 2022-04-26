@@ -34,13 +34,15 @@ namespace MediaticonDB
         public static string CsvfileExt = ".csv";
 
         //guidatv csv path
-        public static string GuidaTvCsvPath = Path.Combine(CsvPath, ContentType.GuidaTvCsv) + "\\";
+        public static string GuidaTvCsvPath = Path.Combine(JsonVar.JsonPath, ContentType.GuidaTvCsv) + "\\";
 
         public class JsonVar
         {
             public static string JsonfromUrl = SiteUrl + "json/";
             public static string JsonPath = @".\json\";
             public static string JsonfileExt = ".json";
+
+            public static string GuidaTvJsonPath = Path.Combine(JsonPath, ContentType.GuidaTvCsv) + "\\";
         }
 
         //scraper path

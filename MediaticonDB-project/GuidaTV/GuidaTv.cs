@@ -27,6 +27,7 @@ namespace MediaticonDB
 
         static string scraper = EnviromentVar.ScraperVar.ScraperPath + "programmazioneTV_scraping" + EnviromentVar.ScraperVar.PythonExt;
         static string csvsToRead = EnviromentVar.GuidaTvCsvPath;
+        static string jsonsToread = EnviromentVar.JsonVar.GuidaTvJsonPath;
 
         public static bool ReadAll(out List<Channel> canali, string ShowName)
         {
@@ -44,7 +45,7 @@ namespace MediaticonDB
 
             //if the scraper has run, read all csv files
             //foreach csv read all line
-            if (!readCSVs(out canali))
+            if (!readJSONs(out canali))
             {
                 DeleteAll();
                 return false;
@@ -57,7 +58,7 @@ namespace MediaticonDB
             return true;
         }
 
-        private static bool readCSVs(out List<Channel> output)
+        private static bool readCSVs(out List<Channel> output) //deve leggere json
         {
             output = new List<Channel>(); //the output
             try
@@ -76,7 +77,7 @@ namespace MediaticonDB
                             if ((buffer = sr.ReadLine()) != null)
                             {
                                 //the first line contains the path of channel logo
-                                imageLink = buffer;
+                                imageLink = buffer; //deve prendere da file
                             }
 
                             while ((buffer = sr.ReadLine()) != null)
@@ -98,6 +99,45 @@ namespace MediaticonDB
                 return false;
             }
             return true;
+        }
+
+        private static bool readJSONs(out List<Channel> output)
+        {
+            output = new List<Channel>();
+
+            try
+            {
+                foreach(var file in Directory.GetFiles(jsonsToread))
+                {
+                    List<Replica> repliche = new List<Replica>();
+                    string imagePath = EnviromentVar.ImagesVar.ChannelLogoPath + file + EnviromentVar.ImagesVar.ImgfileExt;
+
+                    try
+                    {
+                        using (StringReader sr = new StringReader(file))
+                        {
+                            string buffer = "";
+
+                            while ((buffer = sr.ReadLine()) != null)
+                            {
+                                repliche.Add(JsonReader.ReadLineGuidaTv(buffer));
+                            }
+                            
+                        }
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
+                    output.Add(new Channel(imagePath, repliche));
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
         }
 
         private static bool DeleteAll()

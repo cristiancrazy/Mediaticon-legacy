@@ -28,16 +28,15 @@ namespace MediaticonDB
 
     public class Channel
     {
-        public string link;
+        public string path;
         public Bitmap image;
         public List<Replica> programmi;
 
-        public Channel(string link, List<Replica> programmi)
+        public Channel(string path, List<Replica> programmi)
         {
-            this.link = link;
+            this.path = path;
 
-            if(!Connection.DownloadImage(link, out this.image))//download the image
-                throw new MediaticonException.ConnectingDBException();
+            Connection.openImage(path, out this.image);
 
             this.programmi = programmi;
         }

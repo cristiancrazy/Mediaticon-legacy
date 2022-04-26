@@ -1,0 +1,14 @@
+[
+  {
+    "App Name": "movies_scraping.py",
+    "Params": ["-y", "@YEAR", "-p", "@OUTPUT/Film/Film_@YEAR.json"]
+  },
+  {
+    "App Name": "TVseries_scraping.py",
+    "Params": ["-y", "@YEAR", "-p", "@OUTPUT/Serie/Serie_@YEAR.json"]
+  },
+  {
+    "App Name": "anime_scraping.py",
+    "Params": ["-y", "@YEAR", "-p", "@OUTPUT/Anime/Anime_@YEAR.json"]
+  }
+]
