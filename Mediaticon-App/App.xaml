@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Mediaticon"
-             StartupUri="login.xaml">
+             StartupUri="mylist.xaml">
     <Application.Resources>
 
         <!-- Edit the combo-->
@@ -337,6 +337,15 @@
                 </Trigger>
             </Style.Triggers>
 
+        </Style>
+        <!-- Style to avoid disable button -->
+
+        <Style TargetType="Button" x:Key="ImgBtn" >
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#00000000"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- Stop edit the buttons -->

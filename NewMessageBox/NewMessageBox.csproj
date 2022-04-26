@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="mediaticon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="mediaticon.png" />
   </ItemGroup>
 
 </Project>

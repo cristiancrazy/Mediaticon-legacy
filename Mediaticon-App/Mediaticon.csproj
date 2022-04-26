@@ -25,4 +25,8 @@
     <ProjectReference Include="..\MediaticonWorker\MediaticonWorker.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="mediaticon.png" />
+  </ItemGroup>
+
 </Project>

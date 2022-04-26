@@ -1,10 +1,14 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
+    ""
+=======
     "",
     "\\Mediaticon-App",
     "\\MediaticonDB-project",
     "\\MediaticonDB-project\\GuidaTV"
+>>>>>>> 6963698901a5a1cb5bb3f337466f44f958cd8925
   ],
-  "SelectedNode": "\\Mediaticon-App\\MainWindow.xaml.cs",
+  "SelectedNode": "\\Mediaticon.sln",
   "PreviewInSolutionExplorer": false
 }

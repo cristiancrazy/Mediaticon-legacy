@@ -43,7 +43,7 @@ namespace Mediaticon
 		public MainWindow()
 		{
 			InitializeComponent();
-			loadElement();
+			//loadElement();
 
 			/*List<Film> listafilm = new List<Film>();
 
