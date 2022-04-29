@@ -34,7 +34,7 @@ def moviesPageScraping(link: str):
     trama : str = ''
 
     try:
-        response = requests.get(link2)
+        response = requests.get(link)
         response.raise_for_status() # give an error if the page returns an error code
     except:
         raise LinkError
@@ -63,6 +63,7 @@ def moviesPageScraping(link: str):
 def mymovies(_from_year, _to_year, path):
     #GLOBAL VARIABLES
     page = 1
+
     while True:
         #RESET VARIABLES
         page_is_valid = 0
@@ -87,6 +88,8 @@ def mymovies(_from_year, _to_year, path):
         for element in films:
             #RESET VARIABLES
             link2: str = ''
+            image = ''
+            big_image = ''
 
             if element.has_attr('class'):
                 #IMAGE
@@ -128,15 +131,18 @@ def mymovies(_from_year, _to_year, path):
                                     else:
                                         tags.append(tag.text)
                     #############################################################################################################
-
+                    #if an error occurs the film is skipped
                     try:
                         actors_list, trama = moviesPageScraping(link2)
                     except LinkError:
-                        pass
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: LinkError")
+                        continue
                     except ActorsError:
-                        pass
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: ActorsError")
+                        continue
                     except PlotError:
-                        pass
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: PlotError")
+                        continue
                     
                     #############################################################################################################
                     with open(path, 'a') as f:
@@ -151,8 +157,6 @@ def mymovies(_from_year, _to_year, path):
                             'Actors' : actors_list
                         }
                         f.write(json.dumps(_dict) + '\n')
-                    image = ''
-                    big_image = ''
         
         #find end
         if not page_is_valid:
