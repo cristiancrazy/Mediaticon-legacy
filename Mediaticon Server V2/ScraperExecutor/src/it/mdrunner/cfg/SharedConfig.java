@@ -40,8 +40,6 @@ public class SharedConfig {
 	public static String FTPUser;
 	public static String FTPPassword;
 
-	public static Path FTPRootPath;
-
 	// #OUTPUT PRINT METHODS
 	public static void printFiles(){
 		System.out.println("\033[33m" + "Actual configs file:" + "\033[0m");

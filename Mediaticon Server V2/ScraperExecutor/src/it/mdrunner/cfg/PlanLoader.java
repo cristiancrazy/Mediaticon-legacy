@@ -36,7 +36,7 @@ public class PlanLoader {
 
     /** Clear loaded and temporary data - delete everything from collections used - Cancel all scheduled tasks
      *  Kill (and wait termination) all running py processes. - Meanwhile run garbage collector **/
-    public boolean shutdown(){
+    public static boolean shutdown(){
 
         PlanID.clear();
         loadedPlanList.clear();

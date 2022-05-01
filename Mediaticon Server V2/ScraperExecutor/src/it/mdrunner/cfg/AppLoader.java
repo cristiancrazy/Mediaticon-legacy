@@ -229,8 +229,9 @@ public class AppLoader {
 			//Print valid executable
 			System.out.println("\033[32mPython executable found:\033[0m");
 			pyApps.forEach(System.out::println);
-
+			PlanLoader.loadPlan();
 			PlanLoader.start();
+			System.out.println("Loaded plan: " + PlanLoader.loadedPlanList.size());
 
 			PlanLoader.loadedPlanList.forEach(System.out::println);
 
