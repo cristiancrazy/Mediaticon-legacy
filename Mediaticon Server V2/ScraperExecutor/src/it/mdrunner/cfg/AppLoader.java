@@ -12,6 +12,7 @@ package it.mdrunner.cfg;
 
 import org.json.JSONArray;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,6 +37,39 @@ public class AppLoader {
 		Callable<Integer> task = () -> {
 			try{
 				Process ps = checkPy.start();
+
+				//Check python version
+				String version;
+				boolean validVersion = true;
+				try(BufferedReader in = ps.inputReader()) {
+					version = in.readLine();
+				}
+
+				if(version == null) throw new IOException(); //Invalid input
+				int[] ver = Arrays.stream(version.split(" ")[1].split("\\.")).mapToInt(Integer::parseInt).toArray();
+				//Verify first
+				if(ver[0] == Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
+					//Verify second
+					if(ver[1] == Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
+						//Verify third
+						if(ver[2] < Integer.parseInt(SharedConfig.minPython.split("\\.")[2])){
+							validVersion = false;
+						}
+					}else if(ver[1] < Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
+						validVersion = false;
+					}
+				}else if(ver[0] < Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
+					validVersion = false;
+				}
+
+				//Actions
+				if(!validVersion){
+					System.out.println("\033[31mInvalid Python version\033[0m");
+					System.out.println("It requires at least: Python " + SharedConfig.minPython);
+					System.out.println("But the host system has: " + version);
+					return -1; //Invalid
+				}
+
 				ps.waitFor();
 				return(ps.exitValue());
 			}catch (IOException exc){
@@ -116,7 +150,6 @@ public class AppLoader {
 		return true;
 	}
 
-
 	/** Init python apps with the specified year **/
 	private static void setPyAppsArgumentYear(int year){
 
@@ -140,15 +173,12 @@ public class AppLoader {
 	}
 
 	/** Create process builder for a specific python executable -> Set up python processes **/
-	private static boolean initPyPS(String exeName){
-		//Search
+	private static void initPyPS(String exeName){
 		for(File exe : pyApps){
 			if(exe.getName().equals(exeName)&&pyParams.containsKey(exe.getName())){
 				setupPyCommand(exe);
-				return true;
 			}
 		}
-		return false; //Scraper Not found | Error occurred
 	}
 
 	//Init process builder object for python executables
@@ -165,6 +195,7 @@ public class AppLoader {
 	}
 
 	/** Create process builder for all valid python executable -> Set up python processes **/
+	@Deprecated(forRemoval = true)
 	private static boolean initAllPyPS(){
 		for(File exe : pyApps){
 			if(pyParams.containsKey(exe.getName())){ //Check if configuration is provided
@@ -193,14 +224,12 @@ public class AppLoader {
 			System.exit(255); // Missing minimum requirements exit.
 		}
 
-
 		if(getPyApps() && loadPyAppsArgument()){
 
 			//Print valid executable
 			System.out.println("\033[32mPython executable found:\033[0m");
 			pyApps.forEach(System.out::println);
 
-			System.out.println(PlanLoader.loadPlan());
 			PlanLoader.start();
 
 			PlanLoader.loadedPlanList.forEach(System.out::println);

@@ -46,7 +46,7 @@ public class MainExec {
 	// This method will load the application logo. It will be shown on the screen before loading
 	private static void showBrand(String[] params){
 		if(params.length > 3){
-			if(params[2].equals("-l")){ // "-l" Stands for the logo
+			if(params[2].equals("-l")||params[2].equals("/l")){ // "-l" Stands for the logo
 				Path logoPath = new File(params[3]).toPath();
 				if(logoPath.toFile().exists()&&logoPath.toFile().isFile()){
 

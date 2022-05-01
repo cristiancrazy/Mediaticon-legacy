@@ -20,6 +20,9 @@ import java.nio.file.Path;
 public class SharedConfig {
 	// ======[GENERAL APP CONFIGURATION]======
 
+	// #DEPENDENCIES
+	public static final String minPython = "3.7.3";
+
 	// #FILES
 	public static Path ConfigFile; //This is loaded separately and specify where other settings are located
 	public static Path AppConfigFile; //This will be used to specify parameters of scrapers
