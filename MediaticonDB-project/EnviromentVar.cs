@@ -58,6 +58,7 @@ namespace MediaticonDB
             //default path
             public static string defaultPath = @".\Default\";
             public static string defaultImgPath = Path.Combine(defaultPath + "Images\\");
+            public static string defaultCoverPath = Path.Combine(defaultImgPath + "Cover"+ImgfileExt);
             public static string ChannelLogoPath = Path.Combine(defaultImgPath + "Channels\\");
 
             //default imgs
@@ -97,8 +98,8 @@ namespace MediaticonDB
         //Type
         public class ContentType
         {
-            public static string[] Tables = { "Film" };
-            //public static string[] Tables = { "Film", "Serie", "Anime", "Show" };
+            //public static string[] Tables = { "Film" };
+            public static string[] Tables = { "Film", "Serie", "Anime" };//, "Show" };
             public static string GuidaTvCsv = "GuidaTV";
             public static string[]FilmStatus= { "Visto", "Stò Guardando", "Da Guardare"};
         }
