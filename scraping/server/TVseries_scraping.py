@@ -1,135 +1,167 @@
 import requests, bs4, sys, json, ftfy
-from datetime import date
 
-#TODO: check presence of actors
+############################################################
 
-def myTVseries(_from_year, _to_year, path):
-    #YEARS RANGE
-    #_from_year = 1970
-    #_to_year = 1972
+#big_image : str #BigImage
+#image : str #Image
+#name : str #Title
+#trama : str #Description
+#durata : int #Duration
+#anno : int #Year
+#tags : list[str] #Genres
+#actors_list : list[str] #Actors
 
+############################################################
+
+class MainPageError(Exception):
+    pass
+
+class LinkError(Exception):
+    pass
+
+class ActorsError(Exception):
+    pass
+
+class PlotError(Exception):
+    pass
+
+############################################################
+
+def moviesPageScraping(link: str):
+    actors_list : list[str] = []
+    trama : str = ''
+
+    try:
+        response = requests.get(link)
+        response.raise_for_status() # give an error if the page returns an error code
+    except:
+        raise LinkError
+    #-----------------------------------------------------------------------------------------------------#
+    soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    #-----------------------------------------------------------------------------------------------------#
+    try:
+        actors = soup.find('p', {'class' : 'sottotitolo_rec mm-hide-xs mm-show-sm'})
+        actors = actors.find_all('a')
+
+        for actor in actors:
+            if not actor.has_attr('class'):
+                if not ' ' in actor.text:
+                    break
+                actors_list.append(ftfy.fix_text(actor.text))#.encode('ascii', 'ignore').decode())
+    except:
+        raise ActorsError
+    #-----------------------------------------------------------------------------------------------------#
+    try:
+        trama = ftfy.fix_text(soup.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' '))
+    except:
+        raise PlotError
+    
+    return actors_list, trama
+
+def mymovies(_from_year, _to_year, path):
     #GLOBAL VARIABLES
     page = 1
 
-    #CURRENT YEAR
-    today_date = date.today()
-    current_year = int(today_date.year)
+    while True:
+        #RESET VARIABLES
+        page_is_valid = 0
 
-    while _from_year <= _to_year:
-        while True:
+        #GET HTML
+        response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?p={page}')
+        response.raise_for_status() # give an error if the page returns an error code
+
+        #GET ALL FILMS
+        films = bs4.BeautifulSoup(response.text, 'html.parser').find('div', {'class' : 'mm-col sm-7 md-6 lg-6'}).findChildren()
+
+        #INFORMATION EXTRACTED
+        image : str = ''
+        big_image: str = ''
+        name : str = ''
+        trama : str = ''
+        anno : int
+        tags : list[str] = []
+        durata : int = 0
+        actors_list : list[str] = []
+
+        for element in films:
             #RESET VARIABLES
-            page_is_valid = 0
+            link2: str = ''
+            image = ''
+            big_image = ''
 
-            #GET HTML
-            response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?p={page}')
-            response.raise_for_status() # give an error if the page returns an error code
+            if element.has_attr('class'):
+                #IMAGE
+                if 'poster-schedina-div' in element.attrs['class'] and 'mm-left' in element.attrs['class']:
+                    image = element.find('amp-img')['src']
 
-            #PREPARE FOR PARSING
-            soup = bs4.BeautifulSoup(response.text, 'html.parser')
+                elif 'video-player' in element.attrs['class']:
+                    if _big_image := element.find('img'): # if it's found
+                        big_image = _big_image['src']
+                
+                elif 'mm-white' in element.attrs['class'] and 'mm-padding-8' in element.attrs['class']:
+                    page_is_valid = 1 # page is valid
 
-            #GET NEEDED HTML
-            films = soup.find('div', {'class' : 'mm-col sm-7 md-6 lg-6'})
-            films = films.findChildren()
+                    #RESET OF VARIABLES
+                    name = ''
+                    trama = ''
+                    tags = []
+                    anno = 0
+                    actors_list = []
 
-            #INFORMATION EXSTRACTED
-            image : str = ''
-            big_image: str = ''
-            name : str = ''
-            trama : str = ''
-            anno : int
-            tags : list[str] = []
-            durata : int = 0
-            actors_list:list[str] = []
+                    for info in element.findChildren():
+                        if info.has_attr('class'):
+                            #NAME
+                            if 'schedine-titolo' in info.attrs['class']: #name
+                                link2 = info.find('a')['href']
+                                name = ftfy.fix_text(info.text.strip('\n'))
 
-            #CICLE IN PAGE
-            for element in films:
-                #RESET VARIABLES
-                link2: str = ''
-
-                if element.has_attr('class'):
-                    #IMAGE
-                    if 'poster-schedina-div' in element.attrs['class'] and 'mm-left' in element.attrs['class']:
-                        image = element.find('amp-img')['src']
-
-                    elif 'video-player' in element.attrs['class']:
-                        _big_image = element.find('img')
-
-                        if _big_image:
-                            big_image = _big_image['src']
+                            if 'mm-line-height-130' in info.attrs['class'] and 'schedine-lancio' in info.attrs['class']:
+                                el_tags = info.select('a')
+                                #DURATA (if exist)
+                                try:
+                                    durata = int(info.find('strong').text.split(' ')[1])
+                                except:
+                                    durata = 0
+                                #TAGS & YEAR
+                                for tag in el_tags:
+                                    if tag.text.isnumeric():
+                                        anno = int(tag.text)
+                                    else:
+                                        tags.append(tag.text)
+                    #############################################################################################################
+                    #if an error occurs the film is skipped
+                    try:
+                        actors_list, trama = moviesPageScraping(link2)
+                    except LinkError:
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: LinkError")
+                        continue
+                    except ActorsError:
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: ActorsError")
+                        continue
+                    except PlotError:
+                        print(f"<ERROR>\npage: {page}\nName: {name}\ntypeOfError: PlotError")
+                        continue
                     
-                    elif 'mm-white' in element.attrs['class'] and 'mm-padding-8' in element.attrs['class']:
-                        page_is_valid = 1
-                        #RESET OF VARIABLES
-                        name = ''
-                        trama = ''
-                        tags = []
-                        anno = 0
-                        actors_list = []
+                    #############################################################################################################
+                    with open(path, 'a') as f:
+                        _dict  = {
+                            'BigImage' : big_image,
+                            'Image' : image,
+                            'Title' : name,
+                            'Description' : trama,
+                            'Duration' : durata,
+                            'Year' : anno,
+                            'Genres' : tags,
+                            'Actors' : actors_list
+                        }
+                        f.write(json.dumps(_dict) + '\n')
+        
+        #find end
+        if not page_is_valid:
+            page = 1
+            break
 
-                        for info in element.findChildren():
-                            if info.has_attr('class'):
-                                #NAME
-                                if 'schedine-titolo' in info.attrs['class']: #name
-                                    link2 = info.find('a')['href']
-                                    name = ftfy.fix_text(info.text.strip('\n'))
-
-                                if 'mm-line-height-130' in info.attrs['class'] and 'schedine-lancio' in info.attrs['class']:
-                                    el_tags = info.select('a')
-                                    #DURATA (if exist)
-                                    try:
-                                        durata = int(info.find('strong').text.split(' ')[1])
-                                    except:
-                                        durata = 0
-                                    #TAGS & YEAR
-                                    for tag in el_tags:
-                                        if tag.text.isnumeric():
-                                            anno = int(tag.text)
-                                        else:
-                                            tags.append(tag.text)
-                        #############################################################################################################
-
-                        try:
-                            response2 = requests.get(link2)
-                            response2.raise_for_status() # give an error if the page returns an error code
-                        except:
-                            continue
-
-                        soup2 = bs4.BeautifulSoup(response2.text, 'html.parser')
-
-                        actors = soup2.find('p', {'class' : 'sottotitolo_rec mm-hide-xs mm-show-sm'})
-                        actors = actors.find_all('a')
-
-                        for actor in actors:
-                            if not actor.has_attr('class'):
-                                if not ' ' in actor.text:
-                                    break
-                                
-                                actors_list.append(actor.text.encode('ascii', 'ignore').decode())
-                        
-                        trama = ftfy.fix_text(soup2.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' '))
-                        #############################################################################################################
-                        with open(path, 'a') as f:
-                            _dict  = {
-                                'BigImage' : big_image,
-                                'Image' : image,
-                                'Title' : name,
-                                'Description' : trama,
-                                'Duration' : durata,
-                                'Year' : anno,
-                                'Genres' : tags,
-                                'Actors' : actors_list
-                            }
-                            f.write(json.dumps(_dict) + '\n')
-                        image = ''
-                        big_image = ''
-            
-            #find end
-            if not page_is_valid:
-                page = 1
-                break
-
-            page += 1
-        _from_year += 1
+        page += 1
 
 if __name__ == "__main__":
     year : int= 0
@@ -150,5 +182,5 @@ if __name__ == "__main__":
                 print('error in one of the arguments')
                 sys.exit(1)
 
-    myTVseries(year, year, path)
+    mymovies(year, year, path)
     sys.exit(0)
