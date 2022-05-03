@@ -2,6 +2,18 @@ import requests, bs4, time, sys, json, re
 from datetime import date
 from dataclasses import dataclass, field
 
+############################################################
+
+#image : str #Image
+#name : str #Title
+#trama : str #Description
+#episodes : str #Episodes
+#anno : int #Year
+#tags : list[str] #Genres
+#actors_list : list[str] #Actors
+
+############################################################
+
 @dataclass
 class Anime:
     image : str = ''
@@ -16,14 +28,6 @@ class Anime:
         return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.actors_list}'
 
 def myanilist(session, _from_year, _to_year, path):
-    #letters = [ '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    #_from_year = 1970
-    #_to_year = 0
-
-    #CURRENT YEAR
-    today_date = date.today()
-    current_year = int(today_date.year)
-
     page = 0
 
     while True:
@@ -32,13 +36,11 @@ def myanilist(session, _from_year, _to_year, path):
             response = session.get(f'https://myanimelist.net/anime.php?cat=anime&q=&type=0&score=0&status=0&p=0&r=0&sm=0&sd=0&sy={_from_year}&em=0&ed=0&ey={_to_year+1}&c[0]=d&show={page}')
             response.raise_for_status() # give an error if the page returns an error code
         except:
+            print("<ERROR>\nmain link dosen't work")
             break
 
-        #PREPARE FOR PARSING
-        soup = bs4.BeautifulSoup(response.text, 'html.parser')
-
         #GET NEEDED HTML
-        animes = soup.find_all('tr')
+        animes = bs4.BeautifulSoup(response.text, 'html.parser').find_all('tr')
 
         for anime_list in animes:
             anime : Anime = Anime()

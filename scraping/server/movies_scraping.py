@@ -11,8 +11,6 @@ import requests, bs4, sys, json, ftfy
 #tags : list[str] #Genres
 #actors_list : list[str] #Actors
 
-#TODO: do something with different errors
-
 ############################################################
 
 class MainPageError(Exception):
