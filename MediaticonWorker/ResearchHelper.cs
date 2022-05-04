@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,10 +33,37 @@ namespace MediaticonWorker
 			}
 		}
 
-		public static async IEnumerable<Task<Film>> Search()
+		public static async IAsyncEnumerable<string> Search() //To debug
 		{
-			while ()
+			while (true)
+            {
 				//return an element by element found with a yield
+				using(ConnectDB db = new ConnectDB())
+                {
+					foreach (string word in titlesToSearch)
+					{
+						SqlCommand command = db.initQuery($"SELECT * FROM \'{EnviromentVar.ContentType.Tables[((int)EnviromentVar.Modality.CurrentModality)]}\' WHERE \'title\' LIKE \'%{word}%\'");
+						using(SqlDataReader read = command.ExecuteReader())
+                        {
+							while (read.Read())
+                            {
+								foreach(string genre in genreToSearch)
+                                {
+									if (read.GetValue(5).ToString().IndexOf(genre) != -1)
+                                    {
+										string film = "";
+										for (int i = 0; i < read.FieldCount; i++)
+										{
+											film += read.GetValue(i).ToString();
+										}
+										yield return film;
+									}
+								}
+                            }
+                        }
+					}
+				}
+			}
 
 		}
 

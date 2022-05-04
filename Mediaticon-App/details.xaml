@@ -182,14 +182,14 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Height="100" Width="600" Background="Transparent">
-                                            <Image x:Name="imgTxt" Width="100" Height="90" Margin="10"/>
+                                            <Image x:Name="imgTxt" Source="{Binding Path=channelLogo}" Width="100" Height="90" Margin="10"/>
                                             <RichTextBox x:Name="dataTxt" Background="Transparent" VerticalAlignment="Center" MinHeight="10" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="20" Foreground="#FFBCBCBE" Width="150" Focusable="False" IsReadOnly="True">
                                                 <FlowDocument>
                                                     <Paragraph Margin="0">
                                                         <Run Text="Giorno:"/>
                                                     </Paragraph>
                                                     <Paragraph Margin="0,10" Foreground="White">
-                                                        <Run Text="{Binding Path=giorno}"/>
+                                                        <Run Text="{Binding Path=data}"/>
                                                     </Paragraph>
                                                 </FlowDocument>
                                             </RichTextBox>
@@ -199,7 +199,7 @@
                                                         <Run Text="Ora inizio:"/>
                                                     </Paragraph>
                                                     <Paragraph Margin="0,10" Foreground="White">
-                                                        <Run Text="{Binding Path=oraInizio}"/>
+                                                        <Run Text="{Binding Path=orainizio}"/>
                                                     </Paragraph>
                                                 </FlowDocument>
                                             </RichTextBox>
@@ -209,7 +209,7 @@
                                                         <Run Text="Ora fine:"/>
                                                     </Paragraph>
                                                     <Paragraph Margin="0,10" Foreground="White">
-                                                        <Run Text="{Binding Path=oraFine}"/>
+                                                        <Run Text="{Binding Path=orafine}"/>
                                                     </Paragraph>
                                                 </FlowDocument>
                                             </RichTextBox>

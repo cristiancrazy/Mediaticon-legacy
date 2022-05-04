@@ -26,19 +26,6 @@ namespace Mediaticon
     /// </summary>
     /// 
 
-    public class ProgTV
-    {
-        public ProgTV(string icon, DateTime orainizio, DateTime orafine)
-        {
-            giorno = orainizio.ToString("d");
-            oraInizio = orainizio.ToString("HH:mm");
-            oraFine = orafine.ToString("HH:mm");
-        }
-        public string giorno { set; get; }
-        public string oraInizio { set; get; }
-        public string oraFine { set; get; }
-    }
-
     public partial class details : Window
     {
         static Film? opened = null;
@@ -144,19 +131,43 @@ namespace Mediaticon
             }
         }
 
+
         void makeList()
         {
             //provide to get the guidatv
-            List<ProgTV> tVs = new List<ProgTV>();
-            for (int i = 0; i < 10; i++)
+            List<Channel> progTV = new List<Channel>();
+
+            try
             {
-                tVs.Add(new ProgTV("",
-                  new DateTime(year: 1, month: 1, day: 1, hour: 12, minute: 23 + i, second: 0),
-                  new DateTime(year: 1, month: 1, day: 1, hour: 13, minute: 40 + i, second: 0))
-                  );
+                listaTV.Items.Clear();
+                    listaTV.ItemsSource = null;
+            }
+            catch
+            {
+                return;
             }
 
-            listaTV.ItemsSource = tVs;
+            try
+            {
+                if (GuidaTv.ReadAll(out progTV, opened.Title))
+                {
+                    foreach (var pr in progTV)
+                    {
+                        foreach (var re in pr.programmi)
+                        {
+                            listaTV.Items.Add(new ProgramTOShow(pr, re));
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

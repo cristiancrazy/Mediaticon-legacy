@@ -71,6 +71,17 @@ namespace MediaticonDB
             
         }
 
+        public SqlCommand initQuery(string query)
+        {
+            //TODO: make a function to execute query
+            SqlCommand command = new SqlCommand(
+                query,
+                sqlConnection
+            );
+
+            return command;
+        }
+
         public void Append(Film film, string tableName)
         {
             try

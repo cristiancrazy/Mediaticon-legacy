@@ -58,6 +58,7 @@ namespace MediaticonDB
             return true;
         }
 
+        /*
         private static bool readCSVs(out List<Channel> output) //deve leggere json
         {
             output = new List<Channel>(); //the output
@@ -100,7 +101,7 @@ namespace MediaticonDB
             }
             return true;
         }
-
+        */
         private static bool readJSONs(out List<Channel> output)
         {
             output = new List<Channel>();
