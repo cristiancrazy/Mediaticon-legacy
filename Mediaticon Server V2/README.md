@@ -153,6 +153,7 @@ It is a **.json array** formatted file, with the following properties:
 | ID             | Integer            | Is an Identifier Number, and it is used to organize the execution. This number **must be unique**. You can't reuse the same number (maximum single plan: 65.536)        |
 | App Name       | Filename string    | It must specify the name of the scraper application which refers that plan        |
 | Year        | Integer               | It must specify the year which will be scraped for that plan        |
+| To Year     | Integer               | Is an *optional field*, if you set it, it will run multiple year (from "Year" to "To Year") |
 | Start Time         | Formatted string | Specify the time of the day to start that plan. Format: `"HH:mm"` (where *HH* means a value of 0 <-> 24, and *mm* means a value of 0 <-> 126)        |
 | Start Date         | Formatted string | Specify the date to start that plan. Format: `"DD/MM/YYYY"` (where *DD* means a value of 0 <-> 31, and *MM* means a value of 0 <-> 12, and *YYYY* means a value of 0000 <-> the current year)        |
 | Repeat Each        | Formatted string | Specify an amount of time to run repeatedly a scraper. Format: `"TimeAmount TimeUnit"`. Otherwise, if you want to run a scraper a single time, you must specify: `No`.        |
@@ -179,7 +180,7 @@ It is a **.json array** formatted file, with the following properties:
     "Start Time": "17:30",
     "Start Date": "16/04/2022",
     "Repeat Each": "200 Minutes",
-    "MidPath": "public_html\\csv\\Film"
+    "MidPath": "public_html\\json\\Film"
   },
   {
     "ID": 2,
@@ -188,8 +189,18 @@ It is a **.json array** formatted file, with the following properties:
     "Start Time": "23:50",
     "Start Date": "16/04/2022",
     "Repeat Each": "1 Weeks",
-    "MidPath": "public_html/csv/Film"
-  }
+    "MidPath": "public_html/json/Film"
+  },
+  {
+    "ID": 3,
+    "App Name": "movies_scraping.py",
+    "Year": 2000,
+    "To Year": 2004,
+    "Start Time": "17:30",
+    "Start Date": "16/04/2022",
+    "Repeat Each": "No",
+    "MidPath": "public_html\\json\\Film"
+  },
 ]
 ```
 -------------------------------------------------------------------------------------
@@ -203,10 +214,32 @@ To start the server you must type the following command in a compatible terminal
 | Argument | Description |
 |----------|-------------|
 | 1) `-c`     | Is used to specify that the following argument is the config file path |
+| 1) `-ce` (suggested)     | The same for "-c", but it will also enable a minimal CLI Environment |
 | 2) `./config/config.json`     | Path to the config file |
 | 3) `-l`     | Is used to specify that the following argument is the logo file path (optional) |
 | 4) `./config/logo.l`     | Path to the logo file (optional) |
 
 Note: the "logo file" is a properly text file.
+
+-------------------------------------------------------------------------------------
+## **MD SERVER V2.0 - CLI ENVIRONMENT**
+This mode is enabled when a user start the server with "-ce" or "/ce" argument.
+It provides a minimal environment to check plans / configuration / and to shutdown (safely) the server.
+
+**Commands available:**
+| Command  | Description |
+|----------|-------------|
+| clear      | Clear screen |
+| cls        | Clear screen |
+| ?          | Show available commands |
+| help       | Show available commands |
+| shutdown   | It will shut off safely the server program |
+| quit       | It will shut off safely the server program |
+| show plans | To show information about a specific plan (by loaded indexes, not IDs) |
+| ls         | To show information about all plans |
+| show config| It shows information about server configuration (Dirs/FTP/User&Pass) |
+
+Interface example:
+`Runner # <command> `
 
 -------------------------------------------------------------------------------------
