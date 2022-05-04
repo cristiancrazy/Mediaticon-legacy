@@ -1,4 +1,4 @@
-module ScraperExecutor {
+module it.mdrunner {
 	//Requested
 	requires org.apache.commons.net;
 	requires org.json;

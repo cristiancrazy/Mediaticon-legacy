@@ -25,7 +25,6 @@ package it.mdrunner.exec;
 
 import it.mdrunner.cfg.AppLoader;
 import it.mdrunner.cfg.ConfigLoader;
-import it.mdrunner.cfg.PlanLoader;
 import it.mdrunner.cfg.SharedConfig;
 
 import java.io.BufferedReader;
@@ -33,24 +32,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class MainExec {
-
+	//CLI Environment flag
+	private static boolean CLIEnabled = false;
 	public static void main(String[] params) {
 		showBrand(params); //Show brand before initializing the application
 		initApp(params); //Load config, parse params, and print all info
 		AppLoader.initPython(); //Init python executables
 
 		//Execute a minimal CLI environment
-		new Thread(() -> {
-			Scanner scan = new Scanner(System.in);
-			while(true){
-				System.out.print("# ");
-				String command = scan.nextLine();
-				if(command.equals("shutdown")) if(PlanLoader.shutdown()) System.exit(0);
-			}
-		}).start();
+		if(CLIEnabled) CLIEnvironment.CLIThread.start();
 	}
 
 
@@ -80,7 +72,10 @@ public class MainExec {
 	private static void initApp(String[] params){
 		//Params parsing
 		if(params.length > 0){
-			if((params[0].equals("-c")||params[0].equals("/c"))&&(!params[1].isEmpty())){
+			if((params[0].startsWith("-c")||params[0].startsWith("/c"))&&(!params[1].isEmpty())){
+				if(params[0].endsWith("e")){ //Stands for "environment"
+					CLIEnabled = true; //Activate a minimal environment
+				}
 				Path configPath = new File(params[1]).toPath();
 				if(configPath.toFile().exists()&&configPath.toFile().isFile()){
 					System.out.println("Found config. Now, loading settings from configuration file.");

@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -46,21 +45,26 @@ public class AppLoader {
 				}
 
 				if(version == null) throw new IOException(); //Invalid input
-				int[] ver = Arrays.stream(version.split(" ")[1].split("\\.")).mapToInt(Integer::parseInt).toArray();
-				//Verify first
-				if(ver[0] == Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
-					//Verify second
-					if(ver[1] == Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
-						//Verify third
-						if(ver[2] < Integer.parseInt(SharedConfig.minPython.split("\\.")[2])){
+				try{
+					int[] ver = Arrays.stream(version.split(" ")[1].split("\\.")).mapToInt(Integer::parseInt).toArray();
+					//Verify first
+					if(ver[0] == Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
+						//Verify second
+						if(ver[1] == Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
+							//Verify third
+							if(ver[2] < Integer.parseInt(SharedConfig.minPython.split("\\.")[2])){
+								validVersion = false;
+							}
+						}else if(ver[1] < Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
 							validVersion = false;
 						}
-					}else if(ver[1] < Integer.parseInt(SharedConfig.minPython.split("\\.")[1])){
+					}else if(ver[0] < Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
 						validVersion = false;
 					}
-				}else if(ver[0] < Integer.parseInt(SharedConfig.minPython.split("\\.")[0])){
-					validVersion = false;
+				}catch (Exception exc){
+					validVersion = false; //In case of failure
 				}
+
 
 				//Actions
 				if(!validVersion){
@@ -233,8 +237,7 @@ public class AppLoader {
 			PlanLoader.start();
 			System.out.println("Loaded plan: " + PlanLoader.loadedPlanList.size());
 
-			PlanLoader.loadedPlanList.forEach(System.out::println);
-
+			//PlanLoader.loadedPlanList.forEach(System.out::println);
 
 		}else{
 			System.out.println("\033[31mPython executable init error. Exiting!\033[0m");
