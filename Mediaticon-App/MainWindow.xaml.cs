@@ -43,7 +43,7 @@ namespace Mediaticon
 		public MainWindow()
 		{
 			InitializeComponent();
-			//loadElement();
+			loadElement();
 
 			/*List<Film> listafilm = new List<Film>();
 
@@ -96,6 +96,14 @@ namespace Mediaticon
 			Search();
 			//while this return a yield get add element to baselist, load it to screen 
 		}
+
+		private void searchEvent(object sender, SelectionChangedEventArgs e)
+        {
+			//overload for filter list
+			Search();
+        }
+
+
 
 		private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{

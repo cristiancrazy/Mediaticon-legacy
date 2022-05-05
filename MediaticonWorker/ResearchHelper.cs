@@ -42,7 +42,7 @@ namespace MediaticonWorker
                 {
 					foreach (string word in titlesToSearch)
 					{
-						SqlCommand command = db.initQuery($"SELECT * FROM \'{EnviromentVar.ContentType.Tables[((int)EnviromentVar.Modality.CurrentModality)]}\' WHERE \'title\' LIKE \'%{word}%\'");
+						SqlCommand command = db.initQuery($"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'title\' LIKE \'%{word}%\'");
 						using(SqlDataReader read = command.ExecuteReader())
                         {
 							while (read.Read())

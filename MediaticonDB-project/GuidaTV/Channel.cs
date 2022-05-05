@@ -51,9 +51,9 @@ namespace MediaticonDB
         public ProgramTOShow(Channel pr, Replica re)
         {
             this.channelLogo = pr.image; //TOfix convertion bitmap->image
-            this.data = re.data;
-            this.orafine = re.orafine;
-            this.orainizio = re.orainizio;
+            this.data = re.data.ToString("d");
+            this.orafine = re.orafine.ToString("t");
+            this.orainizio = re.orainizio.ToString("t");
         }
     }
 }
