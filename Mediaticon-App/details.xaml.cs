@@ -21,153 +21,173 @@ using System.Windows.Interop;
 
 namespace Mediaticon
 {
-    /// <summary>
-    /// Interaction logic for details.xaml
-    /// </summary>
-    /// 
+	/// <summary>
+	/// Interaction logic for details.xaml
+	/// </summary>
+	/// 
 
-    public partial class details : Window
-    {
-        static Film? opened = null;
+	public partial class details : Window
+	{
+		static Film? opened = null;
 
-        public details()
-        {
-            InitializeComponent();
-        }
+		public details()
+		{
+			InitializeComponent();
+		}
 
-        public details(Film toOpen)
-        {
-            InitializeComponent();
-            setFilm(toOpen);
-            setGUI();
-        }
+		public details(Film toOpen)
+		{
+			InitializeComponent();
+			setFilm(toOpen);
+			setGUI();
+		}
 
-        private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
-        }
+		private void accountBord_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			accountCombo.IsDropDownOpen = !accountCombo.IsDropDownOpen;
+		}
 
-        private void comboClick(object sender, MouseButtonEventArgs e)
-        {
-            seeBtn.IsDropDownOpen = true;
-        }
+		private void comboClick(object sender, MouseButtonEventArgs e)
+		{
+			seeBtn.IsDropDownOpen = true;
+		}
 
-    }
+	}
 
-    public partial class details : Window
-    {
-        void setFilm(Film input)
-        {
-            try
-            {
-                opened = input;
-            }
-            catch
-            {
-                NMSG.Show("Impossibile caricare il contenuto", NMSGtype.Ok);
-                Applicazione.openWindow<MainWindow, details>(Applicazione.CloserType.Close);
-            }
-        }
+	public partial class details : Window
+	{
+		void setFilm(Film input)
+		{
+			try
+			{
+				opened = input;
+			}
+			catch
+			{
+				NMSG.Show("Impossibile caricare il contenuto", NMSGtype.Ok);
+				Applicazione.openWindow<MainWindow, details>(Applicazione.CloserType.Close);
+			}
+		}
 
-        void setGUI()
-        {
-            titleLbl.Content = opened.Title;
-            descBox.Text = opened.Description;
-            attoriBox.Text = "Attori: " + opened.Actors.ListToString();
-            durataBox.Text = opened.Duration + " minuti";
-            annoBox.Text = opened.Year.ToString();
-            genereBox.Text = opened.Genres.ListToString();
-            tipoBox.Text = EnviromentVar.Modality.CurrentModality.ToString();
+		void setGUI()
+		{
+			titleLbl.Content = opened.Title;
+			descBox.Text = opened.Description;
+			attoriBox.Text = "Attori: " + opened.Actors.ListToString();
+			durataBox.Text = opened.Duration + " minuti";
+			annoBox.Text = opened.Year.ToString();
+			genereBox.Text = opened.Genres.ListToString();
+			tipoBox.Text = EnviromentVar.Modality.CurrentModality.ToString();
 
-            setCover(opened.Cover);
-            setBackground(opened.BigImage);
+			setCover(opened.Cover);
+			setBackground(opened.BigImage);
 
-            makeList();
-        }
+			makeList();
+		}
 
-        void setCover(Bitmap bitmap)
-        {
-            try
-            {
-                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
-                                                                               IntPtr.Zero,
-                                                                               Int32Rect.Empty,
-                                                                               BitmapSizeOptions.FromEmptyOptions()
-                );
-                bitmap.Dispose();
-                coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
-            }
-            catch
-            {
+		void setCover(Bitmap bitmap)
+		{
+			try
+			{
+				var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
+																			   IntPtr.Zero,
+																			   Int32Rect.Empty,
+																			   BitmapSizeOptions.FromEmptyOptions()
+				);
+				bitmap.Dispose();
+				coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
+			}
+			catch
+			{
+				try
+				{
+					Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out bitmap);
+					var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
+																			   IntPtr.Zero,
+																			   Int32Rect.Empty,
+																			   BitmapSizeOptions.FromEmptyOptions()
+					);
+					bitmap.Dispose();
+					coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
+				}
+				catch
+				{
+					bitmap = Connection.generateBitmap(420, 600, System.Drawing.Color.Transparent);
+					var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
+																			   IntPtr.Zero,
+																			   Int32Rect.Empty,
+																			   BitmapSizeOptions.FromEmptyOptions()
+					);
+					bitmap.Dispose();
+					coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
+				}
+			}
+		}
 
-                Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out bitmap);
-                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
-                                                                           IntPtr.Zero,
-                                                                           Int32Rect.Empty,
-                                                                           BitmapSizeOptions.FromEmptyOptions()
-                );
-                bitmap.Dispose();
-                coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
-            }
-        }
-
-        void setBackground(string url)
-        {
-            Bitmap bitmap;
-            try
-            {
-                Connection.DownloadImage(url, out bitmap);
-                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
-                                                                                IntPtr.Zero,
-                                                                                Int32Rect.Empty,
-                                                                                BitmapSizeOptions.FromEmptyOptions()
-                );
-                bitmap.Dispose();
-                bkgImg.ImageSource = new ImageBrush(bitmapSource).ImageSource;
-            }
-            catch
-            {
-                return;
-            }
-        }
+		void setBackground(string url)
+		{
+			Bitmap bitmap;
+			try
+			{
+				Connection.DownloadImage(url, out bitmap);
+				var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
+																				IntPtr.Zero,
+																				Int32Rect.Empty,
+																				BitmapSizeOptions.FromEmptyOptions()
+				);
+				bitmap.Dispose();
+				bkgImg.ImageSource = new ImageBrush(bitmapSource).ImageSource;
+			}
+			catch
+			{
+				bitmap = Connection.generateBitmap(420, 600, System.Drawing.Color.Transparent);
+				var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
+																		   IntPtr.Zero,
+																		   Int32Rect.Empty,
+																		   BitmapSizeOptions.FromEmptyOptions()
+				);
+				bitmap.Dispose();
+				coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
+			}
+		}
 
 
-        void makeList()
-        {
-            //provide to get the guidatv
-            List<Channel> progTV = new List<Channel>();
+		void makeList()
+		{
+			//provide to get the guidatv
+			List<Channel> progTV = new List<Channel>();
 
-            try
-            {
-                listaTV.Items.Clear();
-                    listaTV.ItemsSource = null;
-            }
-            catch
-            {
-                return;
-            }
+			try
+			{
+				listaTV.Items.Clear();
+					listaTV.ItemsSource = null;
+			}
+			catch
+			{
+				return;
+			}
 
-            try
-            {
-                if (GuidaTv.ReadAll(out progTV, opened.Title))
-                {
-                    foreach (var pr in progTV)
-                    {
-                        foreach (var re in pr.programmi)
-                        {
-                            listaTV.Items.Add(new ProgramTOShow(pr, re));
-                        }
-                    }
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch
-            {
-                return;
-            }
-        }
-    }
+			try
+			{
+				if (GuidaTv.ReadAll(out progTV, opened.Title))
+				{
+					foreach (var pr in progTV)
+					{
+						foreach (var re in pr.programmi)
+						{
+							listaTV.Items.Add(new ProgramTOShow(pr, re));
+						}
+					}
+				}
+				else
+				{
+					return;
+				}
+			}
+			catch
+			{
+				return;
+			}
+		}
+	}
 }

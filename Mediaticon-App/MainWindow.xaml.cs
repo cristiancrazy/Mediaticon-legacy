@@ -104,7 +104,6 @@ namespace Mediaticon
         }
 
 
-
 		private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			//when user click on accountCombo item

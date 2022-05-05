@@ -109,7 +109,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Height="90" Width="600" >
-                            <Image x:Name="ListPic" Source="{Binding Cover}" Width="50" Height="70" Margin="10,0,10,0"/>
+                            <Image x:Name="ListPic" Source="{Binding CoverSource}" Width="50" Height="70" Margin="10,0,10,0"/>
                             <StackPanel Orientation="Vertical" Width="458">
                                 <Label x:Name="ListTitle" Content="{Binding Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
                                 <TextBlock x:Name="ListDescr" Text="{Binding Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>
