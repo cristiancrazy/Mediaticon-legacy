@@ -22,7 +22,7 @@ namespace MediaticonWorker
 			///<summary>
 			///this func set the search words in properly lists
 			///</summary>
-			titlesToSearch = title.Split(new char[] {' ', ',', ';', ':', '.', '-'}, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+			titlesToSearch = title.Split(new char[] {' ', ',', ';', ':', '.', '-', '\'', '&', '/', '_'}, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
 
 			genreToSearch.Clear();
 			//add filter items in adeguate list
@@ -33,7 +33,7 @@ namespace MediaticonWorker
 			}
 		}
 
-		public static async IAsyncEnumerable<string> Search() //To debug
+		public static async IAsyncEnumerable<Film> Search() //To debug
 		{
 			while (true)
             {

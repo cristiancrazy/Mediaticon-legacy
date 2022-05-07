@@ -6,6 +6,10 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Interop;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace MediaticonDB
 {
@@ -25,6 +29,7 @@ namespace MediaticonDB
 
 
         public Bitmap Cover; //nullable
+        public ImageSource CoverSource;
 
 
         public Film(string BigImage, string Image, string Title, string Description,
@@ -38,6 +43,7 @@ namespace MediaticonDB
             this.Year = new DateTime(Year.Year, 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
+            this.Cover = LoadCover();
         }
 
         //overload where Year is a string
@@ -52,6 +58,8 @@ namespace MediaticonDB
             this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
+            this.Cover = LoadCover();
+
         }
 
         //overload where Year && genres && actors are a string
@@ -66,6 +74,7 @@ namespace MediaticonDB
             this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
             this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
+            this.Cover = LoadCover();
         }
 
         [JsonConstructor]
@@ -80,6 +89,34 @@ namespace MediaticonDB
             this.Year = new DateTime(Year, 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
+            this.Cover = LoadCover();
+        }
+
+        public Bitmap LoadCover()
+        {
+            //automatic load cover when Film() construction is called
+            Bitmap cover;
+            if (Connection.DownloadImage(this.Image, out cover)) { }
+            else
+            {
+                try
+                {
+                    Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out cover);
+                    
+                }
+                catch
+                {
+                    cover = Connection.generateBitmap(420, 600, System.Drawing.Color.Transparent);
+                }
+            }
+            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(cover.GetHbitmap(),
+                                                                                IntPtr.Zero,
+                                                                                Int32Rect.Empty,
+                                                                                BitmapSizeOptions.FromEmptyOptions()
+                );
+            cover.Dispose();
+            this.CoverSource = new ImageBrush(bitmapSource).ImageSource;
+            return cover;
         }
 
         public Film RetToSQL()

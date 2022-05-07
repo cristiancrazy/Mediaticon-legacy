@@ -81,10 +81,12 @@ namespace MediaticonWorker
 						//add film in list
 						loadedFilmList.Add(conn.Read(line, EnviromentVar.Modality.CurrentModality.ToString()));
 
-						//set the cover of film
-						Bitmap cover;
+						//set the cover of film [REPLACED: with load automatic cover when Film()]
+						/*
+						 Bitmap cover;
 						if (Connection.DownloadImage(loadedFilmList.Last().Image,out cover))
 							loadedFilmList.Last().Cover = cover;
+						*/
 
 						//decrement reading line
 						line--;
