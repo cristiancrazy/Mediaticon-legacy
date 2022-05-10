@@ -169,5 +169,7 @@ namespace MediaticonDB
 
             return output;
         }
+
+        //public static IAsyncEnumerable<T> GetEnumerator<T>(this IAsyncEnumerable<T> enumerable) => enumerable;
     }
 }

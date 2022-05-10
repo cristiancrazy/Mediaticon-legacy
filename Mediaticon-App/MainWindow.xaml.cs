@@ -103,6 +103,10 @@ namespace Mediaticon
 			Search();
         }
 
+		private void listBox_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+
+        }
 
 		private void accountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -161,10 +165,10 @@ namespace Mediaticon
 		private async void doSearch()
         {
 			//this function run in another task
-			await Dispatcher.BeginInvoke(new Action(() => { //i'm not sure that this await is correct
+			 await Dispatcher.BeginInvoke(new Action(() => { //i'm not sure that this await is correct
 				foreach (var film in ResearchHelper.Search())
 				{
-					basedList.Add(film.Result);
+					basedList.Add(film);
 					showElement();
 				}
 			}));

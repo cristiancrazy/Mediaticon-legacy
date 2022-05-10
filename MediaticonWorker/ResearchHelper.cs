@@ -33,10 +33,11 @@ namespace MediaticonWorker
 			}
 		}
 
-		public static async IAsyncEnumerable<Film> Search() //To debug
-		{
-			while (true)
-			{
+		
+		
+
+		public static IEnumerable<Film> Search() //To debug
+		{			
 				//return an element by element found with a yield
 				using (ConnectDB db = new ConnectDB())
 				{
@@ -119,7 +120,7 @@ namespace MediaticonWorker
 					}
 					*/
 				}
-			}
+			
 
 		}
 
