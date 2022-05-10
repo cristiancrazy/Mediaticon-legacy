@@ -36,21 +36,62 @@ namespace MediaticonWorker
 		public static async IAsyncEnumerable<Film> Search() //To debug
 		{
 			while (true)
-            {
+			{
 				//return an element by element found with a yield
-				using(ConnectDB db = new ConnectDB())
-                {
+				using (ConnectDB db = new ConnectDB())
+				{
+					string query = "";
+
+					if (titlesToSearch.Any() != true) //if it's empty or not allocated
+					{
+						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Generi\' LIKE \'%{genreToSearch[0]}%\'";
+						foreach (string word in genreToSearch.Skip(1))
+                        {
+							query += $" AND \'Generi\' LIKE \'%{word}%\'";
+                        }
+                    }
+					else if (genreToSearch.Any() != true) //if it's empty or not allocated
+					{
+						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						foreach (string word in titlesToSearch.Skip(1))
+						{
+							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
+						}
+					}
+					else
+                    {
+						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						foreach (string word in titlesToSearch.Skip(1))
+                        {
+							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
+                        }
+						foreach (string word in genreToSearch)
+                        {
+							query += $" AND \'Generi\' LIKE \'%{word}%\'";
+                        }
+					}
+
+					using (SqlDataReader read = db.initQuery(query).ExecuteReader())
+                    {
+
+                    }
+
+					/*
 					foreach (string word in titlesToSearch)
 					{
+						//"SELECt * FROM 'anime' WHERE 'title' LIKE '%ciao%' AND 'title' LIKE '%spagna%'";
+						//"SELECT TOP 1 * FROM {table} ORDER BY ID DESC WHERE 'title' LIKE '%ciao%' AND 'title' LIKE '%spagna%'"
+
+						SqlCommand command2 = db.initQuery($"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'genres\' LIKE {}");
 						SqlCommand command = db.initQuery($"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'title\' LIKE \'%{word}%\'");
 						using(SqlDataReader read = command.ExecuteReader())
-                        {
+						{
 							while (read.Read())
-                            {
+							{
 								foreach(string genre in genreToSearch)
-                                {
+								{
 									if (read.GetValue(5).ToString().IndexOf(genre) != -1)
-                                    {
+									{
 										string film = "";
 										for (int i = 0; i < read.FieldCount; i++)
 										{
@@ -59,9 +100,10 @@ namespace MediaticonWorker
 										yield return film;
 									}
 								}
-                            }
-                        }
+							}
+						}
 					}
+					*/
 				}
 			}
 
