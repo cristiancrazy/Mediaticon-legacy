@@ -134,7 +134,8 @@ function DownloadPython3 {
         ("ARM64") {
             #Architecture ARM
             try{
-                Invoke-WebRequest https://www.python.org/ftp/python/3.11.0/python-3.11.0a5-arm64.exe -OutFile "py3-arm64.exe"
+                Invoke-WebRequest https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -OutFile "py3-arm64.exe"
+                # (disabled for compatibility reasons) Invoke-WebRequest https://www.python.org/ftp/python/3.11.0/python-3.11.0a5-arm64.exe -OutFile "py3-arm64.exe"
             }catch{
                 Write-Output "Error while downloading Python 3"
                 exit 1
@@ -214,7 +215,7 @@ function InstallWTerminal{
 
 # ==== [Patch Python3 path ] ====
 function pyPatch{
-    # Copy python.exe to python3.exe
+    # Copy python.exe to python3.exe (compatibility reasons);
     
     # WARN: Installation version!!!
     Copy-Item "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python39\python.exe" "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python39\python3.exe"
@@ -229,7 +230,7 @@ function pyPatch{
 
 #===============[Script]================
 
-# Admin required to continue
+# Admin required to continue (use the hash between the Requires)
 #Requires -RunAsAdministrator
 
 # Welcome msg
@@ -249,7 +250,7 @@ Start-Sleep 5
 
 # Download and Install Python 3
 DownloadPython3
-InstallPython3 #>
+InstallPython3
 
 # Install Windows Terminal
 InstallWTerminal
