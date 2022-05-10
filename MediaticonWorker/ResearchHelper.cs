@@ -44,7 +44,7 @@ namespace MediaticonWorker
 
 					if (titlesToSearch.Any() != true) //if it's empty or not allocated
 					{
-						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Generi\' LIKE \'%{genreToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Generi\' LIKE \'%{genreToSearch[0]}%\'";
 						foreach (string word in genreToSearch.Skip(1))
                         {
 							query += $" AND \'Generi\' LIKE \'%{word}%\'";
@@ -52,7 +52,7 @@ namespace MediaticonWorker
                     }
 					else if (genreToSearch.Any() != true) //if it's empty or not allocated
 					{
-						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
 						{
 							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
@@ -60,7 +60,7 @@ namespace MediaticonWorker
 					}
 					else
                     {
-						query = $"SELECT * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
                         {
 							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
@@ -73,7 +73,21 @@ namespace MediaticonWorker
 
 					using (SqlDataReader read = db.initQuery(query).ExecuteReader())
                     {
+						while (read.Read())
+                        {
+							Film film = new Film(
+							read[1].ToString(),
+							read[2].ToString(),
+							read[3].ToString(),
+							read[4].ToString(),
+							Convert.ToInt32(read[5]),
+							read[6].ToString(),
+							read[7].ToString(),
+							read[8].ToString()
+							);
 
+							yield return film.RetFromSQL();
+                        }
                     }
 
 					/*
