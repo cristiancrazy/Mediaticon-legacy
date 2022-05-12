@@ -33,7 +33,7 @@ namespace MediaticonDB
 
 
         public Film(string BigImage, string Image, string Title, string Description,
-                    int Duration, DateTime Year, List<string> Genres, List<string> Actors)
+                    int Duration, DateTime Year, List<string> Genres, List<string> Actors, bool loadCover = false)
         {
             this.BigImage = BigImage;
             this.Image = Image;
@@ -43,12 +43,13 @@ namespace MediaticonDB
             this.Year = new DateTime(Year.Year, 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
-            this.Cover = LoadCover();
+            if (loadCover)
+                this.Cover = LoadCover();
         }
 
         //overload where Year is a string
         public Film(string BigImage, string Image, string Title, string Description,
-                    int Duration, string Year, List<string> Genres, List<string> Actors)
+                    int Duration, string Year, List<string> Genres, List<string> Actors, bool loadCover = false)
         {
             this.BigImage = BigImage;
             this.Image = Image;
@@ -58,13 +59,14 @@ namespace MediaticonDB
             this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
-            this.Cover = LoadCover();
+            if (loadCover)
+                this.Cover = LoadCover();
 
         }
 
         //overload where Year && genres && actors are a string
         public Film(string BigImage, string Image, string Title, string Description,
-                    int Duration, string Year, string Genres, string Actors)
+                    int Duration, string Year, string Genres, string Actors, bool loadCover = false)
         {
             this.BigImage = BigImage;
             this.Image = Image;
@@ -74,12 +76,13 @@ namespace MediaticonDB
             this.Year = new DateTime(Int32.Parse(Year), 1, 1);
             this.Genres = Genres.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
             this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
-            this.Cover = LoadCover();
+            if (loadCover)
+                this.Cover = LoadCover();
         }
 
         [JsonConstructor]
         public Film(string BigImage, string Image, string Title, string Description,
-                    int Duration, int Year, List<string> Genres, List<string> Actors)
+                    int Duration, int Year, List<string> Genres, List<string> Actors, bool loadCover = false)
         {
             this.BigImage = BigImage;
             this.Image = Image;
@@ -89,7 +92,8 @@ namespace MediaticonDB
             this.Year = new DateTime(Year, 1, 1);
             this.Genres = Genres;
             this.Actors = Actors;
-            this.Cover = LoadCover();
+            if (loadCover)
+                this.Cover = LoadCover();
         }
 
         public Bitmap LoadCover()
@@ -102,18 +106,20 @@ namespace MediaticonDB
                 try
                 {
                     Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out cover);
-                    
+
                 }
                 catch
                 {
                     cover = Connection.generateBitmap(420, 600, System.Drawing.Color.Transparent);
                 }
             }
+
             var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(cover.GetHbitmap(),
                                                                                 IntPtr.Zero,
                                                                                 Int32Rect.Empty,
                                                                                 BitmapSizeOptions.FromEmptyOptions()
                 );
+
             cover.Dispose();
             this.CoverSource = new ImageBrush(bitmapSource).ImageSource;
             return cover;
@@ -131,8 +137,8 @@ namespace MediaticonDB
             output.Description = this.Description.Replace('\'', 'Ø');
             output.Duration = this.Duration;
             output.Year = this.Year;
-            output.Genres = this.Genres.Select(a => a.Replace('\'','Ø')).ToList();
-            output.Actors = this.Actors.Select(a => a.Replace('\'','Ø')).ToList();
+            output.Genres = this.Genres.Select(a => a.Replace('\'', 'Ø')).ToList();
+            output.Actors = this.Actors.Select(a => a.Replace('\'', 'Ø')).ToList();
 
             return output;
         }

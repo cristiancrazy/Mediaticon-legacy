@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Mediaticon-App",
-    "\\MediaticonDB-project"
+    "\\MediaticonDB-project",
+    "\\NewMessageBox"
   ],
-  "SelectedNode": "\\Mediaticon-App\\Mediaticon.sln",
+  "SelectedNode": "\\NewMessageBox\\NewMessageBox.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
