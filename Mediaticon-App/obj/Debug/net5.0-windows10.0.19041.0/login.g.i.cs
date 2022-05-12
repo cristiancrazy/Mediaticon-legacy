@@ -79,7 +79,7 @@ namespace Mediaticon {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Mediaticon;V1.0.0.0;component/login.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Mediaticon;component/login.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\login.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

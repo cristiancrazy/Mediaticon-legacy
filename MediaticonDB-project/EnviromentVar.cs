@@ -122,7 +122,7 @@ namespace MediaticonDB
 
         public static string TimeFormat = "HH-mm";
 
-        public static DateTime MinDate = new DateTime(2001, 1, 1);
+        public static DateTime MinDate = new DateTime(1970, 1, 1);
         
 
         public static Func<string,string,string> CsvPathCombine = (type, year) =>

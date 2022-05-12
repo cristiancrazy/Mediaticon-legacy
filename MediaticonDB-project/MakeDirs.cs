@@ -14,7 +14,7 @@ namespace MediaticonDB
             if (!DefaultFolders())
                 return false;
 
-            if (!CsvFolders())
+            if (!JsonFolders())
                 return false;
 
             if (!DataFolders())
@@ -66,16 +66,16 @@ namespace MediaticonDB
             return true;
         }
 
-        private static bool CsvFolders()
+        private static bool JsonFolders()
         {
             try
             {
                 foreach(var dir in EnviromentVar.ContentType.Tables)
                 {
-                    Directory.CreateDirectory(Path.Combine(EnviromentVar.CsvPath, dir));
+                    Directory.CreateDirectory(Path.Combine(EnviromentVar.JsonVar.JsonPath, dir));
                 }
 
-                Directory.CreateDirectory(EnviromentVar.GuidaTvCsvPath);
+                Directory.CreateDirectory(EnviromentVar.JsonVar.GuidaTvJsonPath);
             }
             catch
             {

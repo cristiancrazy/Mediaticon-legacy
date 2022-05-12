@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Mediaticon-App"
+    "\\Mediaticon-App",
+    "\\MediaticonDB-project"
   ],
-  "SelectedNode": "\\Mediaticon-App\\MainWindow.xaml.cs",
+  "SelectedNode": "\\Mediaticon-App\\Mediaticon.sln",
   "PreviewInSolutionExplorer": false
 }
