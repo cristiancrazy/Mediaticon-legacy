@@ -11,18 +11,37 @@ from dataclasses import dataclass, field
 #anno : int #Year
 #tags : list[str] #Genres
 #actors_list : list[str] #Actors
+#-----------------------------------------------------#
+#big_image : str #BigImage
+#image : str #Image
+#name : str #Title
+#trama : str #Description
+#durata : int #Duration
+#anno : int #Year
+#tags : list[str] #Genres
+#actors_list : list[str] #Actors
+#-----------------------------------------------------#
+#'BigImage' : big_image,
+#'Image' : image,
+#'Title' : name,
+#'Description' : trama,
+#'Duration' : durata,
+#'Year' : anno,
+#'Genres' : tags,
+#'Actors' : actors_list
 
 ############################################################
 
 @dataclass
 class Anime:
-    image : str = ''
-    name : str = ''
-    trama : str = ''
-    episodes : str = ''
-    anno : str = ''
-    tags : list[str] = field(default_factory=list)
-    actors_list : list[str] = field(default_factory=list)
+    BigImage : str = ''
+    Image : str = ''
+    Title : str = ''
+    Description : str = ''
+    Duration : str = ''
+    Year : str = ''
+    Genres : list[str] = field(default_factory=list)
+    Actors : list[str] = field(default_factory=list)
 
     def __str__(self):
         return f'{self.image};{self.name};{self.trama};{self.episodes};{self.anno};{self.tags};{self.actors_list}'
@@ -44,12 +63,12 @@ def myanilist(session, _from_year, _to_year, path):
 
         for anime_list in animes:
             anime : Anime = Anime()
-            anime.anno = 2020
+            anime.Year = 2020
             
             if(header := anime_list.find('div', {'class' : 'title'})):
                 if(title := header.find('strong')):
                     #TITLE
-                    anime.name = title.text
+                    anime.Title = title.text
                 
                 #enter anime page
                 if(link := header.find('a')['href']):
@@ -64,27 +83,30 @@ def myanilist(session, _from_year, _to_year, path):
                     
                     #IMAGE
                     if(image := lateral_bar.find('img')):
-                        anime.image = image['data-src']
+                        anime.Image = image['data-src']
 
                     menu_info = soup.find_all('div', {'class' : 'spaceit_pad'})
                     for info in menu_info:
                         #NUMBER OF APISODES
                         if('Episodes' in info.text):
-                            anime.episodes = info.text.split(':')[1].strip()
+                            try:
+                                anime.Duration = int(info.text.split(':')[1].strip())
+                            except:
+                                anime.Duration = -1
                         #TAGS
                         elif('Genres' in info.text or 'Genre' in info.text):
                             for genre in info.find_all('a'):
-                                anime.tags.append(genre.text)
+                                anime.Genres.append(genre.text)
                     
                     #TRAMA
-                    anime.trama = soup.find('p', {'itemprop' : 'description'}).text.strip().replace(';', '§').replace('\n', ' ')
+                    anime.Description = soup.find('p', {'itemprop' : 'description'}).text.strip().replace(';', '§').replace('\n', ' ')
 
                     #ACTORS
                     if(actors_list := soup.find('div', {'class' : 'detail-characters-list'})):
                         actors_list = actors_list.find_all('h3', {'class' : 'h3_characters_voice_actors'})
 
                         for actor in actors_list:
-                            anime.actors_list.append(actor.text.strip())
+                            anime.Actors.append(actor.text.strip())
 
                     with open(path, 'a', encoding="utf-8") as f:
                         f.write(json.dumps(anime.__dict__))

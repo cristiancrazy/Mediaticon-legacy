@@ -67,7 +67,7 @@ def mymovies(_from_year, _to_year, path):
         page_is_valid = 0
 
         #GET HTML
-        response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?p={page}')
+        response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?orderby=release&p={page}')
         response.raise_for_status() # give an error if the page returns an error code
 
         #GET ALL FILMS
