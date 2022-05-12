@@ -38,7 +38,7 @@ class Anime:
     Image : str = ''
     Title : str = ''
     Description : str = ''
-    Duration : str = ''
+    Duration : int = ''
     Year : str = ''
     Genres : list[str] = field(default_factory=list)
     Actors : list[str] = field(default_factory=list)
