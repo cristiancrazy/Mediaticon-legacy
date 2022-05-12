@@ -86,8 +86,6 @@ def mymovies(_from_year, _to_year, path):
         for element in films:
             #RESET VARIABLES
             link2: str = ''
-            image = ''
-            big_image = ''
 
             if element.has_attr('class'):
                 #IMAGE
@@ -155,6 +153,8 @@ def mymovies(_from_year, _to_year, path):
                             'Actors' : actors_list
                         }
                         f.write(json.dumps(_dict) + '\n')
+                    image = ''
+                    big_image = ''
         
         #find end
         if not page_is_valid:
