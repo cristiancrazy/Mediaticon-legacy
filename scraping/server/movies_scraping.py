@@ -146,6 +146,13 @@ def mymovies(_from_year, _to_year, path):
                                     else:
                                         tags.append(tag.text)
                     #############################################################################################################
+
+                    titleBlacklist = ["stagione", "serie"]
+
+                    if("stagione" in name.lower() or "serie" in name.lower()):
+                        continue
+
+                    #############################################################################################################
                     #if an error occurs the film is skipped
                     try:
                         actors_list, trama = moviesPageScraping(link2)
