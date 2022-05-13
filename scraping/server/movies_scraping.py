@@ -71,7 +71,7 @@ def moviesPageScraping(link: str):
         raise ActorsError
     #-----------------------------------------------------------------------------------------------------#
     try:
-        trama = ftfy.fix_text(soup.find('p', {'class' : 'corpo'}).get_text(separator=" ").strip().replace('\r', '').replace('\n', ' '))
+        trama = ftfy.fix_text(soup.find('p', {'class' : 'corpo'}).find(text=True, recursive=False).strip().replace('\r', '').replace('\n', ' '))
     except:
         raise PlotError
     
