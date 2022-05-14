@@ -72,12 +72,17 @@ public class MainExec {
 	private static void initApp(String[] params){
 		//Params parsing
 		if(params.length > 0){
-			if((params[0].startsWith("-c")||params[0].startsWith("/c"))&&(!params[1].isEmpty())){
-				if(params[0].endsWith("e")){ //Stands for "environment"
+			if (params[0].equals("-g")) {
+				PlanGenerator.generatePlan(params);
+				System.exit(0);
+			}
+
+			if ((params[0].startsWith("-c") || params[0].startsWith("/c")) && (!params[1].isEmpty())) {
+				if (params[0].endsWith("e")) { //Stands for "environment"
 					CLIEnabled = true; //Activate a minimal environment
 				}
 				Path configPath = new File(params[1]).toPath();
-				if(configPath.toFile().exists()&&configPath.toFile().isFile()){
+				if (configPath.toFile().exists() && configPath.toFile().isFile()) {
 					System.out.println("Found config. Now, loading settings from configuration file.");
 					//Set config file to shared configuration
 					SharedConfig.ConfigFile = configPath;
