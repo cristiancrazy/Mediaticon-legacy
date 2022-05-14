@@ -45,18 +45,21 @@ public class PlanLoader {
         PlanID.clear();
         loadedPlanList.clear();
 
-        for(String i : timerExe.keySet()){
+        for (String i : timerExe.keySet()) {
             timerExe.get(i).cancel();
         }
 
         timerExe.clear();
         System.gc();
 
-        for(Process i : RunningPyPS) {
-            try{
+        if (RunningPyPS.size() > 0) {
+            System.out.printf("\u001B[33m Actually running: %s processes\u001B[0m%n", RunningPyPS.size());
+        }
+        for (Process i : RunningPyPS) {
+            try {
                 //Kill and wait termination
-                i.destroyForcibly().waitFor();
-            }catch (Exception exc){
+                i.destroy();
+            } catch (Exception exc) {
                 return false;
             }
         }
