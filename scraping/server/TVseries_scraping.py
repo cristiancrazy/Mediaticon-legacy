@@ -1,4 +1,4 @@
-import requests, bs4, sys, json, ftfy
+import requests, bs4, sys, json, ftfy, os
 
 ############################################################
 
