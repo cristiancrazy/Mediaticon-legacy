@@ -210,14 +210,19 @@ To start the server you must type the following command in a compatible terminal
 
 `java -jar ScraperExecutor.jar -c ./config/config.json -l ./config/logo.l`
 
+To Generate simple timetable/plan:
+
+`java -jar ScraperExecutor.jar -g appname year span_year span_time(mins) remote_path`
+
 **Argument description:**
 | Argument | Description |
 |----------|-------------|
-| 1) `-c`     | Is used to specify that the following argument is the config file path |
-| 1) `-ce` (suggested)     | The same for "-c", but it will also enable a minimal CLI Environment |
-| 2) `./config/config.json`     | Path to the config file |
-| 3) `-l`     | Is used to specify that the following argument is the logo file path (optional) |
-| 4) `./config/logo.l`     | Path to the logo file (optional) |
+| 0) `-g`     | It generate a simple .json timetable file with the specified arguments (increase flexibility) |
+| 1) `-c`     | Is used to specify that the following argument is the config file path                        |
+| 1) `-ce` (suggested)     | The same for "-c", but it will also enable a minimal CLI Environment             |
+| 2) `./config/config.json`     | Path to the config file                                                     |
+| 3) `-l`     | Is used to specify that the following argument is the logo file path (optional)               |
+| 4) `./config/logo.l`     | Path to the logo file (optional)                                                 |
 
 Note: the "logo file" is a properly text file.
 
@@ -229,15 +234,16 @@ It provides a minimal environment to check plans / configuration / and to shutdo
 **Commands available:**
 | Command  | Description |
 |----------|-------------|
-| clear      | Clear screen |
-| cls        | Clear screen |
-| ?          | Show available commands |
-| help       | Show available commands |
-| shutdown   | It will shut off safely the server program |
-| quit       | It will shut off safely the server program |
+| clear      | Clear screen                                                           |
+| cls        | Clear screen                                                           |
+| ?          | Show available commands                                                |
+| help       | Show available commands                                                |
+| shutdown   | It will shut off safely the server program                             |
+| quit       | It will shut off safely the server program                             |
 | show plans | To show information about a specific plan (by loaded indexes, not IDs) |
-| ls         | To show information about all plans |
-| show config| It shows information about server configuration (Dirs/FTP/User&Pass) |
+| ls         | To show information about all plans                                    |
+| show config| It shows information about server configuration (Dirs/FTP/User&Pass)   |
+| ftp test   | Test File Transfer Protocol AUTH/UPLOAD/DOWNLOAD                       |
 
 Interface example:
 `Runner # <command> `
