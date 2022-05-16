@@ -6,7 +6,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:Mediaticon" 
-       
         xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
         mc:Ignorable="d"
         Title="Mediaticon" Height="470" Width="850" MinWidth="850" MinHeight="470">
@@ -67,6 +66,7 @@
         </Style>
     </Window.Resources>
 
+    
     <Grid x:Name="gridBack" Background="#0e0e10">
         <Button x:Name="HomeBtn" HorizontalAlignment="Left" Height="63" Margin="37,4,0,0" Style="{StaticResource ImgBtn}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" BorderBrush="#00707070">
             <Button.Background>
@@ -94,22 +94,22 @@
             </Grid>
         </Border>
         <Border BorderBrush="#5c16c5" BorderThickness="0,0,5,5" Margin="18,93,163,10" CornerRadius="0,0,10,0" Background="#0e0e10" Padding="0,0,0,0">
-            <ListBox x:Name="listaLB" ItemsSource="{Binding}"  Margin="1,3,2,2" BorderBrush="Transparent" FontWeight="Bold" Foreground="#00000000" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" ScrollViewer.ScrollChanged="listBox_ScrollChanged" RenderTransformOrigin="0.5,0.5" >
+            <ListBox x:Name="listaLB" ItemsSource="{Binding basedList}"  Margin="1,3,2,2" BorderBrush="Transparent" FontWeight="Bold" Foreground="#00000000" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listaLB_SelectionChanged" ScrollViewer.ScrollChanged="listBox_ScrollChanged" RenderTransformOrigin="0.5,0.5" >
                 <ListBox.Background>
                     <ImageBrush/>
                 </ListBox.Background>
-                <ListBox.RenderTransform>
+                <!--<ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform AngleY="0.114"/>
                         <RotateTransform/>
                         <TranslateTransform Y="0.488"/>
                     </TransformGroup>
-                </ListBox.RenderTransform>
+                </ListBox.RenderTransform>-->
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Height="90" Width="600" >
-                            <Image x:Name="ListPic" Source="{Binding CoverSource}" Width="50" Height="70" Margin="10,0,10,0"/>
+                            <Image x:Name="ListPic" Source="{Binding Cover}" Width="50" Height="70" Margin="10,0,10,0"/>
                             <StackPanel Orientation="Vertical" Width="458">
                                 <Label x:Name="ListTitle" Content="{Binding Title}" FontWeight="Bold" FontSize="20" Foreground="#FF939393"/>
                                 <TextBlock x:Name="ListDescr" Text="{Binding Description}" Height="53" Foreground="#FFBCBCBE" Padding="5,0,5,0"/>

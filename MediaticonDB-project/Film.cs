@@ -20,8 +20,8 @@ namespace MediaticonDB
     {
         public string BigImage;
         public string Image;
-        public string Title;
-        public string Description;
+        public string Title { get; set; }
+        public string Description { get; set; }
         public int Duration; //minutes
         public DateTime Year;
         public List<string> Genres;
@@ -29,7 +29,14 @@ namespace MediaticonDB
 
 
         public Bitmap Cover; //nullable
-        public ImageSource CoverSource;
+        private Image CoverSource;
+        public Image RetImgSrc
+        {
+            get
+            {
+                return CoverSource;
+            }
+        }
 
 
         public Film(string BigImage, string Image, string Title, string Description,
@@ -105,7 +112,7 @@ namespace MediaticonDB
             {
                 try
                 {
-                    Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out cover);
+                    Connection.openImage(EnviromentVar.ImagesVar.defaultCoverImage, out cover);
 
                 }
                 catch
@@ -114,14 +121,7 @@ namespace MediaticonDB
                 }
             }
 
-            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(cover.GetHbitmap(),
-                                                                                IntPtr.Zero,
-                                                                                Int32Rect.Empty,
-                                                                                BitmapSizeOptions.FromEmptyOptions()
-                );
-
-            cover.Dispose();
-            this.CoverSource = new ImageBrush(bitmapSource).ImageSource;
+            this.CoverSource = cover;
             return cover;
         }
 
@@ -139,6 +139,8 @@ namespace MediaticonDB
             output.Year = this.Year;
             output.Genres = this.Genres.Select(a => a.Replace('\'', 'Ø')).ToList();
             output.Actors = this.Actors.Select(a => a.Replace('\'', 'Ø')).ToList();
+            //output.Cover = this.Cover;
+            //output.CoverSource = this.CoverSource;
 
             return output;
         }
@@ -157,6 +159,8 @@ namespace MediaticonDB
             output.Year = this.Year;
             output.Genres = this.Genres.Select(a => a.Replace('Ø', '\'')).ToList();
             output.Actors = this.Actors.Select(a => a.Replace('Ø', '\'')).ToList();
+            output.Cover = this.Cover;
+            output.CoverSource = this.CoverSource;
 
             return output;
         }
@@ -174,6 +178,19 @@ namespace MediaticonDB
             }
 
             return output;
+        }
+
+        public static string InsertEvery(this string input, string insert, int every)
+        {
+            //insert string every x char
+            int len = input.Length;
+            for (int i =0; i< len; i+=every)
+            {
+                input.Insert(i, insert);
+                len = input.Length;
+                i += insert.Length+1;
+            }
+            return input;
         }
 
         //public static IAsyncEnumerable<T> GetEnumerator<T>(this IAsyncEnumerable<T> enumerable) => enumerable;

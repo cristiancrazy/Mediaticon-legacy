@@ -18,7 +18,7 @@ namespace MediaticonWorker
 		private static object lockObj = new object();
 		public static bool Ready = false;
 
-		
+        [STAThread]
 		public static async void UpdateDB()
 		{
 			lock(lockObj)
@@ -35,6 +35,7 @@ namespace MediaticonWorker
 
 			//when load the last 50 film on loadedFilmList, stop the task, so the calling func get the list<film> to set in listbox
 			await GetFilms(false);
+			return;
 		}
 
 		private static Task<bool> update()
@@ -79,7 +80,7 @@ namespace MediaticonWorker
 					for (int i = 0; i < 50; i++)
 					{
 						//add film in list
-						loadedFilmList.Add(conn.Read(line, EnviromentVar.Modality.CurrentModality.ToString()));
+						loadedFilmList.Add(conn.Read(line, EnviromentVar.Modality.CurrentModality.ToString(), loadCover: true));
 
 						//set the cover of film [REPLACED: with load automatic cover when Film()]
 						/*

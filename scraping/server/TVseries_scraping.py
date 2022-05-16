@@ -27,24 +27,6 @@ class PlotError(Exception):
 
 ############################################################
 
-def writeFile(path, in_str):
-    if(os.path.exists(path)):
-        new_file = path + "_temp"
-        with open(path, 'r') as f_read, open(new_file, 'a') as f_write:
-            f_write.write(in_str + "\n")
-
-            while True:
-                data = f_read.read((1024*1024)*2)
-                if not data:
-                    break
-                f_write.write(data)
-        
-        os.remove(path)
-        os.rename(new_file, path)
-    else:
-        with open(path, 'w') as f_write:
-            f_write.write(in_str)
-
 def moviesPageScraping(link: str):
     actors_list : list[str] = []
     trama : str = ''
@@ -85,7 +67,7 @@ def mymovies(_from_year, _to_year, path):
         page_is_valid = 0
 
         #GET HTML
-        response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?orderby=release&p={page}')
+        response = requests.get(f'https://www.mymovies.it/serietv/{_from_year}/?p={page}')
         response.raise_for_status() # give an error if the page returns an error code
 
         #GET ALL FILMS
@@ -104,6 +86,8 @@ def mymovies(_from_year, _to_year, path):
         for element in films:
             #RESET VARIABLES
             link2: str = ''
+            image = ''
+            big_image = ''
 
             if element.has_attr('class'):
                 #IMAGE
@@ -159,19 +143,18 @@ def mymovies(_from_year, _to_year, path):
                         continue
                     
                     #############################################################################################################
-                    _dict  = {
-                        'BigImage' : big_image,
-                        'Image' : image,
-                        'Title' : name,
-                        'Description' : trama,
-                        'Duration' : durata,
-                        'Year' : anno,
-                        'Genres' : tags,
-                        'Actors' : actors_list
-                    }
-                    writeFile(path, json.dumps(_dict))
-                    image = ''
-                    big_image = ''
+                    with open(path, 'a') as f:
+                        _dict  = {
+                            'BigImage' : big_image,
+                            'Image' : image,
+                            'Title' : name,
+                            'Description' : trama,
+                            'Duration' : durata,
+                            'Year' : anno,
+                            'Genres' : tags,
+                            'Actors' : actors_list
+                        }
+                        f.write(json.dumps(_dict) + '\n')
         
         #find end
         if not page_is_valid:

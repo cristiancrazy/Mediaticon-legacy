@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MediaticonDB-project\MediaticonDB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="mediaticon.png" />
   </ItemGroup>
 

@@ -28,6 +28,13 @@ namespace Mediaticon
 			DBHelper.UpdateDB();
 		}
 
+		public login(bool load = true) //this overlord, sorry overload, is used to open window without loading DB
+		{
+			InitializeComponent();
+			if(load)
+				DBHelper.UpdateDB();
+		}
+
 		//GOT FOCUS ON TEXTBOX
 		private void nameTxt_GotFocus(object sender, RoutedEventArgs e)
 		{
@@ -46,7 +53,7 @@ namespace Mediaticon
 			{
 				if (LoginHelper.LoadUser(nameTxt.Text))
 				{
-					Applicazione.openWindow<MainWindow, login>(Applicazione.CloserType.Close);
+					Applicazione.openWindow<MainWindow>(Applicazione.CloserType.Hide, toClose: this);
 				}
 			}
 		}

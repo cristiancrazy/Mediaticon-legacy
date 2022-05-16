@@ -259,6 +259,9 @@
         }
       },
       "NewMessageBox/1.0.0": {
+        "dependencies": {
+          "MediaticonDB": "1.0.0"
+        },
         "runtime": {
           "NewMessageBox.dll": {}
         }

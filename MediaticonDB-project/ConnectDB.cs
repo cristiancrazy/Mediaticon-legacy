@@ -42,7 +42,7 @@ namespace MediaticonDB
             //Console.ReadKey();
         }
 
-        public Film Read(int line, string tableName)
+        public Film Read(int line, string tableName, bool loadCover = false)
         {
             try
             {
@@ -59,8 +59,8 @@ namespace MediaticonDB
                         Convert.ToInt32(read[5]),
                         read[6].ToString(),
                         read[7].ToString(),
-                        read[8].ToString()
-                        );
+                        read[8].ToString(),
+                        loadCover);
                     return output.RetFromSQL();
                 }
             }

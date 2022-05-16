@@ -84,8 +84,8 @@ namespace MediaticonWorker
 							Convert.ToInt32(read[5]),
 							read[6].ToString(),
 							read[7].ToString(),
-							read[8].ToString()
-							);
+							read[8].ToString(),
+							loadCover: true);
 
 							yield return film.RetFromSQL();
                         }

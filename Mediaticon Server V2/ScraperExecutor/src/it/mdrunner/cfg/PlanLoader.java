@@ -45,21 +45,18 @@ public class PlanLoader {
         PlanID.clear();
         loadedPlanList.clear();
 
-        for (String i : timerExe.keySet()) {
+        for(String i : timerExe.keySet()){
             timerExe.get(i).cancel();
         }
 
         timerExe.clear();
         System.gc();
 
-        if (RunningPyPS.size() > 0) {
-            System.out.printf("\u001B[33m Actually running: %s processes\u001B[0m%n", RunningPyPS.size());
-        }
-        for (Process i : RunningPyPS) {
-            try {
+        for(Process i : RunningPyPS) {
+            try{
                 //Kill and wait termination
-                i.destroy();
-            } catch (Exception exc) {
+                i.destroyForcibly().waitFor();
+            }catch (Exception exc){
                 return false;
             }
         }
@@ -127,12 +124,11 @@ public class PlanLoader {
                 if(Start.isBefore(LocalDateTime.now())) throw new JSONException(""); //Remove old plans
 
                 //Get MidPath if available
-                String MidPath = j.optString("MidPath", "");
+                String MidPath = j.optString("MidPath");
 
                 //Get repeatable action
                 String repeatSentence = j.optString("Repeat Each", "No");
 
-                Path of = Path.of(MidPath);
                 if(!repeatSentence.equals("No")){ //Repeat actions
 
                     String[] parsed = repeatSentence.split(" ");
@@ -160,17 +156,18 @@ public class PlanLoader {
 
                     //Create Plan - Repeatable
 
-                    if (!MidPath.equals("")) {
-                        if (toYear != -1) { //Create multiple
-                            for (int nowYear = year; nowYear <= toYear; ++nowYear, ++ID) {
+                    if(MidPath != null){
+                        Path of = Path.of(MidPath);
+                        if(toYear != -1){ //Create multiple
+                            for(int nowYear = year; nowYear <= toYear; ++nowYear, ++ID){
                                 loadedPlanList.add(new Plan(ID, AppName, nowYear, Start, delayN, NextLDTUnit, of));
                             }
-                        } else { //Create a single
+                        }else{ //Create a single
                             loadedPlanList.add(new Plan(ID, AppName, year, Start, delayN, NextLDTUnit, of));
                         }
 
-                    } else {
-                        if (toYear != -1) { //Create multiple
+                    }else{
+                        if(toYear != -1){ //Create multiple
                             for(int nowYear = year; nowYear <= toYear; ++nowYear, ++ID){
                                 loadedPlanList.add(new Plan(ID, AppName, nowYear, Start, delayN, NextLDTUnit));
                             }
@@ -179,15 +176,14 @@ public class PlanLoader {
                         }
                     }
 
-                }else {
+                }else{
                     //Create Plan - Single time
-                    if ((toYear != -1)) { //Create multiple
-                        //System.out.println("\033[37m"+ "Test Case OK" + "\033[0m"); //TODO: REMOVE - DEBUG USE
-                        for (int nowYear = year; nowYear <= toYear; ++nowYear, ++ID) {
-                            loadedPlanList.add(new Plan(ID, AppName, nowYear, Start, of));
+                    if(toYear != -1){ //Create multiple
+                        for(int nowYear = year; nowYear <= toYear; ++nowYear, ++ID){
+                            loadedPlanList.add(new Plan(ID, AppName, nowYear, Start));
                         }
-                    } else { //Create a single
-                        loadedPlanList.add(new Plan(ID, AppName, year, Start, of));
+                    }else{ //Create a single
+                        loadedPlanList.add(new Plan(ID, AppName, year, Start));
                     }
                 }
 

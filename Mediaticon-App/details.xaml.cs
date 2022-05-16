@@ -65,7 +65,7 @@ namespace Mediaticon
 			catch
 			{
 				NMSG.Show("Impossibile caricare il contenuto", NMSGtype.Ok);
-				Applicazione.openWindow<MainWindow, details>(Applicazione.CloserType.Close);
+				Applicazione.openWindow<MainWindow>(Applicazione.CloserType.Close, toClose: this);
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace Mediaticon
 			{
 				try
 				{
-					Connection.openImage(EnviromentVar.ImagesVar.defaultCoverPath, out bitmap);
+					Connection.openImage(EnviromentVar.ImagesVar.defaultCoverImage, out bitmap);
 					var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
 																			   IntPtr.Zero,
 																			   Int32Rect.Empty,

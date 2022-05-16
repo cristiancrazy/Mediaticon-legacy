@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class Plan implements Runnable {
 	// ====== [Private fields] ======
@@ -87,22 +86,12 @@ public class Plan implements Runnable {
 		this.Repeatable = false;
 	}
 
-	public Plan(int PlanID, String AppName, int yearToScrape, LocalDateTime StartTime, Path MidPath) {
-		this.PlanID = PlanID;
-		this.yearToScrape = yearToScrape;
-		this.AppName = AppName;
-		this.StartTime = StartTime;
-		this.Repeatable = false;
-		this.MidPath = MidPath;
-	}
-
 	@Override
 	public String toString() {
 		return "Plan ID = \033[31m" + PlanID + "\033[0m" + System.lineSeparator() + "App Name = \033[31m" + AppName + "\033[0m" + System.lineSeparator() +
 				"Year param: \033[34m" + yearToScrape + "\033[0m" + System.lineSeparator() +
 				"Next Run: \033[34m" + StartTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) + "\033[0m" + System.lineSeparator() +
-				"Repeat: \033[33m" + (Repeatable ? "Yes" : "No") + "\033[0m" + System.lineSeparator() + "After Next Run: " + (NextRepeat != null ? NextRepeat : "Unset") +
-				System.lineSeparator() + "Remote path override: " + (MidPath != null ? MidPath : "Unset");
+				"Repeat: \033[33m" + (Repeatable ? "Yes" : "No") + "\033[0m" + System.lineSeparator() + "After Next Run: " + (NextRepeat != null ? NextRepeat : "Unset");
 	}
 
 	@Override
@@ -142,9 +131,9 @@ public class Plan implements Runnable {
 						Path local = outFile.toPath();
 						Path remote;
 
-						if (MidPath != null) { //MidPath is an override field
+						if (MidPath != null) //MidPath is an override field
 							remote = MidPath.resolve(local.getFileName());
-						} else
+						else
 							remote = local.getFileName();
 
 						System.out.println("\033[34mTimer @ FTP Service (Uploading)\033[0m");
@@ -154,14 +143,7 @@ public class Plan implements Runnable {
 							System.out.println("\033[32mTimer @ FTP Service: UPLOAD OK\033[0m");
 						} else {
 							System.out.println("\033[31mTimer @ FTP Service: UPLOAD FAIL\033[0m");
-							System.out.println("\033[33mTimer @ FTP Service: WAITING TO RETRY UPLOAD\033[0m");
-							Thread.sleep(TimeUnit.SECONDS.toMillis(10));
-							if (FTPHandler.uploadFile(local, remote)) {
-								System.out.println("\033[32mTimer @ [#2] FTP Service: UPLOAD OK\033[0m");
-							} else {
-								System.out.println("\033[31mTimer @ [#2] FTP Service: UPLOAD FAIL\033[0m");
-								throw new IOException("Scraper OK. Upload on FTP failed.");
-							}
+							throw new IOException("Scraper OK. FTP Upload Failed.");
 						}
 
 					}

@@ -26,7 +26,6 @@ public class CLIEnvironment{
 		CommandMap.put("ls", CLICommands::showAllPlan);
 		CommandMap.put("show config", CLICommands::showConfig);
 		CommandMap.put("show plans", () -> CLICommands.showPlan(UserAction));
-		CommandMap.put("ftp test", () -> CLICommands.testFTP(UserAction));
 		CommandMap.put("clear", CLICommands::clearScreen);
 		CommandMap.put("cls", CLICommands::clearScreen);
 		CommandMap.put("shutdown", CLICommands::shutdown);

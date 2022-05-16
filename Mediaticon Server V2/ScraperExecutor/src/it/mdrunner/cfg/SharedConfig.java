@@ -21,7 +21,7 @@ public class SharedConfig {
 	// ======[GENERAL APP CONFIGURATION]======
 
 	// #DEPENDENCIES
-	public static final String minPython = "3.9.1";
+	public static final String minPython = "3.7.3";
 
 	// #FILES
 	public static Path ConfigFile; //This is loaded separately and specify where other settings are located

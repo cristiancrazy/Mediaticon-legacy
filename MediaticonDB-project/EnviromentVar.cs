@@ -59,12 +59,15 @@ namespace MediaticonDB
             //default path
             public static string defaultPath = @".\Default\";
             public static string defaultImgPath = Path.Combine(defaultPath + "Images\\");
-            public static string defaultCoverPath = Path.Combine(defaultImgPath + "Cover"+ImgfileExt);
             public static string ChannelLogoPath = Path.Combine(defaultImgPath + "Channels\\");
 
             //default imgs
             public static string ImgfileExt = ".png";
             public static string[] defaultImages = { "Avatar", "Cover", "Background" };
+
+            public static string defaultAvatarImage = Path.Combine(defaultImgPath + "Avatar"+ImgfileExt);
+            public static string defaultCoverImage = Path.Combine(defaultImgPath + "Cover"+ImgfileExt);
+
         }
 
         public class UsersPath
@@ -123,7 +126,7 @@ namespace MediaticonDB
 
         public static string TimeFormat = "HH-mm";
 
-        public static DateTime MinDate = new DateTime(1970, 1, 1);
+        public static DateTime MinDate = new DateTime(2019, 1, 1);
         
 
         public static Func<string,string,string> CsvPathCombine = (type, year) =>

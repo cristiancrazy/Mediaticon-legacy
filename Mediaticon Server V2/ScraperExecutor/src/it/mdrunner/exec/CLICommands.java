@@ -13,7 +13,6 @@ package it.mdrunner.exec;
 
 import it.mdrunner.cfg.PlanLoader;
 import it.mdrunner.cfg.SharedConfig;
-import it.mdrunner.ftp.FTPHandler;
 
 import java.util.HashMap;
 import java.util.NoSuchElementException;
@@ -67,30 +66,14 @@ public class CLICommands {
 		}
 	}
 
-	/**
-	 * Show config: print all info
-	 **/
-	protected static void showConfig() {
+	/** Show config: print all info **/
+	protected static void showConfig(){
 		SharedConfig.printAllInfo();
 	}
 
-	/**
-	 * CLI Environment: Show commands
-	 **/
-	protected static void CLIHelp(HashMap<String, Runnable> commandMap) {
+	/** CLI Environment: Show commands **/
+	protected static void CLIHelp(HashMap<String, Runnable> commandMap){
 		System.out.println("\033[32mAvailable commands:\033[0m");
 		commandMap.forEach((key, val) -> System.out.println(key));
-	}
-
-	/**
-	 * Test FTP upload / download capabilities
-	 **/
-	protected static void testFTP(Scanner in) {
-		try {
-			System.out.print("Insert remote path to store test file: ");
-			FTPHandler.FTPTest(in.nextLine());
-		} catch (NoSuchElementException exc) {
-			System.out.println("You must insert a valid path.");
-		}
 	}
 }
