@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Drawing.Imaging;
 
 namespace MediaticonDB
 {
@@ -29,8 +30,8 @@ namespace MediaticonDB
 
 
         public Bitmap Cover; //nullable
-        private Image CoverSource;
-        public Image RetImgSrc
+        private BitmapImage CoverSource;
+        public BitmapImage RetImgSrc
         {
             get
             {
@@ -121,8 +122,43 @@ namespace MediaticonDB
                 }
             }
 
-            this.CoverSource = cover;
+            this.CoverSource = BitmapToBitmapImage(cover);
             return cover;
+        }
+        private BitmapImage BitmapToBitmapImage(System.Drawing.Bitmap bitmap)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                System.Drawing.Imaging.Encoder encoder = System.Drawing.Imaging.Encoder.Quality;
+                EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                EncoderParameter myEncoderParameter = new EncoderParameter(encoder, 50L);
+                myEncoderParameters.Param[0] = myEncoderParameter;
+
+                System.Drawing.Imaging.ImageCodecInfo myencoder = GetEncoder(ImageFormat.Png);
+
+                bitmap.Save(ms, myencoder, myEncoderParameters);
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = ms;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+            }
+            return bitmapImage;
+        }
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+
+            return null;
         }
 
         public Film RetToSQL()
@@ -177,18 +213,18 @@ namespace MediaticonDB
                 output += item + ", ";
             }
 
-            return output.Remove(output.Length-2);
+            return output.Remove(output.Length - 2);
         }
 
         public static string InsertEvery(this string input, string insert, int every)
         {
             //insert string every x char
             int len = input.Length;
-            for (int i =0; i< len; i+=every)
+            for (int i = 0; i < len; i += every)
             {
                 input.Insert(i, insert);
                 len = input.Length;
-                i += insert.Length+1;
+                i += insert.Length + 1;
             }
             return input;
         }
