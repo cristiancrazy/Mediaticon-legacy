@@ -26,11 +26,11 @@ namespace MediaticonWorker
 
 			genreToSearch.Clear();
 			//add filter items in adeguate list
-			foreach(FilterItem item in genreFilter)
+			/*foreach(FilterItem item in genreFilter)
 			{
 				if (item.IsChecked == true)
 					genreToSearch.Add(item.Content);
-			}
+			}*/
 		}
 
 		

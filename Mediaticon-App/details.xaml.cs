@@ -89,13 +89,7 @@ namespace Mediaticon
 		{
 			try
 			{
-				var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
-																			   IntPtr.Zero,
-																			   Int32Rect.Empty,
-																			   BitmapSizeOptions.FromEmptyOptions()
-				);
-				bitmap.Dispose();
-				coverImg.Source = new ImageBrush(bitmapSource).ImageSource;
+				coverImg.Source = opened.RetImgSrc;
 			}
 			catch
 			{
