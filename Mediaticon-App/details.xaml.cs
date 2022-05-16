@@ -74,8 +74,8 @@ namespace Mediaticon
 			titleLbl.Content = opened.Title;
 			descBox.Text = opened.Description;
 			attoriBox.Text = "Attori: " + opened.Actors.ListToString();
-			durataBox.Text = opened.Duration + " minuti";
-			annoBox.Text = opened.Year.ToString();
+			durataBox.Text = opened.Duration > 0 ? opened.Duration + " minuti" : "Sconosciuta";
+			annoBox.Text = opened.Year.ToString("yyyy");
 			genereBox.Text = opened.Genres.ListToString();
 			tipoBox.Text = EnviromentVar.Modality.CurrentModality.ToString();
 
@@ -101,7 +101,11 @@ namespace Mediaticon
 			{
 				try
 				{
-					Connection.openImage(EnviromentVar.ImagesVar.defaultCoverImage, out bitmap);
+					if(!Connection.openImage(EnviromentVar.ImagesVar.defaultCoverImage, out bitmap))
+                    {
+						throw new Exception();
+                    }
+
 					var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
 																			   IntPtr.Zero,
 																			   Int32Rect.Empty,
@@ -129,7 +133,10 @@ namespace Mediaticon
 			Bitmap bitmap;
 			try
 			{
-				Connection.DownloadImage(url, out bitmap);
+				if(!Connection.DownloadImage(url, out bitmap))
+                {
+					throw new Exception();
+                }
 				var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(),
 																				IntPtr.Zero,
 																				Int32Rect.Empty,

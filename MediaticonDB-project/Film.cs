@@ -81,8 +81,8 @@ namespace MediaticonDB
             this.Description = Description.Replace("§", ";");
             this.Duration = Duration;
             this.Year = new DateTime(Int32.Parse(Year), 1, 1);
-            this.Genres = Genres.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
-            this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ").ToList<string>();
+            this.Genres = Genres.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            this.Actors = Actors.Replace("\"", "").Replace("[", "").Replace("]", "").Replace("\'", "").Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList<string>();
             if (loadCover)
                 this.Cover = LoadCover();
         }
@@ -177,7 +177,7 @@ namespace MediaticonDB
                 output += item + ", ";
             }
 
-            return output;
+            return output.Remove(output.Length-2);
         }
 
         public static string InsertEvery(this string input, string insert, int every)

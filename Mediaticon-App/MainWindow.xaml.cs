@@ -126,7 +126,7 @@ namespace Mediaticon
             {
                 case 0:
                     //open my list
-                    Applicazione.openWindow<mylist>(Applicazione.CloserType.Close, toClose: this);
+                    Applicazione.openWindow<mylist>(Applicazione.CloserType.Hide, toClose: this);
                     break;
                 case 1:
                     //open website
@@ -134,7 +134,7 @@ namespace Mediaticon
                     break;
                 case 2:
                     //exit from account
-                    Applicazione.openWindow<login>(Applicazione.CloserType.Close, toClose: this);
+                    Applicazione.openWindow<login>(Applicazione.CloserType.Hide, toClose: this);
                     break;
             }
         }
@@ -166,7 +166,7 @@ namespace Mediaticon
 
             //do the new search
             basedList.Clear();
-            Task searchTask = new Task(doSearch, token);
+            Task searchTask = new(doSearch, token);
 
             ResearchHelper.setSearchParams(searchTxt.Text, filterCBL.Items);
             searchTask.Start();
@@ -266,7 +266,7 @@ namespace Mediaticon
 
         private void openDetails(Film toPass)
         {
-            Applicazione.openWindow<details>(Applicazione.CloserType.Close, toClose: this, toPass);
+            Applicazione.openWindow<details>(Applicazione.CloserType.Hide, toClose: this, toPass);
         }
 
         private class ShadowCircular
