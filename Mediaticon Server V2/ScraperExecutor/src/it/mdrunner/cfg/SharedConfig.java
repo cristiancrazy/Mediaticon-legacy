@@ -16,12 +16,14 @@ package it.mdrunner.cfg;
 
 import java.net.InetAddress;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class SharedConfig {
 	// ======[GENERAL APP CONFIGURATION]======
 
 	// #DEPENDENCIES
-	public static final String minPython = "3.7.3";
+	public static final String minPython = "3.9.1";
 
 	// #FILES
 	public static Path ConfigFile; //This is loaded separately and specify where other settings are located
@@ -39,6 +41,22 @@ public class SharedConfig {
 	public static int FTPServerPort;
 	public static String FTPUser;
 	public static String FTPPassword;
+
+	// # SERVER STATISTICS
+	public static LocalDateTime ServerUptime;
+
+	public static int FinishedTasks = 0;
+	public static int FinishedTasksWithError = 0;
+
+
+
+	// #WEBSERVER SERVICE
+	public static boolean WEBEnabled;
+	public static String WEBServer;
+	public static int WEBServerPort;
+	public static final String EncryptingAlgorithm = "SHA-1";
+	public static byte[] DefaultWebUser;
+	public static byte[] DefaultWebPass;
 
 	// #OUTPUT PRINT METHODS
 	public static void printFiles(){
