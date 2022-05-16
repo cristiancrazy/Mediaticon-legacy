@@ -113,6 +113,8 @@ def mymovies(_from_year, _to_year, path):
                 elif 'video-player' in element.attrs['class']:
                     if _big_image := element.find('img'): # if it's found
                         big_image = _big_image['src']
+                elif 'mm-image' in element.attrs['class']:
+                    big_image = element['src']
                 
                 elif 'mm-white' in element.attrs['class'] and 'mm-padding-8' in element.attrs['class']:
                     page_is_valid = 1 # page is valid
