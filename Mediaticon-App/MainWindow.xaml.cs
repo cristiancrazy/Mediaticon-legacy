@@ -17,6 +17,7 @@ using MediaticonDB;
 using NewMessageBox;
 using MediaticonWorker;
 using System.Threading;
+using System.Timers;
 
 namespace Mediaticon
 {
@@ -103,7 +104,10 @@ namespace Mediaticon
 			//do the research
 			if (this.IsLoaded) //beause otherwise it runs before loading component has finished
 			{
-				Search();
+				if (searchTxt.Text.Length == 0 || searchTxt.Text.Length > 4)
+				{
+					Search();
+				}
 			}
 			//while this return a yield get add element to baselist, load it to screen 
 		}
@@ -157,36 +161,50 @@ namespace Mediaticon
 
 		static CancellationTokenSource cancelTask = new CancellationTokenSource();
 		static CancellationToken token = cancelTask.Token;
+		static System.Timers.Timer timer = new System.Timers.Timer(1000);
 		private void Search()
 		{
 			//cancel the previous search
+			timer.Stop();
+			timer.Enabled = false;
 			cancelTask.Cancel();
 
 			//regenerate the token
 			cancelTask = new CancellationTokenSource();
 			token = cancelTask.Token;
 			//Task searchTask = new(doSearch, token);
-			this.Dispatcher.BeginInvoke(new Action(() =>
-			{
-				Task.Run(() => doSearch(searchTxt.Text), token);
-			}));
+
+			//regenerate timer
+			timer = new System.Timers.Timer(1000);//maybe unnecessary
+			timer.Elapsed += timerElapsed;
+			timer.Enabled = true;
+			timer.Start();
+
 			//searchTask.Start();
 			showElement(); //in case there is no result -> show empty list, and messagebox will showed by research helper
 		}
 
+		private void timerElapsed(Object source, ElapsedEventArgs e)
+		{
+			//when timer elapsed start the search
+			timer.Stop();
+			timer.Enabled = false;
+			Task.Run(doSearch, token);
+		}
+
 		object locktoken = new object();
-		private void doSearch(string text)
+		private void doSearch()
 		{
 			//this function run in another task
 			this.Dispatcher.BeginInvoke(new Action(() =>
 			{
 				//wait a second
-				Thread.Sleep(2000);
+				//Thread.Sleep(2000);
 
 				//do the new search
 				basedList.Clear();
 
-				ResearchHelper.setSearchParams(text, filterCBL.Items);
+				ResearchHelper.setSearchParams(searchTxt.Text, filterCBL.Items);
 				
 				//i'm not sure that this await is correct
 				foreach (var film in ResearchHelper.Search())
