@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This html document was part of MD Server project created by Cristian -->
+<head>
+    <meta charset="UTF-8">
+    <title> [MD SYS ADM] </title>
+
+    <style>
+        body {background-color:#1f1f23}
+        h1 {font-size:20pt; font-family: Courier, Arial; font-weight:bold; text-align:center; color:#5c16c5}
+        div {text-align:center; font-family: Arial;}
+        table {width: 100%; background-color:#eeeee4}
+        th {color:white; background-color: green; padding-top: 20px; padding-bottom: 20px;}
+        td {color: black; border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <h1>MEDIATICON WEB ADMIN - PANEL</h1>
+    <!-- Sends out information here -->
+    <div style="border: 5px double black">
+        <table>
+            <tr> <!-- Table headers -->
+                <th>Property</th>
+                <th>Details</th>
+            </tr>
+            <tr> <!-- Server Uptime -->
+                <td> Server uptime </td>
+                <td> %s </td>
+            </tr>
+            <tr> <!-- LocalDateTime now -->
+                <td> Last update </td>
+                <td> %s </td>
+            </tr>
+            <tr> <!-- Active processes -->
+                <td> Running processes </td>
+                <td> %d </td>
+            </tr>
+            <tr> <!-- Total finished processes -->
+                <td> Finished processes </td>
+                <td> %d </td>
+            </tr>
+            <tr> <!-- Failed finished processes -->
+                <td> Failed processes </td>
+                <td> %d </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

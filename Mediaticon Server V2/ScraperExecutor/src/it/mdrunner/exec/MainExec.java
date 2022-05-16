@@ -26,12 +26,15 @@ package it.mdrunner.exec;
 import it.mdrunner.cfg.AppLoader;
 import it.mdrunner.cfg.ConfigLoader;
 import it.mdrunner.cfg.SharedConfig;
+import it.mdrunner.http.HTTPServer;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystemAlreadyExistsException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 
 public class MainExec {
 	//CLI Environment flag
@@ -72,12 +75,17 @@ public class MainExec {
 	private static void initApp(String[] params){
 		//Params parsing
 		if(params.length > 0){
-			if((params[0].startsWith("-c")||params[0].startsWith("/c"))&&(!params[1].isEmpty())){
-				if(params[0].endsWith("e")){ //Stands for "environment"
+			if (params[0].equals("-g")) { //Autogenerate a simple plan
+				PlanGenerator.generatePlan(params);
+				System.exit(0);
+			}
+
+			if ((params[0].startsWith("-c") || params[0].startsWith("/c")) && (!params[1].isEmpty())) {
+				if (params[0].endsWith("e")) { //Stands for "environment"
 					CLIEnabled = true; //Activate a minimal environment
 				}
 				Path configPath = new File(params[1]).toPath();
-				if(configPath.toFile().exists()&&configPath.toFile().isFile()){
+				if (configPath.toFile().exists() && configPath.toFile().isFile()) {
 					System.out.println("Found config. Now, loading settings from configuration file.");
 					//Set config file to shared configuration
 					SharedConfig.ConfigFile = configPath;
@@ -101,6 +109,15 @@ public class MainExec {
 		//Load data
 		if(ConfigLoader.loadConfigFile()){
 			System.out.println("\033[32mConfiguration Loaded Correctly.\033[0m");
+
+			//Set uptime start counting
+			SharedConfig.ServerUptime = LocalDateTime.now();
+
+			//Enable webserver if activated
+			if(SharedConfig.WEBEnabled) {
+				HTTPServer.StartHTTPServer(SharedConfig.WEBServer, SharedConfig.WEBServerPort);
+			}
+
 		}else{
 			System.out.println("\033[31mError inside the configuration file.\033[0m Exiting.");
 			System.exit(253); // Content Missing or invalid exit

@@ -19,13 +19,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 public class ConfigLoader {
 
 	// =======[Private Methods]=======
-	private static final Predicate<Integer> checkServicePort = i -> (i == 21) || (i == 20) || ((i > 1023)&&(i < 65536));
+	private static final Predicate<Integer> checkServicePort = i -> (i == 80) || (i == 21) || (i == 20) || ((i > 1023)&&(i < 65536));
 
 	private static final Predicate<String> checkFolder = s -> (Path.of(s).toFile().exists()&&Path.of(s).toFile().isDirectory());
 
@@ -103,6 +105,22 @@ public class ConfigLoader {
 				if(checkAddress.test(bufferS = jsonParser.getString("FTP Server"))){
 					SharedConfig.FTPServer = InetAddress.getByName(bufferS);
 				}else throw new JSONException("");
+
+			}
+
+			//Webservices
+			SharedConfig.WEBEnabled = jsonParser.optBoolean("WEB Service", false);
+
+			if(SharedConfig.WEBEnabled){
+
+				SharedConfig.WEBServer = jsonParser.getString("WEB Server");
+
+				if(checkServicePort.test(bufferI = jsonParser.optInt("WEB Port", 80))){
+					SharedConfig.WEBServerPort = bufferI;
+				}else throw new JSONException("");
+
+				SharedConfig.DefaultWebUser = jsonParser.getString("WEB Username").getBytes(StandardCharsets.UTF_8);
+				SharedConfig.DefaultWebPass = jsonParser.getString("WEB Password").getBytes(StandardCharsets.UTF_8);
 
 			}
 

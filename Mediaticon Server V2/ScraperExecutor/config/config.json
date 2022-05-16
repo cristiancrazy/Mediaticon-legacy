@@ -7,8 +7,14 @@
   "Log Folder": "./logs",
 
   "FTP Service": true,
-  "FTP Server": "LINK_TO_SERVER_MUST_BE_SET_HERE",
+  "FTP Server": "SERVER_ADDRESS",
   "FTP Port": 21,
-  "FTP Username": "USERNAME_MUST_BE_SET_HERE",
-  "FTP Password": "PASSWORD_MUST_BE_SET_HERE"
+  "FTP Username": "SERVER_USER",
+  "FTP Password": "SERVER_PASS",
+
+  "WEB Service": true,
+  "WEB Server": "SERVER_ADDRESS",
+  "WEB Port": 8888,
+  "WEB Username": "SERVER_USER",
+  "WEB Password": "SERVER_PASS"
 }
