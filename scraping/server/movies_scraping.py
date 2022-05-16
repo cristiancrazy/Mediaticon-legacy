@@ -1,4 +1,4 @@
-import requests, bs4, sys, json, ftfy
+import requests, bs4, sys, json, ftfy, os
 
 ############################################################
 
@@ -105,8 +105,6 @@ def mymovies(_from_year, _to_year, path):
         for element in films:
             #RESET VARIABLES
             link2: str = ''
-            image = ''
-            big_image = ''
 
             if element.has_attr('class'):
                 #IMAGE
