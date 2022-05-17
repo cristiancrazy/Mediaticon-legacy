@@ -26,6 +26,7 @@ namespace MediaticonWorker
         {
             //T is window to open
             //this pass params to window to open
+            T a = (T)Activator.CreateInstance(typeof(T), parameters); //the window to open
             if (type == CloserType.Close)
             {
                 toClose.Close();
@@ -35,7 +36,6 @@ namespace MediaticonWorker
                 toClose.Hide();
             }
 
-            T a = (T)Activator.CreateInstance(typeof(T), parameters); //the window to open
             a.Show();
             GC.Collect();
         }

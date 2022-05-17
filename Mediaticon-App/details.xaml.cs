@@ -28,6 +28,7 @@ namespace Mediaticon
 
 	public partial class details : Window
 	{
+		static Window? MainWindow = null;
 		static Film? opened = null;
 
 		public details()
@@ -35,8 +36,9 @@ namespace Mediaticon
 			InitializeComponent();
 		}
 
-		public details(Film toOpen)
+		public details(Film toOpen, ref Window mainWindow)
 		{
+			MainWindow = mainWindow;
 			InitializeComponent();
 			setFilm(toOpen);
 			setGUI();
@@ -52,9 +54,14 @@ namespace Mediaticon
 			seeBtn.IsDropDownOpen = true;
 		}
 
-	}
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+			MainWindow.Show();
+			this.Close();
+        }
+    }
 
-	public partial class details : Window
+    public partial class details : Window
 	{
 		void setFilm(Film input)
 		{

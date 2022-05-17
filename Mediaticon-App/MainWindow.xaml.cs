@@ -96,7 +96,9 @@ namespace Mediaticon
 		private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
 			//open the details.xaml and pass the selected film
+			
 			openDetails(basedList[listaLB.SelectedIndex]);
+			listaLB.UnselectAll();
 		}
 
 		private void searchEvent(object sender, TextChangedEventArgs e)
@@ -104,7 +106,7 @@ namespace Mediaticon
 			//do the research
 			if (this.IsLoaded) //beause otherwise it runs before loading component has finished
 			{
-				if (searchTxt.Text.Length == 0 || searchTxt.Text.Length > 4)
+				if (searchTxt.Text.Length == 0 || searchTxt.Text.Length > 3)
 				{
 					Search();
 				}
@@ -205,16 +207,25 @@ namespace Mediaticon
 				//do the new search
 				basedList.Clear();
 
-				ResearchHelper.setSearchParams(searchTxt.Text, filterCBL.Items);
-				
-				//i'm not sure that this await is correct
-				foreach (var film in ResearchHelper.Search())
+				if (ResearchHelper.setSearchParams(searchTxt.Text, filterCBL.Items))
 				{
-					lock (this.locktoken)
+					//i'm not sure that this await is correct
+					foreach (var film in ResearchHelper.Search())
 					{
-						basedList.Add(film);
+						lock (this.locktoken)
+						{
+							basedList.Add(film);
+						}
+						showElement();
 					}
-					showElement();
+				}
+				else
+				{
+					HomeBtn.Focus();
+					HomeBtn.IsEnabled = false;
+					DBHelper.GetFilms(true);
+					loadElement();
+					HomeBtn.IsEnabled = true;
 				}
 			}));
 		}
@@ -303,13 +314,14 @@ namespace Mediaticon
 
 		private void openDetails(Film toPass)
 		{
-			Applicazione.openWindow<details>(Applicazione.CloserType.Hide, toClose: this, toPass);
+			Applicazione.openWindow<details>(Applicazione.CloserType.None, toClose: this, toPass, this);
 		}
 
 		private class ShadowCircular
 		{
 			public static void showLoading(ref Grid grid)
 			{
+				grid.Cursor = Cursors.Wait;
 				grid.Visibility = Visibility.Visible;
 				grid.Opacity = 0;
 				for (int i = 0; i < 10; i++)
@@ -317,6 +329,8 @@ namespace Mediaticon
 					grid.Opacity += 10;
 					Task.Delay(50).Wait();
 				}
+				
+				//grid.Focus();
 			}
 
 			public static void hideLoading(ref Grid grid)
@@ -328,6 +342,7 @@ namespace Mediaticon
 					Task.Delay(50).Wait();
 				}
 				grid.Visibility = Visibility.Hidden;
+				grid.Cursor = Cursors.Arrow;
 			}
 		}
 	}
