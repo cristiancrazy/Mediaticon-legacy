@@ -91,7 +91,8 @@ namespace MediaticonDB
 
         //DB path
 #if DEBUG
-        static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
+        //static string cwd = @"C:\Users\Visual Laser 10 New\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
+        static string cwd = @"C:\Users\Cristian\Desktop\Workspaces\Mediaticon\MediaticonDB-project\";
         //static string cwd = @"C:\Users\12036\Downloads\Mediaticon-sviluppatori-main\Mediaticon-sviluppatori-main\MediaticonDB-project\";
         //static string cwd = @"C:\Users\12036\source\repos\cristiancrazy\Mediaticon-sviluppatori\MediaticonDB-project\";
 #else

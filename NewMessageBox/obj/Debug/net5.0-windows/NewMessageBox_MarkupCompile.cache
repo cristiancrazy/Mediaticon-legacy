@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\
-NewMessageBox_qnts2ukq_wpftmp
+C:\Users\Cristian\Desktop\Workspaces\Mediaticon\NewMessageBox\obj\Debug\net5.0-windows\
+NewMessageBox
 none
 false
-TRACE;RELEASE;NET;NET5_0;NETCOREAPP
+TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 
 11089968818
 
-2-1907266457
-410124145034
+11470935199
+2051349914209
 NewMessageBox.xaml;
 
-True
+False
 
