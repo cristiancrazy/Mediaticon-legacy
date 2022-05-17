@@ -45,7 +45,7 @@ namespace MediaticonWorker
 
 					if (titlesToSearch.Any() != true) //if it's empty or not allocated
 					{
-						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Generi\' LIKE \'%{genreToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE Generi LIKE \'%{genreToSearch[0]}%\'";
 						foreach (string word in genreToSearch.Skip(1))
                         {
 							query += $" AND \'Generi\' LIKE \'%{word}%\'";
@@ -53,7 +53,7 @@ namespace MediaticonWorker
                     }
 					else if (genreToSearch.Any() != true) //if it's empty or not allocated
 					{
-						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE \'Titolo\' LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
 						{
 							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
@@ -61,7 +61,7 @@ namespace MediaticonWorker
 					}
 					else
                     {
-						query = $"SELECT TOP 1 * FROM \'{EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]}\' ORDER BY ID DESC WHERE \'Titoli\' LIKE \'%{titlesToSearch[0]}%\'";
+						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE Titolo LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
                         {
 							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
