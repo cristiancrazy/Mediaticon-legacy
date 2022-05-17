@@ -159,6 +159,7 @@ namespace Mediaticon
 			filterCBL.ItemsSource = items;
 		}
 
+
 		static CancellationTokenSource cancelTask = new CancellationTokenSource();
 		static CancellationToken token = cancelTask.Token;
 		static System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -218,6 +219,7 @@ namespace Mediaticon
 			}));
 		}
 
+		
 
 		[STAThread] //to call NMSG it is necessary
 		private async void loadElement()
