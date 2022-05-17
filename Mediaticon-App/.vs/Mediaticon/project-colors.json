@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7556d463-23a8-447d-a6e3-cc4a71143443": {
+      "ProjectGuid": "7556d463-23a8-447d-a6e3-cc4a71143443",
+      "DisplayName": "Mediaticon",
+      "ColorIndex": 0
+    },
+    "47cd530e-2958-4ff0-9632-001cf3741e67": {
+      "ProjectGuid": "47cd530e-2958-4ff0-9632-001cf3741e67",
+      "DisplayName": "MediaticonDB",
+      "ColorIndex": 1
+    },
+    "4329c740-7fd9-4640-a69b-919f21f1e08b": {
+      "ProjectGuid": "4329c740-7fd9-4640-a69b-919f21f1e08b",
+      "DisplayName": "MediaticonWorker",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "File esterni",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}

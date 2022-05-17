@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj": {}
+    "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj": {
+    "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
+        "projectUniqueName": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
         "projectName": "Mediaticon",
-        "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
-        "packagesPath": "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\obj\\",
+        "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
+        "packagesPath": "C:\\Users\\pino2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Visual Laser 10 New\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pino2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,11 +32,11 @@
           "net5.0-windows10.0.19041": {
             "targetAlias": "net5.0-windows10.0.19041.0",
             "projectReferences": {
-              "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
-                "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
+              "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+                "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
               },
-              "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
-                "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj"
+              "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
+                "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj"
               }
             }
           }
@@ -73,7 +73,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.Windows.SDK.NET.Ref",
-              "version": "[10.0.19041.23, 10.0.19041.23]"
+              "version": "[10.0.19041.22, 10.0.19041.22]"
             }
           ],
           "frameworkReferences": {
@@ -87,24 +87,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+    "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
+        "projectUniqueName": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
         "projectName": "MediaticonDB",
-        "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
-        "packagesPath": "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\obj\\",
+        "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj",
+        "packagesPath": "C:\\Users\\pino2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Visual Laser 10 New\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pino2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -166,24 +166,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
+    "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
+        "projectUniqueName": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
         "projectName": "MediaticonWorker",
-        "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
-        "packagesPath": "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\obj\\",
+        "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\MediaticonWorker.csproj",
+        "packagesPath": "C:\\Users\\pino2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonWorker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Visual Laser 10 New\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pino2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -198,11 +198,11 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
-                "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
+              "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+                "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
               },
-              "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
-                "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj"
+              "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
+                "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj"
               }
             }
           }
@@ -237,24 +237,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
+    "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
+        "projectUniqueName": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
         "projectName": "NewMessageBox",
-        "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
-        "packagesPath": "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\obj\\",
+        "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\NewMessageBox.csproj",
+        "packagesPath": "C:\\Users\\pino2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\NewMessageBox\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Visual Laser 10 New\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pino2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -269,8 +269,8 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
-                "projectPath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
+              "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj": {
+                "projectPath": "C:\\Users\\pino2\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\MediaticonDB-project\\MediaticonDB.csproj"
               }
             }
           }
@@ -302,7 +302,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

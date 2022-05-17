@@ -6,6 +6,7 @@
     <Application.Resources>
 
         <!-- Edit the combo-->
+        <ImageBrush x:Key="mediaticon_icon" ImageSource="/mediaticon.png"/>
         <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButton">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -341,11 +342,16 @@
         <!-- Style to avoid disable button -->
 
         <Style TargetType="Button" x:Key="ImgBtn" >
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#00000000"/>
-                </Trigger>
-            </Style.Triggers>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!-- Stop edit the buttons -->

@@ -11,6 +11,7 @@
         Title="Mediaticon" Height="624" Width="850" MinWidth="850" MinHeight="500">
     <Window.Resources>
 
+        <ImageBrush x:Key="mediaticon_icon" ImageSource="/mediaticon.png"/>
         <Style TargetType="ListBoxItem">
             <Setter Property="Template">
                 <Setter.Value>
@@ -32,6 +33,16 @@
             <Setter Property="Background" Value="#FF191919"/>
             <Setter Property="BorderBrush" Value="#FF191919"/>
         </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="HomeButtonStyle" TargetType="{x:Type ButtonBase}">
+            
+        </ControlTemplate>
 
     </Window.Resources>
 
@@ -55,9 +66,9 @@
                 <GradientStop Color="#0e0e10" Offset="0.6" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="HomeBtn"  Content="&#xD;&#xA;" HorizontalAlignment="Left" Height="63" Margin="37,4,0,0" Style="{StaticResource ImgBtn}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5"  BorderBrush="#00707070">
+        <Button x:Name="HomeBtn"  Content="&#xD;&#xA;" HorizontalAlignment="Left" Height="63" Margin="37,4,0,0" Style="{DynamicResource ImgBtn}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5"  BorderBrush="#00707070">
             <Button.Background>
-                <ImageBrush ImageSource="/mediaticon.png"/>
+                <ImageBrush  ImageSource="/mediaticon.png"/>
             </Button.Background>
         </Button>
 
@@ -74,10 +85,18 @@
         </Border>
         <ScrollViewer x:Name="scrollView" VerticalScrollBarVisibility="Hidden" Margin="10,69,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top">
             <Grid Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=scrollView}" Height="1512">
-                <Border x:Name="titleBord"  BorderThickness="1" Height="175" CornerRadius="10,10,10,10" Margin="10,10,17,0" VerticalAlignment="Top" Background="#F21F1F23">
-                    <Grid>
-                        <Image x:Name="coverImg" HorizontalAlignment="Left" Height="144" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
-                        <Label x:Name="titleLbl" Content="BELLI CIAO" Height="76" Margin="133,10,20,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <Border x:Name="titleBord"  BorderThickness="1" Height="169" CornerRadius="10,10,10,10" Margin="10,10,17,0" VerticalAlignment="Top" Background="#F21F1F23">
+                    <Grid Margin="0,0,0,-1" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.152"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Image x:Name="coverImg" HorizontalAlignment="Left" Height="144" Margin="11,10,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+                        <Label x:Name="titleLbl" Content="BELLI CIAO" Height="Auto" Margin="133,10,20,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         <StackPanel Margin="0,0,20,20" Height="40" Width="665" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" FlowDirection="RightToLeft">
                             <ComboBox x:Name="seeBtn" Style ="{StaticResource NormalCombo}" Height="40" Width="120" FlowDirection="LeftToRight" SelectedIndex="0" Foreground="White" ContextMenu="{Binding Uid, ElementName=comboBoxItem}">
                                 <ComboBoxItem x:Name="comboBoxItem" Content="Visto"/>
@@ -90,8 +109,8 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Border x:Name="descriptionBord" BorderThickness="1" CornerRadius="10,10,10,10" MinHeight="150" Height="335" Padding="0,0,0,0" Margin="10,197,17,0" VerticalAlignment="Top" Background="#F21F1F23">
-                    <RichTextBox x:Name="descRichTxt" Background="Transparent" Focusable="False" MinHeight="150" BorderBrush="Transparent" Margin="20,10,20,21" IsReadOnly="True" BorderThickness="0,0,0,0">
+                <Border x:Name="descriptionBord" BorderThickness="1" CornerRadius="10,10,10,10" Height="Auto" Padding="0,0,0,0" Margin="10,197,17,980" Background="#F21F1F23" VerticalAlignment="Stretch">
+                    <RichTextBox x:Name="descRichTxt" Background="Transparent" Focusable="False" Height="Auto" BorderBrush="Transparent" Margin="20,15,20,0" IsReadOnly="True" BorderThickness="0,0,0,0" VerticalAlignment="Stretch">
                         <FlowDocument>
                             <Paragraph FontSize="20" Foreground="#FFBCBCBE" FontWeight="Bold" Margin="0,0,0,7">
                                 <Run Text="Descrizione"/>

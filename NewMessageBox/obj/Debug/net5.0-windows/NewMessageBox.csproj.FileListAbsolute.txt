@@ -18,3 +18,23 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\refint\NewMessageBox.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.pdb
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\ref\NewMessageBox.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\NewMessageBox.deps.json
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\NewMessageBox.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\ref\NewMessageBox.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\NewMessageBox.pdb
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\MediaticonDB.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\bin\Debug\net5.0-windows\MediaticonDB.pdb
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.csproj.AssemblyReference.cache
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.g.cs
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox_MarkupCompile.cache
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox_MarkupCompile.lref
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.baml
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.g.resources
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.AssemblyInfoInputs.cache
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.AssemblyInfo.cs
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.csproj.CoreCompileInputs.cache
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.csproj.CopyComplete
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\ref\NewMessageBox.dll
+C:\Users\pino2\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\NewMessageBox\obj\Debug\net5.0-windows\NewMessageBox.pdb
