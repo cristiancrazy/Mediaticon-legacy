@@ -76,7 +76,7 @@
             <Grid Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=scrollView}" Height="1512">
                 <Border x:Name="titleBord"  BorderThickness="1" Height="175" CornerRadius="10,10,10,10" Margin="10,10,17,0" VerticalAlignment="Top" Background="#F21F1F23">
                     <Grid>
-                        <Image x:Name="coverImg" HorizontalAlignment="Left" Height="144" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+                        <Image x:Name="coverImg" HorizontalAlignment="Left" Height="144" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill"/>
                         <Label x:Name="titleLbl" Content="BELLI CIAO" Height="76" Margin="133,10,20,0" VerticalAlignment="Top" FontWeight="Heavy" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         <StackPanel Margin="0,0,20,20" Height="40" Width="665" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" FlowDirection="RightToLeft">
                             <ComboBox x:Name="seeBtn" Style ="{StaticResource NormalCombo}" Height="40" Width="120" FlowDirection="LeftToRight" SelectedIndex="0" Foreground="White" ContextMenu="{Binding Uid, ElementName=comboBoxItem}">

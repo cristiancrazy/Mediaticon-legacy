@@ -45,23 +45,26 @@ namespace MediaticonWorker
 
 					if (titlesToSearch.Any() != true) //if it's empty or not allocated
 					{
-						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE Generi LIKE \'%{genreToSearch[0]}%\'";
+						query = $"SELECT * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} WHERE Generi LIKE \'%{genreToSearch[0]}%\'";
 						foreach (string word in genreToSearch.Skip(1))
                         {
 							query += $" AND \'Generi\' LIKE \'%{word}%\'";
                         }
-                    }
-					else if (genreToSearch.Any() != true) //if it's empty or not allocated
-					{
-						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE \'Titolo\' LIKE \'%{titlesToSearch[0]}%\'";
+						query += " ORDER BY Id DESC";
+
+				}
+				else if (genreToSearch.Any() != true) //if it's empty or not allocated
+				{
+						query = $"SELECT * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} WHERE Titolo LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
 						{
-							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
+							query += $" AND Titolo LIKE \'%{word}%\'";
 						}
+						query += " ORDER BY Id DESC";
 					}
 					else
                     {
-						query = $"SELECT TOP 1 * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} ORDER BY ID DESC WHERE Titolo LIKE \'%{titlesToSearch[0]}%\'";
+						query = $"SELECT * FROM {EnviromentVar.ContentType.Tables[(int)EnviromentVar.Modality.CurrentModality]} WHERE Titolo LIKE \'%{titlesToSearch[0]}%\'";
 						foreach (string word in titlesToSearch.Skip(1))
                         {
 							query += $" AND \'Titoli\' LIKE \'%{word}%\'";
@@ -70,9 +73,10 @@ namespace MediaticonWorker
                         {
 							query += $" AND \'Generi\' LIKE \'%{word}%\'";
                         }
-					}
+						query += " ORDER BY Id DESC";
+				}
 
-					using (SqlDataReader read = db.initQuery(query).ExecuteReader())
+				using (SqlDataReader read = db.initQuery(query).ExecuteReader(System.Data.CommandBehavior.SingleResult))
                     {
 						while (read.Read())
                         {
