@@ -68,6 +68,9 @@ namespace MediaticonDB
             public static string defaultAvatarImage = Path.Combine(defaultImgPath + "Avatar"+ImgfileExt);
             public static string defaultCoverImage = Path.Combine(defaultImgPath + "Cover"+ImgfileExt);
 
+            public static string loadingGifImage = Path.Combine(System.Environment.CurrentDirectory + defaultImgPath + "load_progress.gif");
+
+
         }
 
         public class UsersPath

@@ -59,6 +59,11 @@ namespace Mediaticon
 			MainWindow.Show();
 			this.Close();
         }
+
+        private void mainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+			MainWindow.Show();
+		}
     }
 
     public partial class details : Window

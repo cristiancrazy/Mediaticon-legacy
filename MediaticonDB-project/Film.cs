@@ -207,6 +207,10 @@ namespace MediaticonDB
     {
         public static string ListToString(this List<string> input)
         {
+            if(input.Count == 0)
+            {
+                return "";
+            }
             string output = "";
             foreach (var item in input)
             {

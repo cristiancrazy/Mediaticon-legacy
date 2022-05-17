@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "x6ff6N7jv5qbSHhWXIxDEsCv5lMLObnH/eZRA9P559pfSdHtLL5ZMDrh72E9Xh6U5FVOQD70xmE+Ppe+ckKpxQ==",
+  "dgSpecHash": "N7xbK1rWH20QEsB1m/5QTRTXfNo1GMs5JrnBNRAKSZ9Vch1Uv3egQQYhSVY755ppM+KwErd3Wpz32pRogwkR1A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Visual Laser 10 New\\Source\\Repos\\cristiancrazy\\Mediaticon-sviluppatori\\Mediaticon-App\\Mediaticon.csproj",
   "expectedPackageFiles": [
@@ -20,7 +20,7 @@
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512",
+    "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\xamlanimatedgif\\2.0.2\\xamlanimatedgif.2.0.2.nupkg.sha512",
     "C:\\Users\\Visual Laser 10 New\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.23\\microsoft.windows.sdk.net.ref.10.0.19041.23.nupkg.sha512"
   ],
   "logs": []

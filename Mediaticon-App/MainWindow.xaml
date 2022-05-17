@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:local="clr-namespace:Mediaticon" 
         xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
         mc:Ignorable="d"
@@ -124,7 +124,7 @@
                 <Border BorderBrush="#5c16c5" BorderThickness="3,0,0,3" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="136" CornerRadius="0,0,0,10" Background="#FF464649" Padding="0,0,0,0">
                     <TextBox x:Name="searchTxt" TextWrapping="Wrap" Text="Search" Margin="7,1,-1,8" BorderThickness="0,0,0,0" VerticalContentAlignment="Bottom" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="0,0,0,0" IsMouseCaptureWithinChanged="searchTxt_IsMouseCaptureWithinChanged" FontSize="14" TextChanged="searchEvent"/>
                 </Border>
-                <ListBox x:Name="filterCBL" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="searchEvent">
+                <ListBox x:Name="filterCBL" Margin="10,62,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="#FF1F1F23" BorderBrush="#00ABADB3" Foreground="#FF7272B2" FontWeight="Bold" SelectionChanged="searchEvent">
                     <ItemsControl x:Name="myItemsControl">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -136,9 +136,9 @@
             </Grid>
         </Border>
 
-        <Grid x:Name="loadingShadow" Margin="0" Opacity="0" Visibility="Hidden">
-            <!--<Image gif:ImageBehavior.AnimatedSource="./Default/Images/load_progress.gif" /> git push -f origin main:new_design2-->
-            <Rectangle Margin="0" Fill="Green"/>
+        <Grid x:Name="loadingShadow" Margin="0" Opacity="0" Visibility="Hidden"><!--ema-->
+            <Image x:Name="loadingGif" Margin="250,80,250,80"/> <!--git push -f origin main:new_design2-->
+            <Rectangle Margin="0" Fill="#0e0e10" Opacity=".6"/>
         </Grid>
     </Grid>
 

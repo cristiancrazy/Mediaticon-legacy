@@ -8,7 +8,7 @@
        
         xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
         mc:Ignorable="d"
-        Title="Mediaticon" Height="624" Width="850" MinWidth="850" MinHeight="500">
+        Title="Mediaticon" Height="624" Width="850" MinWidth="850" MinHeight="500" Closing="mainWindow_Closing">
     <Window.Resources>
 
         <Style TargetType="ListBoxItem">

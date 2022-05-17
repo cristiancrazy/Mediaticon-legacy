@@ -18,6 +18,8 @@ using NewMessageBox;
 using MediaticonWorker;
 using System.Threading;
 using System.Timers;
+using XamlAnimatedGif;
+using System.Windows.Media.Animation;
 
 namespace Mediaticon
 {
@@ -237,7 +239,7 @@ namespace Mediaticon
 		{
 			//show the gif
 			//ShadowCircular load = new ShadowCircular();
-			ShadowCircular.showLoading(ref loadingShadow);
+			ShadowCircular.showLoading(ref loadingShadow, ref loadingGif);
 
 			await Task.Run(() =>
 			{
@@ -268,7 +270,7 @@ namespace Mediaticon
 
 		private void loadNewElements()
 		{
-			ShadowCircular.showLoading(ref loadingShadow);
+			ShadowCircular.showLoading(ref loadingShadow, ref loadingGif);
 			DBHelper.GetFilms(false);
 
 			while (!DBHelper.Ready) ;
@@ -319,8 +321,11 @@ namespace Mediaticon
 
 		private class ShadowCircular
 		{
-			public static void showLoading(ref Grid grid)
+			public static void showLoading(ref Grid grid, ref Image gif)
 			{
+				AnimationBehavior.SetSourceUri(gif, new System.Uri(EnviromentVar.ImagesVar.loadingGifImage.Replace("\\","/")));
+				AnimationBehavior.SetRepeatBehavior(gif, RepeatBehavior.Forever);
+
 				grid.Cursor = Cursors.Wait;
 				grid.Visibility = Visibility.Visible;
 				grid.Opacity = 0;

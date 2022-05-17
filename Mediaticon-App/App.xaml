@@ -276,7 +276,7 @@
 
 
         <!-- Edit the buttons-->
-        <Style TargetType="Button" x:Key="MenuBtn" >
+        <Style TargetType="Button" x:Key="MenuBtn">
             <Setter Property ="BorderThickness" Value="0,0,0,0"/>
             <Setter Property="Foreground" Value = "#5c16c5"/>
             <Setter Property ="Background" Value="#00DDDDDD"/>
@@ -297,12 +297,10 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-
                     <Setter Property="Foreground" Value="#FF7417FD"/>
                     <Setter Property="BorderBrush" Value="#FF390A7E"/>
                 </Trigger>
             </Style.Triggers>
-
         </Style>
 
         <Style TargetType="Button" x:Key="NormalBtn" >
@@ -341,6 +339,15 @@
         <!-- Style to avoid disable button -->
 
         <Style TargetType="Button" x:Key="ImgBtn" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#00000000"/>

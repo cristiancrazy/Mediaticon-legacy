@@ -13,7 +13,6 @@ C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\System.Security.Permissions.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\System.Windows.Extensions.dll
-C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\WpfAnimatedGif.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\runtimes\win-arm64\native\sni.dll
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\runtimes\win-x64\native\sni.dll
@@ -235,3 +234,4 @@ C:\Users\Cristian\Desktop\Workspaces\Mediaticon\Mediaticon-App\obj\Debug\net5.0-
 C:\Users\Cristian\Desktop\Workspaces\Mediaticon\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.pdb
 C:\Users\Cristian\Desktop\Workspaces\Mediaticon\Mediaticon-App\obj\Debug\net5.0-windows10.0.19041.0\Mediaticon.genruntimeconfig.cache
 C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\Default\Images\Cover.png
+C:\Users\Visual Laser 10 New\Source\Repos\cristiancrazy\Mediaticon-sviluppatori\Mediaticon-App\bin\Debug\net5.0-windows10.0.19041.0\XamlAnimatedGif.dll
