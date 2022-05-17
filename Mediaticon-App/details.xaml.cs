@@ -96,6 +96,10 @@ namespace Mediaticon
 		{
 			try
 			{
+				/*if(opened.RetImgSrc == null)
+                {
+					throw new Exception();
+                }*/
 				coverImg.Source = opened.RetImgSrc;
 			}
 			catch

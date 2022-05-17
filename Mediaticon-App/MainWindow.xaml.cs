@@ -96,8 +96,8 @@ namespace Mediaticon
 		private void listaLB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
 			//open the details.xaml and pass the selected film
-			
-			openDetails(basedList[listaLB.SelectedIndex]);
+			if(listaLB.SelectedIndex>-1)
+				openDetails(basedList[listaLB.SelectedIndex]);
 			listaLB.UnselectAll();
 		}
 
@@ -314,7 +314,7 @@ namespace Mediaticon
 
 		private void openDetails(Film toPass)
 		{
-			Applicazione.openWindow<details>(Applicazione.CloserType.None, toClose: this, toPass, this);
+			Applicazione.openWindow<details>(Applicazione.CloserType.Hide, toClose: this, toPass, this);
 		}
 
 		private class ShadowCircular

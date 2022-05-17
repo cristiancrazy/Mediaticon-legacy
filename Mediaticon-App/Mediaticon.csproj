@@ -206,6 +206,9 @@
     <None Update="Default\Images\Channels\virginradiotv.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Default\Images\Cover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Default\Images\load_progress.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
