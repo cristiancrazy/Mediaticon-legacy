@@ -182,7 +182,6 @@ public class PlanLoader {
                 }else {
                     //Create Plan - Single time
                     if ((toYear != -1)) { //Create multiple
-                        //System.out.println("\033[37m"+ "Test Case OK" + "\033[0m"); //TODO: REMOVE - DEBUG USE
                         for (int nowYear = year; nowYear <= toYear; ++nowYear, ++ID) {
                             loadedPlanList.add(new Plan(ID, AppName, nowYear, Start, of));
                         }
